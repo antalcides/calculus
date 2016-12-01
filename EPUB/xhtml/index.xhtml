@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+  <head>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-28T02:29:44-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+</head>
+  <body>
+    <div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+    <section class="frontmatter" id="index">
+      <header>
+        <h1>Front Matter  Front Matter</h1>
+      </header>
+      <h1 class="heading">
+        <span class="title">Calculus Lab Manual</span>
+        <span class="subtitle">for MTH 251 at Portland Community College</span>
+      </h1>
+      <address class="contributors">
+        <p>Steve Simonds<br/>Department of Mathematics<br/>Portland Community College<br/><a href="&#10;            mailto:ssimonds@pcc.edu">ssimonds@pcc.edu</a></p>
+        <p>Alex Jordan, Editor<br/>Department of Mathematics<br/>Portland Community College<br/><a href="&#10;            mailto:alex.jordan@pcc.edu">alex.jordan@pcc.edu</a></p>
+      </address>
+      <address class="contributors">November 28, 2016</address>
+      <p/>
+      <section class="colophon" id="colophon-1">
+        <header>
+          <h1>Colophon  Colophon</h1>
+        </header>
+        <p>©2012–2015  Portand Community College</p>
+        <p>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</p>
+      </section>
+      <section class="acknowledgement" id="acknowledgement-1">
+        <header>
+          <h1>Acknowledgements  Acknowledgements</h1>
+        </header>
+        <p id="p-1">In 2012, Steve Simonds wrote most of this lab manual as a Word/PDF document with some support from PCC curriculum development grants.</p>
+        <p id="p-2">In 2015, Alex Jordan converted the lab manual to MathBook XML (enabling the HTML output alongside a PDF) with some support from PCC's professional development grants.</p>
+        <p id="p-3">Phil Thurber and Scot Leavitt created the cover composition using images provided by NASA, the Bodleian Library of the University of Oxford, and PCC instructor Ken Kidoguchi.</p>
+        <p id="p-4">Special thanks to Joe Bradford, Pete Haberman, Kandace Kling, Ross Kouzes, and Scot Leavitt for proofreading.</p>
+      </section>
+      <section class="preface" id="to-all">
+        <header>
+          <h1>Preface  To All</h1>
+        </header>
+        <p id="p-5">Calculus I is taught at Portland Community College using a lecture/lab format. The laboratory time is set aside for students to investigate the topics and practice the skills that are covered during their lecture periods. This lab manual serves as a guide for the laboratory component of the course.</p>
+        <article class="paragraphs" id="paragraphs-1">
+          <h5 class="heading">
+            <span class="title">HTML and PDF</span>
+          </h5>
+          <p id="p-6">This manual has been released with several synchronous versions that offer different features. The essential content of each version is the same as for all others.</p>
+          <ul style="list-style-type: disc;">
+            <li id="li-1">
+              <p id="p-7">A web version is available at <a class="external-url" href="http://spot.pcc.edu/math/clm" target="_blank"><tt class="code-inline tex2jax_ignore">http://spot.pcc.edu/math/clm</tt></a>. Whenever there is an internet connection, and you do not prefer to have a print copy, this version is most recommended. The web version offers full walk-through solutions to supplemental problems. More importantly, it offers interactive elements and easier navigation than any of the PDFs below could offer.</p>
+            </li>
+            <li id="li-2">
+              <p id="p-8">A “for-printing” PDF is available at <a class="external-url" href="http://spot.pcc.edu/math/clm/clm-print.pdf" target="_blank"><tt class="code-inline tex2jax_ignore">http://spot.pcc.edu/math/clm/clm-print.pdf</tt></a>. This version is designed to be printed, not read on a screen. To save on printing expense, this version is mostly black-and-white, and only offers short answers to the supplemental exercises (as opposed to full solutions).</p>
+            </li>
+            <li id="li-3">
+              <p id="p-9">A “for-printing-with-color” PDF is available at <a class="external-url" href="http://spot.pcc.edu/math/clm/clm-print-color.pdf" target="_blank"><tt class="code-inline tex2jax_ignore">http://spot.pcc.edu/math/clm/clm-print-color.pdf</tt></a>. This version is like the above, except links and graphs retain their color.</p>
+            </li>
+            <li id="li-4">
+              <p id="p-10">A “for-screen-reading” PDF is available at <a class="external-url" href="http://spot.pcc.edu/math/clm/clm-screen.pdf" target="_blank"><tt class="code-inline tex2jax_ignore">http://spot.pcc.edu/math/clm/clm-screen.pdf</tt></a>. This version is intended to be stored on an electronic device and read when an internet connection is unavailable. It has page dimensions compatible with most laptops and tablets. The pages are not numbered since the page numbering would be inconsistent with the print versions, so this version should be navigated by section numbering. Because the page dimensions are customized for electronic devices, this version would also look strange printed on standard paper. Since this version is not intended to be printed, full solutions to the supplemental problems are offered. Keep in mind that even if you store this PDF version on your electronic device, when an internet connection is available, you might opt to use the HTML version instead, as that version has more interactive and accessible functionality than the PDF version.</p>
+            </li>
+          </ul>
+        </article>
+        <article class="paragraphs" id="paragraphs-2">
+          <h5 class="heading">
+            <span class="title">Copying Content</span>
+          </h5>
+          <p id="p-11">The graphs and other images that appear in this manual may be copied in various file formats using the HTML version. Below each image are links to <code>.png</code>, <code>.eps</code>, <code>.svg</code>, <code>.pdf</code>, and <code>.tex</code> files that contain the image. The <code>.eps</code>, <code>.svg</code>, and <code>.pdf</code> files will not lose sharpness no matter how much you zoom, but typically are large files. Some of these formats may not be recognized by applications that you use. The <code>.png</code> file are of fairly high resolution, but will eventually lose sharpness if you zoom in too much. The <code>.tex</code> files contain code that can be inserted into other <code>.tex</code> documents to re-create the images.</p>
+          <p id="p-12">Similarly, tables can be copied from the HTML version and pasted into applications like MS Word. However, mathematical content within tables will not always paste correctly without a little extra effort as described below.</p>
+          <p id="p-13">Mathematical content can be copied from the HTML version. To copy math content into MS Word, right-click or control-click over the math content, and click to Show Math As MathML Code. Copy the resulting code, and Paste <!--Style me with CSS--><em>Special</em> into Word. In the Paste Special menu, paste it as Unformatted Text. To copy math content into <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> source, right-click or control-click over the math content, and click to Show Math As TeX Commands.</p>
+        </article>
+        <article class="paragraphs" id="paragraphs-3">
+          <h5 class="heading">
+            <span class="title">Accessibility</span>
+          </h5>
+          <p id="p-14">The HTML version is intended to meet or exceed all web accessibility standards. If you encounter an accessibility issue, please report it to the editor.</p>
+          <ul style="list-style-type: disc;">
+            <li id="li-5">
+              <p id="p-15">All graphs and images should have meaningful alt text that communicates what a sighted person would see, without necessarily giving away anything that is intended to be deduced from the image.</p>
+            </li>
+            <li id="li-6">
+              <p id="p-16">All math content is rendered using MathJax. MathJax has a contextual menu that can be accessed in several ways, depending on what operating system and browser you are using. The most common way is to right-click or control-click on some piece of math content.</p>
+            </li>
+            <li id="li-7">
+              <p id="p-17">In the MathJax contextual menu, you may set options for triggering a zoom effect on math content, and also by what factor the zoom will be.</p>
+            </li>
+            <li id="li-8">
+              <p id="p-18">If you change the MathJax renderer to MathML, then a screen reader will generally have success verbalizing the math content.</p>
+            </li>
+          </ul>
+        </article>
+        <article class="paragraphs" id="paragraphs-4">
+          <h5 class="heading">
+            <span class="title">Tablets and Smartphones</span>
+          </h5>
+          <p id="p-19">MathBook XML documents like this lab manual are “mobile-friendly”. The display adapts to whatever screen size or window size you are using. A math teacher will always recommend that you do not study from the small screen on a phone, but if it's necessary, this manual gives you that option.</p>
+        </article>
+      </section>
+      <section class="preface" id="to-the-student">
+        <header>
+          <h1>Preface  To the Student</h1>
+        </header>
+        <p id="p-20">The lab activities have been written under the presumption that students will be working in groups and will be actively discussing the examples and problems included in each activity. Many of the exercises and problems lend themselves quite naturally to discussion. Some of the more algebraic problems are not so much discussion problems as they are “practice and help” problems.</p>
+        <p id="p-21">You do not need to fully understand an example before starting on the associated problems. The intent is that your understanding of the material will grow while you work on the problems.</p>
+        <p id="p-22">While working through the lab activities, the students in a given group should be working on the same activity at the same time. Sometimes this means an individual student will have to go a little more slowly than he or she may like and sometimes it means an individual student will need to move on to the next activity before he or she fully grasps the current activity.</p>
+        <p id="p-23">Many instructors will want you to focus some of your energy on the way you write your mathematics. It is important that you do not rush through the activities. Write your solutions as if they are going to be graded; that way you will know during lab time if you understand the proper way to write and organize your work.</p>
+        <p id="p-24">If your lab section meets more than once a week, <!--Style me with CSS--><em>you should not work on lab activities between lab sections that occur during the same week.</em> It is OK to work on lab activities outside of class once the entire classroom time allotted for that lab has passed.</p>
+        <p id="p-25">There are no written solutions for the lab activity problems. Between your group mates, your instructor, and (if you have one) your lab assistant, you should know whether or not you have the correct answers and proper writing strategies for these problems.</p>
+        <p id="p-26">Each lab has a section of supplementary exercises; these exercises are fully keyed with solutions. The supplementary exercises are not simply copies of the problems in the lab activities. While some questions will look familiar, many others will challenge you to apply the material covered in the lab to a new type of problem. These questions are meant to supplement your textbook homework, not replace your textbook homework.</p>
+      </section>
+      <section class="preface" id="to-the-instructor">
+        <header>
+          <h1>Preface  To the Instructor</h1>
+        </header>
+        <p id="p-27">This version of the calculus lab manual is significantly different from versions prior to 2012. The topics have been arranged in a developmental order. Because of this, students who work each activity in the order they appear may not get to all of the topics covered in a particular week.</p>
+        <p id="p-28">Additionally, a few changes have been introduced with the release of the MathBook XML version. The most notable changes are:</p>
+        <ul style="list-style-type: disc;">
+          <li id="li-9">
+            <p id="p-29">The numbering scheme does not match the earlier numbering scheme. This was a necessary consequence of converting to MathBook XML.</p>
+          </li>
+          <li id="li-10">
+            <p id="p-30">The related rates lab has been mostly rewritten using the DREDS approach.</p>
+          </li>
+          <li id="li-11">
+            <p id="p-31">In the implicit differentiation lab, a section on logarithmic differentiation has been added.</p>
+          </li>
+          <li id="li-12">
+            <p id="p-32">The printed version only contains short answers to the supplemental questions rather than complete walk-through solutions. However, complete solutions may still be found in the HTML version and the screen PDF version.</p>
+          </li>
+        </ul>
+        <p id="p-33">It is strongly recommended that you pick and choose what you consider to be the most vital activities for a given week, and that you have your students work those activities first. For some activities you might also want to have the students only work selected problems in the activity. Students who complete the high priority activities and problems can then go back and work the activities that they initially skipped. There are also fully keyed problems in the supplementary exercises that the students could work on both during lab time and outside of class. (The full solutions are only in the HTML and screen PDF versions.)</p>
+        <p id="p-34">A suggested schedule for the labs is shown in the table below. Again, you should choose what you feel to be the most relevant activities and problems for a given week, and have the students work those activities and problems first.</p>
+        <p id="p-35">(<b><i>Students should consult their syllabus for their schedule.</i></b>)</p>
+        <figure class="figure-like" id="table-1">
+          <table>
+            <tr>
+              <td class="r t b2 r0 l0 t3 lines">Week</td>
+              <td class=" t b2 r0 l0 t3 lines">Labs (Lab Activities)</td>
+              <td class=" t b2 r0 l0 t3 lines">Supplementary Exercises</td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">1</td>
+              <td class=" m b2 r0 l0 t0 lines"><a href="chapter-rates-of-change.xhtml#section-velocity">Velocity</a> through<a href="chapter-limits.xhtml#section-limits">Limits</a></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <a href="chapter-rates-of-change.xhtml#rates-of-change-supplementary-exercises">Supplement</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">2</td>
+              <td class=" m b2 r0 l0 t0 lines"><a href="chapter-limits.xhtml#section-limit-laws">Limits Laws</a> through<a href="chapter-limits.xhtml#section-piecewise-defined-functions">Piecewise-Defined Functions</a></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <a href="chapter-limits.xhtml#limits-and-continuity-supplementary-exercises">Supplement</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">3</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-instantaneous-velocity"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-derivative-units"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "introduction-first-derivative-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">4</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-graph-features"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-nondifferentiability"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "functions-derivatives-antiderivatives-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">5</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-higher-order-derivatives"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-graphical-features-from-derivatives"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "functions-derivatives-antiderivatives-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">6</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-leibniz-notation"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-derivative-formulas-and-function-behavior"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "derivative-formulas-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">7</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-introduction-to-the-chain-rule"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-chain-rule-and-leibniz"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "chain-rule-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b2 r0 l0 t0 lines">8</td>
+              <td class=" m b2 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-general-implicit-differentiation"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-logarithmic-differentiation"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b2 r0 l0 t0 lines">
+                <span>&lt;&lt;Unresolved xref, reference "implicit-differentiation-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="r m b3 r0 l0 t0 lines">9, 10</td>
+              <td class=" m b3 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "section-introduction-related-rates"; check spelling or use "provisional" attribute&gt;&gt;</span> through<span>&lt;&lt;Unresolved xref, reference "section-making-graphs"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+              <td class=" m b3 r0 l0 t0 lines"><span>&lt;&lt;Unresolved xref, reference "related-rates-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span>,<span>&lt;&lt;Unresolved xref, reference "critical-numbers-graphing-from-formulas-supplementary-exercises"; check spelling or use "provisional" attribute&gt;&gt;</span></td>
+            </tr>
+          </table>
+        </figure>
+      </section>
+    </section>
+  </body>
+</html>

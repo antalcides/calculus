@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Limits Laws</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="section-limits.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="section-indeterminate-limits.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-limits.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="section-indeterminate-limits.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link active"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html">Limits</a></li>
+<li><a href="section-limit-laws.html" class="active">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-limit-laws"><header title="Section 2.2 Limits Laws"><h1 class="heading hide-type" alt="Section 2.2 Limits Laws">
+<span class="type">Section</span><span class="codenumber">2.2</span><span class="title">Limits Laws</span><a href="section-limit-laws.html" class="permalink">¶ permalink</a>
+</h1></header><p id="p-177">When proving the value of a limit we frequently rely upon laws that are easy to prove using the technical definitions of limit. These laws can be found in <a href="appendix-limit-laws.html" alt="Appendix A Limit Laws" title="Appendix A Limit Laws">Appendix A</a>. The first of these type laws are called replacement laws. Replacement laws allow us to replace limit expressions with the actual values of the limits.</p>
+<section class="exercises" id="exercises-6"><header title="Exercises 2.2.1 Exercises"><h1 class="heading hide-type" alt="Exercises 2.2.1 Exercises">
+<span class="type">Subsection</span><span class="codenumber">2.2.1</span><span class="title">Exercises</span>
+</h1></header><div class="exercisegroup" id="exercisegroup-16">
+<article class="introduction" id="introduction-16"><p id="p-178">The value of each of the following limits can be established using one of the replacement laws. Copy each limit expression onto your own paper, state the value of the limit (e.g. \(\lim\limits_{x\to9}5=5\)), and state the replacement law (by number) that establishes the value of the limit.</p></article><div class="exercisegroup-exercises cols3">
+<article class="exercise-like" id="exercise-66"><h5 class="heading"><span class="codenumber">1</span></h5>
+<p id="p-179">\(\lim\limits_{t\to\pi}t\)</p></article><article class="exercise-like" id="exercise-67"><h5 class="heading"><span class="codenumber">2</span></h5>
+<p id="p-180">\(\lim\limits_{x\to14}23\)</p></article><article class="exercise-like" id="exercise-68"><h5 class="heading"><span class="codenumber">3</span></h5>
+<p id="p-181">\(\lim\limits_{x\to14}x\)</p></article>
+</div>
+</div>
+<article class="example-like" id="example-apply-limit-laws"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.2.1</span><span class="title">Applying Limit Laws</span>
+</h5>
+<p id="p-182">\begin{align*}
+\lim_{x\to7}\left(4x^2+3\right)&amp;=\lim_{x\to7}\left(4x^2\right)+\lim_{x\to7}3&amp;&amp;\knowl{./knowl/lla1.html}{\text{Limit Law A1}}\\
+&amp;=4\lim_{x\to7}x^2+\lim_{x\to7}3&amp;&amp;\knowl{./knowl/lla3.html}{\text{Limit Law A3}}\\
+&amp;=4\left(\lim_{x\to7}x\right)^2+\lim_{x\to7}3&amp;&amp;\knowl{./knowl/lla6.html}{\text{Limit Law A6}}\\
+&amp;=4\cdot7^2+3&amp;&amp;\knowl{./knowl/llr1.html}{\text{Limit Law R1}}, \knowl{./knowl/llr2.html}{\text{Limit Law R2}}\\
+&amp;=199
+\end{align*}</p></article><div class="exercisegroup" id="exercisegroup-17">
+<article class="introduction" id="introduction-17"><p id="p-183">The algebraic limit laws allow us to replace limit expressions with equivalent limit expressions. When applying limit laws our first goal is to come up with an expression in which every limit in the expression can be replaced with its value based upon one of the replacement laws. This process is shown in <a knowl="./knowl/example-apply-limit-laws.html" knowl-id="xref-example-apply-limit-laws" alt="Example 2.2.1 Applying Limit Laws" title="Example 2.2.1 Applying Limit Laws">Example 2.2.1</a>. Please note that all replacement laws are saved for the second to last step and that each replacement is explicitly shown. Please note also that each limit law used is referenced by number.</p>
+<p id="p-184">Use the limit laws to establish the value of each of the following limits. Make sure that you use the step-by-step, vertical format shown in example <a knowl="./knowl/example-apply-limit-laws.html" knowl-id="xref-example-apply-limit-laws" alt="Example 2.2.1 Applying Limit Laws" title="Example 2.2.1 Applying Limit Laws">Example 2.2.1</a>. Make sure that you cite the limit laws used in each step. To help you get started, the steps necessary in <a knowl="./knowl/exercise-first-apply-limit-laws.html" knowl-id="xref-exercise-first-apply-limit-laws" alt="Exercise 2.2.1.4 " title="Exercise 2.2.1.4 ">Exercise 2.2.1.4</a> are outlined as:</p>
+<ol style="list-style-type: lower-alpha;">
+<li id="li-17"><p id="p-185">Apply <a knowl="./knowl/lla6.html" knowl-id="xref-lla6" alt="Theorem  Limit Law A6" title="Theorem  Limit Law A6">Limit Law A6</a></p></li>
+<li id="li-18"><p id="p-186">Apply <a knowl="./knowl/lla1.html" knowl-id="xref-lla1" alt="Theorem  Limit Law A1" title="Theorem  Limit Law A1">Limit Law A1</a></p></li>
+<li id="li-19"><p id="p-187">Apply <a knowl="./knowl/lla3.html" knowl-id="xref-lla3" alt="Theorem  Limit Law A3" title="Theorem  Limit Law A3">Limit Law A3</a></p></li>
+<li id="li-20"><p id="p-188">Apply <a knowl="./knowl/llr1.html" knowl-id="xref-llr1" alt="Theorem  Limit Law R1" title="Theorem  Limit Law R1">Limit Law R1</a> and <a knowl="./knowl/llr2.html" knowl-id="xref-llr2" alt="Theorem  Limit Law R2" title="Theorem  Limit Law R2">Limit Law R2</a></p></li>
+</ol></article><div class="exercisegroup-exercises cols3">
+<article class="exercise-like" id="exercise-first-apply-limit-laws"><h5 class="heading"><span class="codenumber">4</span></h5>
+<p id="p-189">\(\lim\limits_{t\to4}\sqrt{6t+1}\)</p></article><article class="exercise-like" id="exercise-70"><h5 class="heading"><span class="codenumber">5</span></h5>
+<p id="p-190">\(\lim\limits_{y\to7}\dfrac{y+3}{y-\sqrt{y+9}}\)</p></article><article class="exercise-like" id="exercise-71"><h5 class="heading"><span class="codenumber">6</span></h5>
+<p id="p-191">\(\lim\limits_{x\to\pi}x\cos(x)\)</p></article>
+</div>
+</div></section></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

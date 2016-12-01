@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Cálculo Diferencial</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<span class="previous-button button toolbar-item disabled">Previous</span><span class="up-button button disabled toolbar-item">Up</span><a class="next-button button toolbar-item" href="index.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><span class="previous-button button toolbar-item disabled">Previous</span><span class="up-button button disabled toolbar-item">Up</span><a class="next-button button toolbar-item" href="index.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html">Limits</a></li>
+<li><a href="section-limit-laws.html">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="book" id="clm"><header title="Book  Cálculo Diferencial"><h1 class="heading hide-type" alt="Book  Cálculo Diferencial">
+<span class="type">Book</span><span class="codenumber"></span><span class="title">Cálculo Diferencial</span><a href="clm.html" class="permalink">¶ permalink</a>
+</h1></header><nav class="summary-links"><a href="index.html"><span class="title">Front Matter</span></a><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a><a href="backmatter-1.html"><span class="title">Back Matter</span></a></nav></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

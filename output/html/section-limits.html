@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Limits</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="chapter-limits.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="section-limit-laws.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chapter-limits.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="section-limit-laws.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link active"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html" class="active">Limits</a></li>
+<li><a href="section-limit-laws.html">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-limits"><header title="Section 2.1 Limits"><h1 class="heading hide-type" alt="Section 2.1 Limits">
+<span class="type">Section</span><span class="codenumber">2.1</span><span class="title">Limits</span><a href="section-limits.html" class="permalink">¶ permalink</a>
+</h1></header><p id="p-145">While working <a knowl="./knowl/exercisegroup-vat.html" knowl-id="xref-exercisegroup-vat" alt="Exercise Group  " title="Exercise Group  ">Exercise Group 1.3.1.18–1.3.1.21</a> from <a href="section-difference-quotient.html" alt="Section 1.3 The Difference Quotient" title="Section 1.3 The Difference Quotient">Section 1.3</a> you completed <a knowl="./knowl/table-vat.html" knowl-id="xref-table-vat" alt="Table 1.3.3 " title="Table 1.3.3 ">Table 1.3.3</a>. In the context of that problem the difference quotient being evaluated returned the average rate of change in the volume of fluid remaining in a vat between times \(t=4\) and \(t=4+h\). As the elapsed time closes in on \(0\) this average rate of change converges to \(-6\). From that we deduce that the rate of change in the volume \(4\) minutes into the draining process must have been 6 <sup>gal</sup>⁄<sub>min</sub>.</p>
+<p id="p-146">Please note that we could not deduce the rate of change \(4\) minutes into the process by replacing \(h\) with \(0\); in fact, there are at least two things preventing us from doing so. From a strictly mathematical perspective, we cannot replace \(h\) with \(0\) because that would lead to division by zero in the difference quotient. From a more physical perspective, replacing \(h\) with \(0\) would in essence stop the clock. If time is frozen, so is the amount of fluid in the vat and the entire concept of “rate of change” becomes moot.</p>
+<p id="p-147">It turns out that it is frequently more useful (not to mention interesting) to explore the <!--Style me with CSS--><em>trend</em> in a function as the input variable <!--Style me with CSS--><em>approaches</em> a number rather than the actual value of the function at that number. Mathematically we describe these trends using <em class="terminology">limits</em>.</p>
+<p id="p-148">If we denote \(\fe{f}{h}=\frac{\fe{V}{4+h}-\fe{V}{4}}{h}\) to be the difference quotient in <a knowl="./knowl/table-vat.html" knowl-id="xref-table-vat" alt="Table 1.3.3 " title="Table 1.3.3 ">Table 1.3.3</a>, then we could describe the trend evidenced in the table by saying “the limit of \(\fe{f}{h}\) as \(h\) approaches zero is \(-6\).” Please note that as \(h\) changes value, the value of \(\fe{f}{h}\) changes, not the value of the limit. The limit value is a fixed number to which the value of \(\fe{f}{h}\) converges. Symbolically we write \(\lim\limits_{h\to0}\fe{f}{h}=-6\).</p>
+<p id="p-149">Most of the time the value of a function at the number \(a\) and the limit of the function as \(x\) approaches \(a\) are in fact the same number. When this occurs we say that the function is <em class="terminology">continuous</em> at \(a\). We will explore the concept of continuity more in depth at the end of the this lab, once we have a handle on the idea of limits. To help you better understand the concept of limit we need to have you confront situations where the function value and limit value are not equal to one another. Graphs can be useful for helping distinguish function values from limit values, so that is the perspective you are going to use in the first couple of problems in this lab.</p>
+<section class="exercises" id="exercises-5"><header title="Exercises 2.1.1 Exercises"><h1 class="heading hide-type" alt="Exercises 2.1.1 Exercises">
+<span class="type">Subsection</span><span class="codenumber">2.1.1</span><span class="title">Exercises</span>
+</h1></header><article class="exercise-like" id="exercise-46"><h5 class="heading"><span class="codenumber">1</span></h5>
+<p id="p-150">Several function values and limit values for the function in <a knowl="./knowl/figure-first-limit.html" knowl-id="xref-figure-first-limit" alt="Figure 2.1.1 " title="Figure 2.1.1 ">Figure 2.1.1</a> are given below. You and your group mates should take turns reading the equations aloud. Make sure that you read the symbols correctly, that's part of what you are learning! Also, discuss why the values are what they are and make sure that you get help from your instructor to clear up any confusion.</p>
+<ul style="list-style-type: disc;">
+<li id="li-13"><p id="p-151">\(\fe{f}{-2}=6\), but \(\lim\limits_{x\to-2}\fe{f}{x}=3\)</p></li>
+<li id="li-14"><p id="p-152">\(\fe{f}{-4}\) is undefined, but \(\lim\limits_{x\to-4}\fe{f}{x}=2\)</p></li>
+<li id="li-15"><p id="p-153">\(\fe{f}{1}=-1\), but \(\lim\limits_{x\to1}\fe{f}{x}\) does not exist</p></li>
+<li id="li-16"><p id="p-154">\(\underbrace{\lim_{x\to1^{-}}\fe{f}{x}}_{\begin{array}{c}\text{the limit of }\fe{f}{x}\\\text{as }x\text{ approaches }1\\\text{from the left}\end{array}}=-3\), but \(\underbrace{\lim_{x\to1^{+}}\fe{f}{x}}_{\begin{array}{c}\text{the limit of }\fe{f}{x}\\\text{as }x\text{ approaches }1\\\text{from the right}\end{array}}=-1\)</p></li>
+</ul>
+<figure class="figure-like" id="figure-first-limit"><object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-first-limit.svg" alt="a graph of a discontinuous function; reading the graph left to right, the graph enters from the left with an upward slope until it reaches (-3,5), however there is a hole at (-4,2); from (-3,5), the graph slopes in a straight line downward to (1,-3), however the plot has a hole at (1,-3); additionally, there is a hole back at (-2,3), but the graph has a solid dot above that hole at (-2,6); back at x=1, a second piece of the graph begins from (1,-1) sloping upward to the right; this piece of the graph is not connected to the piece that ended just shy of (1,-3)"><p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p></object><figcaption><span class="heading">Figure</span><span class="codenumber">2.1.1</span>\(y=\fe{f}{x}\)</figcaption></figure></article><div class="exercisegroup" id="exercisegroup-13">
+<article class="introduction" id="introduction-13"><div class="sidebyside" style="" id="sidebyside-6">
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><p id="p-155">Copy each of the following expressions onto your paper and either state the value or state that the value is undefined or doesn't exist. Make sure that when discussing the values you use proper terminology. All expressions are in reference to the function \(g\) shown in <a knowl="./knowl/figure-second-limit.html" knowl-id="xref-figure-second-limit" alt="Figure 2.1.2 " title="Figure 2.1.2 ">Figure 2.1.2</a>.</p></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-second-limit.svg" alt="a graph of a discontinuous function; reading the graph left to right, the graph enters from the left with an upward slope until it reaches (-2,5); a second, separated, piece of the graph begins at (-2,-3.5), except there is a hole right where it begins; the graph moves upward linearly until reaching (3,-1), except ther was a hole at (2,-1.5); from (3,-1), the curve enters a parabolic path, dipping down to a vertex at (4,-2) and then curving upward off to the right; however there is a hole at (5,-1), with a solid dot above the hole at (5,1)"><p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p></object></div>
+</div>
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<figcaption class="sbscaption" style="width:50%;"></figcaption><figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">2.1.2</span>\(y=\fe{g}{t}\)</figcaption>
+</div>
+</div></article><div class="exercisegroup-exercises cols3">
+<article class="exercise-like" id="exercise-47"><h5 class="heading"><span class="codenumber">2</span></h5>
+<p id="p-156">\(\fe{g}{5}\)</p></article><article class="exercise-like" id="exercise-48"><h5 class="heading"><span class="codenumber">3</span></h5>
+<p id="p-157">\(\lim\limits_{t\to5}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-49"><h5 class="heading"><span class="codenumber">4</span></h5>
+<p id="p-158">\(\fe{g}{3}\)</p></article><article class="exercise-like" id="exercise-50"><h5 class="heading"><span class="codenumber">5</span></h5>
+<p id="p-159">\(\lim\limits_{t\to3^{-}}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-51"><h5 class="heading"><span class="codenumber">6</span></h5>
+<p id="p-160">\(\lim\limits_{t\to3^{+}}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-52"><h5 class="heading"><span class="codenumber">7</span></h5>
+<p id="p-161">\(\lim\limits_{t\to3}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-53"><h5 class="heading"><span class="codenumber">8</span></h5>
+<p id="p-162">\(\fe{g}{2}\)</p></article><article class="exercise-like" id="exercise-54"><h5 class="heading"><span class="codenumber">9</span></h5>
+<p id="p-163">\(\lim\limits_{t\to2}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-55"><h5 class="heading"><span class="codenumber">10</span></h5>
+<p id="p-164">\(\fe{g}{-2}\)</p></article><article class="exercise-like" id="exercise-56"><h5 class="heading"><span class="codenumber">11</span></h5>
+<p id="p-165">\(\lim\limits_{t\to-2^{-}}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-57"><h5 class="heading"><span class="codenumber">12</span></h5>
+<p id="p-166">\(\lim\limits_{t\to-2^{+}}\fe{g}{t}\)</p></article><article class="exercise-like" id="exercise-58"><h5 class="heading"><span class="codenumber">13</span></h5>
+<p id="p-167">\(\lim\limits_{t\to-2}\fe{g}{t}\)</p></article>
+</div>
+</div>
+<div class="exercisegroup" id="exercisegroup-14">
+<article class="introduction" id="introduction-14"><p id="p-168">Values of the function \(f\), where \(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\), are shown in <a knowl="./knowl/table-rational-function-values.html" knowl-id="xref-table-rational-function-values" alt="Table 2.1.3 " title="Table 2.1.3 ">Table 2.1.3</a>, and values of the function \(p\), where \(\fe{p}{t}=\sqrt{t-12}\), are shown in <a knowl="./knowl/table-square-root-values.html" knowl-id="xref-table-square-root-values" alt="Table 2.1.4 " title="Table 2.1.4 ">Table 2.1.4</a>. These questions are in reference to these functions.</p>
+<div class="sidebyside" style="" id="sidebyside-7">
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width" style="width:50%;justify-content:flex-start;"><table>
+<tr>
+<td class="c m b2 r0 l0 t3 lines">\(x\)</td>
+<td class="c m b2 r0 l0 t3 lines">\(\fe{f}{x}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(4.99\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.0014\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(4.999\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.00014\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(4.9999\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.000014\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(5.0001\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(1.999986\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(5.001\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(1.99986\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(5.01\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(1.9986\)</td>
+</tr>
+</table></div>
+<div class="sbspanel fixed-width" style="width:50%;justify-content:flex-start;"><table>
+<tr>
+<td class="c m b2 r0 l0 t3 lines">\(t\)</td>
+<td class="c m b2 r0 l0 t3 lines">\(\fe{p}{t}\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(20.9\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.98\ldots\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(20.99\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.998\ldots\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(20.999\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(2.9998\ldots\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(21.001\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(3.0002\ldots\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(21.01\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(3.002\ldots\)</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">\(21.1\)</td>
+<td class="l m b0 r0 l0 t0 lines">\(3.02\ldots\)</td>
+</tr>
+</table></div>
+</div>
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<figcaption class="sbscaption" style="width:50%;"><span class="heading">Table</span><span class="codenumber">2.1.3</span>\(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\)</figcaption><figcaption class="sbscaption" style="width:50%;"><span class="heading">Table</span><span class="codenumber">2.1.4</span>\(\fe{p}{t}=\sqrt{t-12}\)</figcaption>
+</div>
+</div></article><div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-59"><h5 class="heading"><span class="codenumber">14</span></h5>
+<p id="p-169">What is the value of \(\fe{f}{5}\)?</p></article><article class="exercise-like" id="exercise-60"><h5 class="heading"><span class="codenumber">15</span></h5>
+<p id="p-170">What is the value of \(\lim\limits_{x\to5}\dfrac{3x^2-16x+5}{2x^2-13x+15}\)?</p></article><article class="exercise-like" id="exercise-61"><h5 class="heading"><span class="codenumber">16</span></h5>
+<p id="p-171">What is the value of \(\fe{p}{21}\)?</p></article><article class="exercise-like" id="exercise-62"><h5 class="heading"><span class="codenumber">17</span></h5>
+<p id="p-172">What is the value of \(\lim\limits_{t\to21}\sqrt{t-12}\)?</p></article>
+</div>
+</div>
+<div class="exercisegroup" id="exercisegroup-15">
+<article class="introduction" id="introduction-15"><p id="p-173">Create tables similar to <a knowl="./knowl/table-rational-function-values.html" knowl-id="xref-table-rational-function-values" alt="Table 2.1.3 " title="Table 2.1.3 ">2.1.3</a> and <a knowl="./knowl/table-square-root-values.html" knowl-id="xref-table-square-root-values" alt="Table 2.1.4 " title="Table 2.1.4 ">2.1.4</a> from which you can deduce each of the following limit values. Make sure that you include table numbers, table captions, and meaningful column headings. Make sure that your input values follow patterns similar to those used in <a knowl="./knowl/table-rational-function-values.html" knowl-id="xref-table-rational-function-values" alt="Table 2.1.3 " title="Table 2.1.3 ">2.1.3</a> and <a knowl="./knowl/table-square-root-values.html" knowl-id="xref-table-square-root-values" alt="Table 2.1.4 " title="Table 2.1.4 ">2.1.4</a>. Make sure that you round your output values in such a way that a clear and compelling pattern in the output is clearly demonstrated by your stated values. Make sure that you state the limit value!</p></article><div class="exercisegroup-exercises cols2">
+<article class="exercise-like" id="exercise-63"><h5 class="heading"><span class="codenumber">18</span></h5>
+<p id="p-174">\(\lim\limits_{t\to6}\dfrac{t^2-10t+24}{t-6}\)</p></article><article class="exercise-like" id="exercise-64"><h5 class="heading"><span class="codenumber">19</span></h5>
+<p id="p-175">\(\lim\limits_{x\to-1^{+}}\dfrac{\sin(x+1)}{3x+3}\)</p></article><article class="exercise-like" id="exercise-65"><h5 class="heading"><span class="codenumber">20</span></h5>
+<p id="p-176">\(\lim\limits_{h\to0^{-}}\dfrac{h}{4-\sqrt{16-h}}\)</p></article>
+</div>
+</div></section></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of the book -->
+<!--                               -->
+<!-- Calculus I Lab Manual         -->
+<!--                               -->
+<!-- Steve Simonds (author)        -->
+<!-- Alex Jordan (editor)          -->
+
+<section xml:id="section-nonexistent-limits">
+    <title>Non-existent Limits</title>
+
+    <p>Many limit values do not exist. Sometimes the non-existence is caused by the function value either increasing without bound or decreasing without bound. In these special cases we use the symbols <m>\infty</m> and <m>-\infty</m> to communicate the non-existence of the limits. <xref autoname="plural" ref="figure-first-nonexistent-limit"/><ndash/><xref autoname="no" ref="figure-last-nonexistent-limit"/> can be used to illustrate some ways in which we communicate the <term>non-existence</term> of these types of limits.</p>
+
+    <ul>
+        <li><p>In <xref ref="figure-first-nonexistent-limit"/> we could (correctly) write<br /><m>\lim\limits_{x\to2}\fe{k}{x}=\infty</m>, <m>\lim\limits_{x\to2^{-}}\fe{k}{x}=\infty</m>, and <m>\lim\limits_{x\to2^{+}}\fe{k}{x}=\infty</m>.</p></li>
+       <li><p>In <xref ref="figure-middle-nonexistent-limit"/> we could (correctly) write<br /><m>\lim\limits_{t\to4}\fe{w}{t}=-\infty</m>, <m>\lim\limits_{t\to4^{-}}\fe{w}{t}=-\infty</m>, and <m>\lim\limits_{t\to4^{+}}\fe{w}{t}=-\infty</m>.</p></li>
+       <li><p>In <xref ref="figure-last-nonexistent-limit"/> we could (correctly) write<br /><m>\lim\limits_{x\to-3^{-}}\fe{T}{x}=\infty</m> and <m>\lim\limits_{x\to-3^{+}}\fe{T}{x}=-\infty</m>.<br /> There is no shorthand way of communicating the non-existence of the two-sided limit <m>\lim\limits_{x\to-3}\fe{T}{x}</m>.</p></li>
+    </ul>
+
+    <sidebyside>
+        <figure xml:id="figure-first-nonexistent-limit">
+            <caption><m>y=\fe{k}{x}</m></caption>
+            <image>
+                <description>a plot of a function; the curve comes in from the left low on the graph at about y=-6.5; it is flat for a while, but when it reaches the x-axis it begins to curve up steeply; there is a dashed vertical line at x=2, and the curve bends upward until it is almost parallel with this vertical line; the curve is quite close to this vertical line (but still to its left) when the curve leaves the top of the graph; the curve picks up again on the other side of the vertical line, coming in downward from the top of the graph a little to the right of the vertical line; it moves almost straight downward and slightly to the right for a while, crossing below the x-axis; around when it reaches the point (3,-5.5), it flattens as it continues to move rightward</description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                \begin{axis}[]
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:28.8167615,
+                             ]
+                             ({2+1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2}); 
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:35.489593,
+                             ]
+                             ({2-1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2});
+                    \addplot[asymptote
+                    ]coordinates{
+                        (2,7)
+                        (2,-7)} node[above left] {\rotatebox{90}{$x=2$}};
+                \end{axis}
+                \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+        <figure xml:id="figure-middle-nonexistent-limit">
+            <caption><m>y=\fe{w}{t}</m></caption>
+            <image>
+                <description>a plot of a function; the curve comes in from the left high on the graph at about y=6.5; it is flat for a while, but when it reaches about x=2 it begins to curve down steeply; there is a dashed vertical line at x=4, and the curve bends downward until it is almost parallel with this vertical line; the curve is quite close to this vertical line (but still to its left) when the curve leaves the bottom of the graph; the curve picks up again on the other side of the vertical line, coming in upward from the bottom of the graph a little to the right of the vertical line; it moves almost straight upward and slightly to the right for a while, crossing above the x-axis; around when it reaches the point (5,5.5), it flattens as it continues to move rightward</description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                \begin{axis}[,
+                             xlabel = {$t$},]
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:22.6496693,
+                             ]
+                             ({4+1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:37.7066604,
+                             ]
+                             ({4-1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+                    \addplot[asymptote
+                    ]coordinates{
+                        (4,-7)
+                        (4,7)} node[below left] {\rotatebox{90}{$t=4$}};
+                \end{axis}
+                \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+        <figure xml:id="figure-last-nonexistent-limit">
+            <caption><m>y=\fe{T}{x}</m></caption>
+            <image>
+                <description>a plot of a function; the curve comes in from the left low on the graph at about y=-6.5; it is flat for a short while, but when it reaches about x=-5, it begins to curve up steeply; there is a dashed vertical line at x=-3, and the curve bends upward until it is almost parallel with this vertical line; the curve is quite close to this vertical line (but still to its left) when the curve leaves the top of the graph; the curve picks up again on the other side of the vertical line, coming in upward from the bottom of the graph a little to the right of the vertical line; it moves almost straight upward and slightly to the right for a while, crossing above the x-axis; around when it reaches the point (-2,5.5), it flattens as it continues to move rightward</description>
+                <latex-image-code>
+                <![CDATA[\begin{tikzpicture}
+                \begin{axis}[]
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:36.6565789,
+                             ]
+                             ({-3+1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+                    \addplot[pccplot,
+                             variable=\t,
+                             domain=0:26.1799558,
+                             ]
+                             ({-3-1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2});
+                    \addplot[asymptote
+                    ]coordinates{
+                        (-3,7)
+                        (-3,-7)} node[above left] {\rotatebox{90}{$x=-3$}};
+                \end{axis}
+                \end{tikzpicture}]]>
+                </latex-image-code>
+            </image>
+        </figure>
+
+    </sidebyside>
+
+    <exercises>
+        <exercise>
+            <statement>
+                <p>In the plane provided, draw the graph of a single function, <m>f</m>, that satisfies each of the following limit statements. Make sure that you draw the necessary asymptotes and that you label each asymptote with its equation.</p>
+
+                <sidebyside>
+                    <paragraphs valign="top">
+                        <p><md>
+                        <mrow>\lim\limits_{x\to3^{-}}\fe{f}{x}&amp;=-\infty</mrow>
+                        <mrow>\lim\limits_{x\to\infty}\fe{f}{x}&amp;=0</mrow>
+                        <mrow>\lim\limits_{x\to3^{+}}\fe{f}{x}&amp;=\infty</mrow>
+                        <mrow>\lim\limits_{x\to-\infty}\fe{f}{x}&amp;=2</mrow>
+                        </md></p>
+                    </paragraphs>
+                    <figure>
+                    <caption><m>y=\fe{f}{x}</m></caption>
+                    <image valign="top">
+                        <description>a blank Cartesian grid, with x-axis covering the interval from -7 to 7, and y-axis covering the interval from -7 to 7</description>
+                        <latex-image-code>
+                        <![CDATA[\begin{tikzpicture}
+                        \begin{axis}[]
+                        \end{axis}
+                        \end{tikzpicture}]]>
+                        </latex-image-code>
+                    </image>
+                    </figure>
+                </sidebyside>
+
+            </statement>
+        </exercise>
+    </exercises>
+
+
+
+</section>

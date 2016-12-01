@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Supplement</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="section-piecewise-defined-functions.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-piecewise-defined-functions.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link active"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html">Limits</a></li>
+<li><a href="section-limit-laws.html">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html" class="active">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="limits-and-continuity-supplementary-exercises"><header title="Section 2.14 Supplement"><h1 class="heading hide-type" alt="Section 2.14 Supplement">
+<span class="type">Section</span><span class="codenumber">2.14</span><span class="title">Supplement</span><a href="limits-and-continuity-supplementary-exercises.html" class="permalink">¶ permalink</a>
+</h1></header><section class="exercises" id="exercises-18"><header title="Exercises 2.14.1 Exercises"><h1 class="heading hide-type" alt="Exercises 2.14.1 Exercises">
+<span class="type">Subsection</span><span class="codenumber">2.14.1</span><span class="title">Exercises</span>
+</h1></header><div class="exercisegroup" id="exercisegroup-31">
+<article class="introduction" id="introduction-31"><p id="p-318">For <a knowl="./knowl/exercise-limits-supplement-first.html" knowl-id="xref-exercise-limits-supplement-first" alt="Exercise 2.14.1.1 " title="Exercise 2.14.1.1 ">2.14.1.1</a>–<a knowl="./knowl/exercise-limits-supplement-last.html" knowl-id="xref-exercise-limits-supplement-last" alt="Exercise 2.14.1.5 " title="Exercise 2.14.1.5 ">2.14.1.5</a>, state the limit suggested by the values in the table and state whether or not the limit exists.  The correct answer for <a knowl="./knowl/exercise-limits-supplement-first.html" knowl-id="xref-exercise-limits-supplement-first" alt="Exercise 2.14.1.1 " title="Exercise 2.14.1.1 ">Exercise 2.14.1.1</a> has been given to help you understand the instructions.</p></article><div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-limits-supplement-first"><h5 class="heading"><span class="codenumber">1</span></h5>
+<table>
+<tr>
+<td class="r t b2 r0 l0 t3 lines">\(t\)</td>
+<td class="c t b2 r0 l0 t3 lines">\(\fe{g}{t}\)</td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">\(-10{,}000\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(99.97\)</td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">\(-100{,}000\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(999.997\)</td>
+</tr>
+<tr>
+<td class="r t b3 r0 l0 t0 lines">\(-1{,}000{,}000\)</td>
+<td class="c t b3 r0 l0 t0 lines">\(9999.9997\)</td>
+</tr>
+</table>
+<p id="p-319">\begin{align*}
+\text{Limit}&amp;&amp;&amp;\text{Limit Exists?}\\
+\lim\limits_{t\to-\infty}\fe{g}{t}&amp;=\infty&amp;&amp;\text{No}
+\end{align*}</p></article><article class="exercise-like" id="exercise-138"><h5 class="heading"><span class="codenumber">2</span></h5>
+<table>
+<tr>
+<td class="r t b2 r0 l0 t3 lines">\(x\)</td>
+<td class="r t b2 r0 l0 t3 lines">\(\fe{f}{x}\)</td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">\(51{,}000\)</td>
+<td class="r t b0 r0 l0 t0 lines">\(-3.2\times10^{-5}\)</td>
+</tr>
+<tr>
+<td class="r t b0 r0 l0 t0 lines">\(510{,}000\)</td>
+<td class="r t b0 r0 l0 t0 lines">\(-3.02\times10^{-7}\)</td>
+</tr>
+<tr>
+<td class="r t b3 r0 l0 t0 lines">\(5{,}100{,}000\)</td>
+<td class="r t b3 r0 l0 t0 lines">\(-3.002\times10^{-9}\)</td>
+</tr>
+</table>
+<p id="p-322">\begin{align*}
+\text{Limit}&amp;&amp;&amp;\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&amp;=\mathord{?}
+\end{align*}</p></article><article class="exercise-like" id="exercise-139"><h5 class="heading"><span class="codenumber">3</span></h5>
+<table>
+<tr>
+<td class="l t b2 r0 l0 t3 lines">\(t\)</td>
+<td class="l t b2 r0 l0 t3 lines">\(\fe{z}{t}\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(0.33\)</td>
+<td class="l t b0 r0 l0 t0 lines">\(0.66\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(0.333\)</td>
+<td class="l t b0 r0 l0 t0 lines">\(0.666\)</td>
+</tr>
+<tr>
+<td class="l t b3 r0 l0 t0 lines">\(0.3333\)</td>
+<td class="l t b3 r0 l0 t0 lines">\(0.6666\)</td>
+</tr>
+</table>
+<p id="p-325">\begin{align*}
+\text{Limit}&amp;&amp;&amp;\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&amp;=\mathord{?}
+\end{align*}</p></article><article class="exercise-like" id="exercise-140"><h5 class="heading"><span class="codenumber">4</span></h5>
+<table>
+<tr>
+<td class="l t b2 r0 l0 t3 lines">\(\theta\)</td>
+<td class="c t b2 r0 l0 t3 lines">\(\fe{g}{\theta}\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(-0.9\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(2{,}999{,}990\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(-0.99\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(2{,}999{,}999\)</td>
+</tr>
+<tr>
+<td class="l t b3 r0 l0 t0 lines">\(-0.999\)</td>
+<td class="c t b3 r0 l0 t0 lines">\(2{,}999{,}999.9\)</td>
+</tr>
+</table>
+<p id="p-328">\begin{align*}
+\text{Limit}&amp;&amp;&amp;\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&amp;=\mathord{?}
+\end{align*}</p></article><article class="exercise-like" id="exercise-limits-supplement-last"><h5 class="heading"><span class="codenumber">5</span></h5>
+<table>
+<tr>
+<td class="l t b2 r0 l0 t3 lines">\(t\)</td>
+<td class="c t b2 r0 l0 t3 lines">\(\fe{T}{t}\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(0.778\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(29{,}990\)</td>
+</tr>
+<tr>
+<td class="l t b0 r0 l0 t0 lines">\(0.7778\)</td>
+<td class="c t b0 r0 l0 t0 lines">\(299{,}999\)</td>
+</tr>
+<tr>
+<td class="l t b3 r0 l0 t0 lines">\(0.77778\)</td>
+<td class="c t b3 r0 l0 t0 lines">\(2{,}999{,}999.9\)</td>
+</tr>
+</table>
+<p id="p-331">\begin{align*}
+\text{Limit}&amp;&amp;&amp;\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&amp;=\mathord{?}
+\end{align*}</p></article>
+</div>
+</div>
+<article class="exercise-like" id="exercise-142"><h5 class="heading"><span class="codenumber">6</span></h5>
+<p id="p-334">Sketch onto <a knowl="./knowl/figure-sketch-properties-supplement.html" knowl-id="xref-figure-sketch-properties-supplement" alt="Figure 2.14.1 " title="Figure 2.14.1 ">Figure 2.14.1</a> a function, \(f\), with the following properties. Your graph should include all of the features addressed in lab.</p>
+<div class="sidebyside" style="" id="sidebyside-17">
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><p id="p-335">\begin{align*}
+\lim\limits_{x\to-4^{-}}\fe{f}{x}&amp;=1\\
+\lim\limits_{x\to-4^{+}}\fe{f}{x}&amp;=-2\\
+\lim\limits_{x\to3}\fe{f}{x}&amp;=-\infty\\
+\lim\limits_{x\to\infty}\fe{f}{x}&amp;=-\infty
+\end{align*}
+                        The only discontinuities on \(f\) are at \(-4\) and \(3\).
+                        \(f\) has no \(x\)-intercepts.
+                        \(f\) is continuous from the right at \(-4\).
+                        \(f\) has constant slope \(-2\) over \(\ointerval{-\infty}{-4}\).
+                        </p></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-16.svg" alt="a blank Cartesian grid, with x-axis covering the interval from -7 to 7, and y-axis covering the interval from -7 to 7"><p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p></object></div>
+</div>
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<figcaption class="sbscaption" style="width:50%;"></figcaption><figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">2.14.1</span>\(y=\fe{f}{x}\)</figcaption>
+</div>
+</div></article><article class="exercise-like" id="exercise-143"><h5 class="heading"><span class="codenumber">7</span></h5>
+<p id="p-336">Sketch onto <a knowl="./knowl/figure-second-sketch-properties-supplement.html" knowl-id="xref-figure-second-sketch-properties-supplement" alt="Figure 2.14.2 " title="Figure 2.14.2 ">Figure 2.14.2</a> a function, \(f\), with each of the properties stated below. Assume that there are no intercepts or discontinuities other than those directly implied by the given properties. Make sure that your graph includes all of the relevant features addressed in lab.</p>
+<div class="sidebyside" style="" id="sidebyside-18">
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><p id="p-337">\begin{align*}
+\fe{f}{-2}&amp;=0\\
+\fe{f}{0}&amp;=-1\\
+\fe{f}{-4}&amp;=5\\
+\lim\limits_{x\to-\infty}\fe{f}{x}&amp;=\lim\limits_{x\to\infty}\fe{f}{x}=3\\
+\lim\limits_{x\to-4^{+}}\fe{f}{x}&amp;=-2\\
+\lim\limits_{x\to-4^{-}}\fe{f}{x}&amp;=5\\
+\lim\limits_{x\to3{-}}\fe{f}{x}&amp;=-\infty\\
+\lim\limits_{x\to3^{+}}\fe{f}{x}&amp;=\infty
+\end{align*}</p></div>
+<div class="sbspanel" style="width:50%;justify-content:flex-start;"><object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-19.svg" alt="a blank Cartesian grid, with x-axis covering the interval from -7 to 7, and y-axis covering the interval from -7 to 7"><p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p></object></div>
+</div>
+<div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<figcaption class="sbscaption" style="width:50%;"></figcaption><figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">2.14.2</span>\(y=\fe{f}{x}\)</figcaption>
+</div>
+</div></article><article class="exercise-like" id="exercise-144"><h5 class="heading"><span class="codenumber">8</span></h5>
+<p id="p-338">Determine all of the values of \(x\) where the function \(f\) (given below) has discontinuities.  At each value where \(f\) has a discontinuity, determine if \(f\) is continuous from either the right or left at \(x\) and also state whether or not the discontinuity is removable.</p>\begin{equation*}\fe{f}{x}=\begin{cases}\frac{2\pi}{x}&amp;x\leq3\\\fe{\sin}{\frac{2\pi}{x}}&amp;3\lt x\lt 4\\\frac{\fe{\sin}{x}}{\fe{\sin}{x}}&amp;4\lt x\leq7\\3-\frac{2x-8}{x-4}&amp;x\gt7\end{cases}\end{equation*}</article><article class="exercise-like" id="exercise-145"><h5 class="heading"><span class="codenumber">9</span></h5>
+<p id="p-341">Determine the value(s) of \(k\) that make(s) the function \(g\) defined by \(\fe{g}{t}=\begin{cases}t^2+kt-k&amp;t\geq3\\t^2-4k&amp;t\lt 3\end{cases}\) continuous over \(\ointerval{-\infty}{\infty}\).</p></article><div class="exercisegroup" id="exercisegroup-32">
+<article class="introduction" id="introduction-32"><p id="p-344">Determine the appropriate symbol to write after an equal sign following each of the given limits.  In each case, the appropriate symbol is either a real number, \(\infty\), or \(-\infty\).  Also, state whether or not each limit exists and if the limit exists prove its existence (and value) by applying the appropriate limit laws.  The Rational Limit Forms table in <a href="appendix-limit-laws.html" alt="Appendix A Limit Laws" title="Appendix A Limit Laws">Appendix A</a> summarizes strategies to be employed based upon the initial form of the limit.</p></article><div class="exercisegroup-exercises cols2">
+<article class="exercise-like" id="exercise-146"><h5 class="heading"><span class="codenumber">10</span></h5>
+<p id="p-345">\(\lim\limits_{x\to4^{-}}\left(5-\dfrac{1}{x-4}\right)\)</p></article><article class="exercise-like" id="exercise-147"><h5 class="heading"><span class="codenumber">11</span></h5>
+<p id="p-348">\(\lim\limits_{x\to\infty}\dfrac{e^{\sfrac{2}{x}}}{e^{\sfrac{1}{x}}}\)</p></article><article class="exercise-like" id="exercise-148"><h5 class="heading"><span class="codenumber">12</span></h5>
+<p id="p-351">\(\lim\limits_{x\to2^{+}}\dfrac{x^2-4}{x^2+4}\)</p></article><article class="exercise-like" id="exercise-149"><h5 class="heading"><span class="codenumber">13</span></h5>
+<p id="p-354">\(\lim\limits_{x\to2^{+}}\dfrac{x^2-4}{x^2-4x+4}\)</p></article><article class="exercise-like" id="exercise-150"><h5 class="heading"><span class="codenumber">14</span></h5>
+<p id="p-357">\(\lim\limits_{x\to\infty}\dfrac{\fe{\ln}{x}+\fe{\ln}{x^6}}{7\fe{\ln}{x^2}}\)</p></article><article class="exercise-like" id="exercise-151"><h5 class="heading"><span class="codenumber">15</span></h5>
+<p id="p-360">\(\lim\limits_{x\to-\infty}\dfrac{3x^3+2x}{3x-2x^3}\)</p></article><article class="exercise-like" id="exercise-152"><h5 class="heading"><span class="codenumber">16</span></h5>
+<p id="p-363">\(\lim\limits_{x\to\infty}\fe{\sin}{\dfrac{\pi e^{3x}}{2e^x+4e^{3x}}}\)</p></article><article class="exercise-like" id="exercise-153"><h5 class="heading"><span class="codenumber">17</span></h5>
+<p id="p-366">\(\lim\limits_{x\to\infty}\dfrac{\fe{\ln}{\sfrac{1}{x}}}{\fe{\ln}{\sfrac{x}{x}}}\)</p></article><article class="exercise-like" id="exercise-154"><h5 class="heading"><span class="codenumber">18</span></h5>
+<p id="p-369">\(\lim\limits_{x\to5}\sqrt{\dfrac{x^2-12x+35}{5-x}}\)</p></article><article class="exercise-like" id="exercise-155"><h5 class="heading"><span class="codenumber">19</span></h5>
+<p id="p-372">\(\lim\limits_{h\to0}\dfrac{4(3+h)^2-5(3+h)-21}{h}\)</p></article><article class="exercise-like" id="exercise-156"><h5 class="heading"><span class="codenumber">20</span></h5>
+<p id="p-375">\(\lim\limits_{h\to0}\dfrac{5h^2+3}{2-3h^2}\)</p></article><article class="exercise-like" id="exercise-157"><h5 class="heading"><span class="codenumber">21</span></h5>
+<p id="p-378">\(\lim\limits_{h\to0}\dfrac{\sqrt{9-h}-3}{h}\)</p></article><article class="exercise-like" id="exercise-158"><h5 class="heading"><span class="codenumber">22</span></h5>
+<p id="p-381">\(\lim\limits_{\theta\to\frac{\pi}{2}}\dfrac{\fe{\sin}{\theta+\frac{\pi}{2}}}{\fe{\sin}{2\theta+\pi}}\)</p></article><article class="exercise-like" id="exercise-159"><h5 class="heading"><span class="codenumber">23</span></h5>
+<p id="p-384">\(\lim\limits_{x\to0^{+}}\dfrac{\fe{\ln}{x^e}}{\fe{\ln}{e^x}}\)</p></article>
+</div>
+</div>
+<div class="exercisegroup" id="exercisegroup-33">
+<article class="introduction" id="introduction-33"><p id="p-387">Draw sketches of the curves \(y=e^x\), \(y=e^{-x}\), \(y=\fe{\ln}{x}\), and \(y=\frac{1}{x}\).  Note the coordinates of any and all intercepts.  This is something you should be able to do from memory/intuition.  If you cannot already do so, spend some time reviewing whatever you need to review so that you can do so. Once you have the graphs drawn, fill in each of the blanks below and decide whether or not each limit exists.  The appropriate symbol for some of the blanks is either \(\infty\) or \(-\infty\).</p></article><div class="exercisegroup-exercises cols2">
+<article class="exercise-like" id="exercise-160"><h5 class="heading"><span class="codenumber">24</span></h5>
+<p id="p-388">\(\lim\limits_{x\to\infty}e^x=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-161"><h5 class="heading"><span class="codenumber">25</span></h5>
+<p id="p-391">\(\lim\limits_{x\to-\infty}e^x=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-162"><h5 class="heading"><span class="codenumber">26</span></h5>
+<p id="p-394">\(\lim\limits_{x\to0}e^x=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-163"><h5 class="heading"><span class="codenumber">27</span></h5>
+<p id="p-397">\(\lim\limits_{x\to\infty}e^{-x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-164"><h5 class="heading"><span class="codenumber">28</span></h5>
+<p id="p-400">\(\lim\limits_{x\to-\infty}e^{-x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-165"><h5 class="heading"><span class="codenumber">29</span></h5>
+<p id="p-403">\(\lim\limits_{x\to0}e^{-x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-166"><h5 class="heading"><span class="codenumber">30</span></h5>
+<p id="p-406">\(\lim\limits_{x\to\infty}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-167"><h5 class="heading"><span class="codenumber">31</span></h5>
+<p id="p-409">\(\lim\limits_{x\to1}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-168"><h5 class="heading"><span class="codenumber">32</span></h5>
+<p id="p-412">\(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-169"><h5 class="heading"><span class="codenumber">33</span></h5>
+<p id="p-415">\(\lim\limits_{x\to\infty}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-170"><h5 class="heading"><span class="codenumber">34</span></h5>
+<p id="p-418">\(\lim\limits_{x\to-\infty}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-171"><h5 class="heading"><span class="codenumber">35</span></h5>
+<p id="p-421">\(\lim\limits_{x\to0^{+}}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-172"><h5 class="heading"><span class="codenumber">36</span></h5>
+<p id="p-424">\(\lim\limits_{x\to0^{-}}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-173"><h5 class="heading"><span class="codenumber">37</span></h5>
+<p id="p-427">\(\lim\limits_{x\to\infty}e^{\sfrac{1}{x}}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-174"><h5 class="heading"><span class="codenumber">38</span></h5>
+<p id="p-430">\(\lim\limits_{x\to\infty}\dfrac{1}{e^x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-175"><h5 class="heading"><span class="codenumber">39</span></h5>
+<p id="p-433">\(\lim\limits_{x\to-\infty}\dfrac{1}{e^x}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-176"><h5 class="heading"><span class="codenumber">40</span></h5>
+<p id="p-436">\(\lim\limits_{x\to\infty}\dfrac{1}{e^{-x}}=\underline{\qquad}\,(\text{exists?})\)</p></article><article class="exercise-like" id="exercise-177"><h5 class="heading"><span class="codenumber">41</span></h5>
+<p id="p-439">\(\lim\limits_{x\to-\infty}\dfrac{1}{e^{-x}}=\underline{\qquad}\,(\text{exists?})\)</p></article>
+</div>
+</div></section></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

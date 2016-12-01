@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Piecewise-Defined Functions</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="section-discontinuous-formulas.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="limits-and-continuity-supplementary-exercises.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-discontinuous-formulas.html">Previous</a><a class="up-button button toolbar-item" href="chapter-limits.html">Up</a><a class="next-button button toolbar-item" href="limits-and-continuity-supplementary-exercises.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link active"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html">Limits</a></li>
+<li><a href="section-limit-laws.html">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html" class="active">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-piecewise-defined-functions"><header title="Section 2.13 Piecewise-Defined Functions"><h1 class="heading hide-type" alt="Section 2.13 Piecewise-Defined Functions">
+<span class="type">Section</span><span class="codenumber">2.13</span><span class="title">Piecewise-Defined Functions</span><a href="section-piecewise-defined-functions.html" class="permalink">¶ permalink</a>
+</h1></header><p id="p-304">Piecewise-defined functions are functions where the formula used depends upon the value of the input. When looking for discontinuities on piecewise-defined functions, you need to investigate the behavior at values where the formula changes as well as values where the issues discussed in <a href="section-discontinuous-formulas.html" alt="Section 2.12 Discontinuous Formulas" title="Section 2.12 Discontinuous Formulas">Section 2.12</a> might pop up.</p>
+<section class="exercises" id="exercises-17"><header title="Exercises 2.13.1 Exercises"><h1 class="heading hide-type" alt="Exercises 2.13.1 Exercises">
+<span class="type">Subsection</span><span class="codenumber">2.13.1</span><span class="title">Exercises</span>
+</h1></header><div class="exercisegroup" id="exercisegroup-28">
+<article class="introduction" id="introduction-28"><p id="p-305">This question is all about the function \(f\) defined by \begin{equation*}\fe{f}{x}=\begin{cases}\frac{4}{5-x}&amp;x\lt1\\\frac{x-3}{x-3}&amp;1\lt x\lt4\\2x+1&amp;4\leq x\leq7\\\frac{15}{8-x}&amp;x\gt7\text{.}\end{cases}\end{equation*}</p></article><div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-129"><h5 class="heading"><span class="codenumber">1</span></h5>
+<p id="p-306">Complete <a knowl="./knowl/table-piecewise-discontinuities.html" knowl-id="xref-table-piecewise-discontinuities" alt="Table 2.13.1 " title="Table 2.13.1 ">Table 2.13.1</a>.</p>
+<figure class="figure-like" id="table-piecewise-discontinuities"><table>
+<tr>
+<td class="r m b2 r2 l3 t3 lines">\(a\)</td>
+<td class="c m b2 r1 l0 t3 lines">\(\fe{f}{a}\)</td>
+<td class="c m b2 r1 l0 t3 lines">\(\lim\limits_{x\to a^{-}}\fe{f}{x}\)</td>
+<td class="c m b2 r1 l0 t3 lines">\(\lim\limits_{x\to a^{+}}\fe{f}{x}\)</td>
+<td class="c m b2 r3 l0 t3 lines">\(\lim\limits_{x\to a}\fe{f}{x}\)</td>
+</tr>
+<tr>
+<td class="r m b1 r2 l3 t0 lines">\(1\)</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r3 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="r m b1 r2 l3 t0 lines">\(3\)</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r3 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="r m b1 r2 l3 t0 lines">\(4\)</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r3 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="r m b1 r2 l3 t0 lines">\(5\)</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r3 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="r m b1 r2 l3 t0 lines">\(7\)</td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r3 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="r m b3 r2 l3 t0 lines">\(8\)</td>
+<td class="c m b3 r1 l0 t0 lines"></td>
+<td class="c m b3 r1 l0 t0 lines"></td>
+<td class="c m b3 r1 l0 t0 lines"></td>
+<td class="c m b3 r3 l0 t0 lines"></td>
+</tr>
+</table>
+<figcaption><span class="heading">Table</span><span class="codenumber">2.13.1</span>Function values and limit values for \(f\)</figcaption></figure></article><article class="exercise-like" id="exercise-130"><h5 class="heading"><span class="codenumber">2</span></h5>
+<p id="p-307">Complete <a knowl="./knowl/table-piecewise-discontinuities-analysis.html" knowl-id="xref-table-piecewise-discontinuities-analysis" alt="Table 2.13.2 " title="Table 2.13.2 ">Table 2.13.2</a>.</p>
+<figure class="figure-like" id="table-piecewise-discontinuities-analysis"><table>
+<tr>
+<td class=" m b2 r1 l1 t3 lines">Location of discontinuity</td>
+<td class=" m b2 r1 l0 t3 lines">From <a knowl="./knowl/definition-continuity.html" knowl-id="xref-definition-continuity" alt="Definition 2.9.1 Continuity" title="Definition 2.9.1 Continuity">Definition 2.9.1</a>, sub-property (1, 2, or 3) that is not met</td>
+<td class="c m b2 r1 l0 t3 lines">Removable?</td>
+<td class=" m b2 r1 l0 t3 lines">Continuous from one side?</td>
+</tr>
+<tr>
+<td class=" m b1 r1 l1 t0 lines">\(\strut\)</td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class=" m b1 r1 l1 t0 lines">\(\strut\)</td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class=" m b1 r1 l1 t0 lines">\(\strut\)</td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class=" m b1 r1 l1 t0 lines">\(\strut\)</td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+<td class="c m b1 r1 l0 t0 lines"></td>
+<td class=" m b1 r1 l0 t0 lines"></td>
+</tr>
+</table>
+<figcaption><span class="heading">Table</span><span class="codenumber">2.13.2</span>Discontinuity analysis for \(f\)</figcaption></figure></article>
+</div>
+</div>
+<div class="exercisegroup" id="exercisegroup-29">
+<article class="introduction" id="introduction-29"><p id="p-308">Consider the function \(f\) defined by \(\fe{f}{x}=\begin{cases}\frac{5}{x-10}&amp;x\leq5\\\frac{5}{5x-30}&amp;5\lt x\lt7\\\frac{x-2}{12-x}&amp;x&gt;7\text{.}\end{cases}\)</p>
+<p id="p-309">State the values of \(x\) where each of the following occur. If a stated property doesn't occur, make sure that you state that (as opposed to simply not responding to the question). No explanation necessary.</p></article><div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-131"><h5 class="heading"><span class="codenumber">3</span></h5>
+<p id="p-310">At what values of \(x\) is \(f\) discontinuous?</p></article><article class="exercise-like" id="exercise-132"><h5 class="heading"><span class="codenumber">4</span></h5>
+<p id="p-311">At what values of \(x\) is \(f\) continuous from the left, but not from the right?</p></article><article class="exercise-like" id="exercise-133"><h5 class="heading"><span class="codenumber">5</span></h5>
+<p id="p-312">At what values of \(x\) is \(f\) continuous from the right, but not from the left?</p></article><article class="exercise-like" id="exercise-134"><h5 class="heading"><span class="codenumber">6</span></h5>
+<p id="p-313">At what values of \(x\) does \(f\) have removable discontinuities?</p></article>
+</div>
+</div>
+<div class="exercisegroup" id="exercisegroup-30">
+<article class="introduction" id="introduction-30"><p id="p-314">Consider the function \(g\) defined by \(\fe{g}{x}=\begin{cases}\frac{C}{x-17}&amp;x\lt10\\C+3x&amp;x=10\\2C-4&amp;x\gt10\text{.}\end{cases}\)</p>
+<p id="p-315">The symbol \(C\) represents the same real number in each of the piecewise formulas.</p></article><div class="exercisegroup-exercises">
+<article class="exercise-like" id="exercise-135"><h5 class="heading"><span class="codenumber">7</span></h5>
+<p id="p-316">Find the value for \(C\) that makes the function continuous on \(\ocinterval{-\infty}{10}\). Make sure that your reasoning is clear.</p></article><article class="exercise-like" id="exercise-136"><h5 class="heading"><span class="codenumber">8</span></h5>
+<p id="p-317">Is it possible to find a value for \(C\) that makes the function continuous over \(\ointerval{-\infty}{\infty}\)? Explain.</p></article>
+</div>
+</div></section></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

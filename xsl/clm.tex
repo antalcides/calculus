@@ -1,0 +1,2830 @@
+%**************************************%
+%* Generated from MathBook XML source *%
+%*    on 2016-11-28T00:00:05-05:00    *%
+%*                                    *%
+%*   http://mathbook.pugetsound.edu   *%
+%*                                    *%
+%**************************************%
+\documentclass[12pt,]{book}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage{booktabs}
+
+
+%% Inline math delimiters, \(, \), need to be robust
+%% 2016-01-31:  latexrelease.sty  supersedes  fixltx2e.sty
+%% If  latexrelease.sty  exists, bugfix is in kernel
+%% If not, bugfix is in  fixltx2e.sty
+%% See:  https://tug.org/TUGboat/tb36-3/tb114ltnews22.pdf
+%% and read "Fewer fragile commands" in distribution's  latexchanges.pdf
+\IfFileExists{latexrelease.sty}{}{\usepackage{fixltx2e}}
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+%% Load geometry package to allow page margin adjustments
+\usepackage{geometry}
+\geometry{letterpaper,total={408pt,9.0in}}
+%% Custom Page Layout Adjustments (use latex.geometry)
+%% This LaTeX file may be compiled with pdflatex, xelatex, or lualatex
+%% The following provides engine-specific capabilities
+%% Generally, xelatex and lualatex will do better languages other than US English
+%% You can pick from the conditional if you will only ever use one engine
+\usepackage{ifthen}
+\usepackage{ifxetex,ifluatex}
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific configuration
+%% fontspec package will make Latin Modern (lmodern) the default font
+\ifxetex\usepackage{xltxtra}\fi
+\usepackage{fontspec}
+%% realscripts is the only part of xltxtra relevant to lualatex 
+\ifluatex\usepackage{realscripts}\fi
+%% 
+%% Extensive support for other languages
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+%% Magyar (Hungarian)
+\setotherlanguage{magyar}
+%% Spanish
+\setotherlanguage{spanish}
+%% Vietnamese
+\setotherlanguage{vietnamese}
+%% end: xelatex and lualatex-specific configuration
+}{%
+%% begin: pdflatex-specific configuration
+%% translate common Unicode to their LaTeX equivalents
+%% Also, fontenc with T1 makes CM-Super the default font
+%% (\input{ix-utf8enc.dfu} from the "inputenx" package is possible addition (broken?)
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%% end: pdflatex-specific configuration
+}
+%% Monospace font: Inconsolata (zi4)
+%% Sponsored by TUG: http://levien.com/type/myfonts/inconsolata.html
+%% See package documentation for excellent instructions
+%% One caveat, seem to need full file name to locate OTF files
+%% Loads the "upquote" package as needed, so we don't have to
+%% Upright quotes might come from the  textcomp  package, which we also use
+%% We employ the shapely \ell to match Google Font version
+%% pdflatex: "varqu" option produces best upright quotes
+%% xelatex,lualatex: add StylisticSet 1 for shapely \ell
+%% xelatex,lualatex: add StylisticSet 2 for plain zero
+%% xelatex,lualatex: we add StylisticSet 3 for upright quotes
+%% 
+\ifthenelse{\boolean{xetex} \or \boolean{luatex}}{%
+%% begin: xelatex and lualatex-specific monospace font
+\usepackage{zi4}
+\setmonofont[BoldFont=Inconsolatazi4-Bold.otf,StylisticSet={1,3}]{Inconsolatazi4-Regular.otf}
+%% end: xelatex and lualatex-specific monospace font
+}{%
+%% begin: pdflatex-specific monospace font
+\usepackage[varqu]{zi4}
+%% end: pdflatex-specific monospace font
+}
+%% Symbols, align environment, bracket-matrix
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% allow more columns to a matrix
+%% can make this even bigger by overriding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%% xfrac package for 'beveled fractions': http://tex.stackexchange.com/questions/3372/how-do-i-typeset-arbitrary-fractions-like-the-standard-symbol-for-5-%C2%BD
+\usepackage{xfrac}
+%%
+%% Color support, xcolor package
+%% Always loaded.  Used for:
+%% mdframed boxes, add/delete text, author tools
+\PassOptionsToPackage{usenames,dvipsnames,svgnames,table}{xcolor}
+\usepackage{xcolor}
+%%
+%% Semantic Macros
+%% To preserve meaning in a LaTeX file
+%% Only defined here if required in this document
+%% Used for warnings, typically bold and italic
+\newcommand{\alert}[1]{\textbf{\textit{#1}}}
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% Used for units and number formatting
+\usepackage[per-mode=fraction]{siunitx}
+\ifxetex\sisetup{math-micro=\text{µ},text-micro=µ}\fi\ifluatex\sisetup{math-micro=\text{µ},text-micro=µ}\fi%% Common non-SI units
+\DeclareSIUnit\degreeFahrenheit{\SIUnitSymbolDegree{F}}
+\DeclareSIUnit\fahrenheit{\degreeFahrenheit}
+\DeclareSIUnit\pound{lb}
+\DeclareSIUnit\foot{ft}
+\DeclareSIUnit\inch{in}
+\DeclareSIUnit\yard{yd}
+\DeclareSIUnit\mile{mi}
+\DeclareSIUnit\millennium{millennium}
+\DeclareSIUnit\century{century}
+\DeclareSIUnit\decade{decade}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\month{mo}
+\DeclareSIUnit\week{wk}
+\DeclareSIUnit\kilometerperhour{kph}
+\DeclareSIUnit\kilometreperhour{kph}
+\DeclareSIUnit\mileperhour{mph}
+\DeclareSIUnit\gallon{gal}
+\DeclareSIUnit\milepergallon{mpg}
+%% Subdivision Numbering, Chapters, Sections, Subsections, etc
+%% Subdivision numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%% Environments with amsthm package
+%% Theorem-like environments in "plain" style, with or without proof
+\usepackage{amsthm}
+\theoremstyle{plain}
+%% Numbering for Theorems, Conjectures, Examples, Figures, etc
+%% Controlled by  numbering.theorems.level  processing parameter
+%% Always need a theorem environment to set base numbering scheme
+%% even if document has no theorems (but has other environments)
+\newtheorem{theorem}{Theorem}[section]
+%% Only variants actually used in document appear here
+%% Style is like a theorem, and for statements without proofs
+%% Numbering: all theorem-like numbered consecutively
+%% i.e. Corollary 4.3 follows Theorem 4.2
+%% Definition-like environments, normal text
+%% Numbering is in sync with theorems, etc
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+%% Remark-like environments, normal text
+%% Numbering is in sync with theorems, etc
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+%% Example-like environments, normal text
+%% Numbering is in sync with theorems, etc
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+%% Numbering for Projects (independent of others)
+%% Controlled by  numbering.projects.level  processing parameter
+%% Always need a project environment to set base numbering scheme
+%% even if document has no projectss (but has other blocks)
+\newtheorem{project}{Project}[section]
+%% Project-like environments, normal text
+\theoremstyle{definition}
+%% Miscellaneous environments, normal text
+%% Numbering for inline exercises and lists is in sync with theorems, etc
+\theoremstyle{definition}
+\newtheorem{exercise}[theorem]{Exercise}
+%% Localize LaTeX supplied names (possibly none)
+\renewcommand*{\appendixname}{Appendix}
+\renewcommand*{\chaptername}{Lab}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+\numberwithin{equation}{section}
+%% For improved tables
+\usepackage{array}
+%% Some extra height on each row is desirable, especially with horizontal rules
+%% Increment determined experimentally
+\setlength{\extrarowheight}{0.2ex}
+%% Define variable thickness horizontal rules, full and partial
+%% Thicknesses are 0.03, 0.05, 0.08 in the  booktabs  package
+\makeatletter
+\newcommand{\hrulethin}  {\noalign{\hrule height 0.04em}}
+\newcommand{\hrulemedium}{\noalign{\hrule height 0.07em}}
+\newcommand{\hrulethick} {\noalign{\hrule height 0.11em}}
+%% We preserve a copy of the \setlength package before other
+%% packages (extpfeil) get a chance to load packages that redefine it
+\let\oldsetlength\setlength
+\newlength{\Oldarrayrulewidth}
+\newcommand{\crulethin}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.04em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}%
+\newcommand{\crulemedium}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.07em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+\newcommand{\crulethick}[1]%
+{\noalign{\global\oldsetlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{0.11em}}\cline{#1}%
+\noalign{\global\oldsetlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+%% Single letter column specifiers defined via array package
+\newcolumntype{A}{!{\vrule width 0.04em}}
+\newcolumntype{B}{!{\vrule width 0.07em}}
+\newcolumntype{C}{!{\vrule width 0.11em}}
+\makeatother
+%% Figures, Tables, Listings, Floats
+%% The [H]ere option of the float package fixes floats in-place,
+%% in deference to web usage, where floats are totally irrelevant
+%% We re/define the figure, table and listing environments, if used
+%%   1) New mbxfigure and/or mbxtable environments are defined with float package
+%%   2) Standard LaTeX environments redefined to use new environments
+%%   3) Standard LaTeX environments redefined to step theorem counter
+%%   4) Counter for new environments is set to the theorem counter before caption
+%% You can remove all this figure/table setup, to restore standard LaTeX behavior
+%% HOWEVER, numbering of figures/tables AND theorems/examples/remarks, etc
+%% WILL ALL de-synchronize with the numbering in the HTML version
+%% You can remove the [H] argument of the \newfloat command, to allow flotation and 
+%% preserve numbering, BUT the numbering may then appear "out-of-order"
+\usepackage{float}
+\usepackage[bf]{caption} % http://tex.stackexchange.com/questions/95631/defining-a-new-type-of-floating-environment 
+\usepackage{newfloat}
+% Figure environment setup so that it no longer floats
+\SetupFloatingEnvironment{figure}{fileext=lof,placement={H},within=section,name=Figure}
+% figures have the same number as theorems: http://tex.stackexchange.com/questions/16195/how-to-make-equations-figures-and-theorems-use-the-same-numbering-scheme 
+\makeatletter
+\let\c@figure\c@theorem
+\makeatother
+% Table environment setup so that it no longer floats
+\SetupFloatingEnvironment{table}{fileext=lot,placement={H},within=section,name=Table}
+% tables have the same number as theorems: http://tex.stackexchange.com/questions/16195/how-to-make-equations-figures-and-theorems-use-the-same-numbering-scheme 
+\makeatletter
+\let\c@table\c@theorem
+\makeatother
+%% Footnote Numbering
+%% We reset the footnote counter, as given by numbering.footnotes.level
+\makeatletter\@addtoreset{footnote}{section}\makeatother
+%% Raster graphics inclusion, wrapped figures in paragraphs
+%% \resizebox sometimes used for images in side-by-side layout
+\usepackage{graphicx}
+%%
+%% Program listing support, for inline code, Sage code
+\usepackage{listings}
+%% We define the listings font style to be the default "ttfamily"
+%% To fix hyphens/dashes rendered in PDF as fancy minus signs by listing
+%% http://tex.stackexchange.com/questions/33185/listings-package-changes-hyphens-to-minus-signs
+\makeatletter
+\lst@CCPutMacro\lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-{}}}
+\@empty\z@\@empty
+\makeatother
+\ifthenelse{\boolean{xetex}}{}{%
+%% begin: pdflatex-specific listings configuration
+%% translate U+0080 - U+00F0 to their textmode LaTeX equivalents
+%% Data originally from https://www.w3.org/Math/characters/unicode.xml, 2016-07-23
+%% Lines marked in XSL with "$" were converted from mathmode to textmode
+\lstset{extendedchars=true}
+\lstset{literate={ }{{~}}{1}{¡}{{\textexclamdown }}{1}{¢}{{\textcent }}{1}{£}{{\textsterling }}{1}{¤}{{\textcurrency }}{1}{¥}{{\textyen }}{1}{¦}{{\textbrokenbar }}{1}{§}{{\textsection }}{1}{¨}{{\textasciidieresis }}{1}{©}{{\textcopyright }}{1}{ª}{{\textordfeminine }}{1}{«}{{\guillemotleft }}{1}{¬}{{\textlnot }}{1}{­}{{\-}}{1}{®}{{\textregistered }}{1}{¯}{{\textasciimacron }}{1}{°}{{\textdegree }}{1}{±}{{\textpm }}{1}{²}{{\texttwosuperior }}{1}{³}{{\textthreesuperior }}{1}{´}{{\textasciiacute }}{1}{µ}{{\textmu }}{1}{¶}{{\textparagraph }}{1}{·}{{\textperiodcentered }}{1}{¸}{{\c{}}}{1}{¹}{{\textonesuperior }}{1}{º}{{\textordmasculine }}{1}{»}{{\guillemotright }}{1}{¼}{{\textonequarter }}{1}{½}{{\textonehalf }}{1}{¾}{{\textthreequarters }}{1}{¿}{{\textquestiondown }}{1}{À}{{\`{A}}}{1}{Á}{{\'{A}}}{1}{Â}{{\^{A}}}{1}{Ã}{{\~{A}}}{1}{Ä}{{\"{A}}}{1}{Å}{{\AA }}{1}{Æ}{{\AE }}{1}{Ç}{{\c{C}}}{1}{È}{{\`{E}}}{1}{É}{{\'{E}}}{1}{Ê}{{\^{E}}}{1}{Ë}{{\"{E}}}{1}{Ì}{{\`{I}}}{1}{Í}{{\'{I}}}{1}{Î}{{\^{I}}}{1}{Ï}{{\"{I}}}{1}{Ð}{{\DH }}{1}{Ñ}{{\~{N}}}{1}{Ò}{{\`{O}}}{1}{Ó}{{\'{O}}}{1}{Ô}{{\^{O}}}{1}{Õ}{{\~{O}}}{1}{Ö}{{\"{O}}}{1}{×}{{\texttimes }}{1}{Ø}{{\O }}{1}{Ù}{{\`{U}}}{1}{Ú}{{\'{U}}}{1}{Û}{{\^{U}}}{1}{Ü}{{\"{U}}}{1}{Ý}{{\'{Y}}}{1}{Þ}{{\TH }}{1}{ß}{{\ss }}{1}{à}{{\`{a}}}{1}{á}{{\'{a}}}{1}{â}{{\^{a}}}{1}{ã}{{\~{a}}}{1}{ä}{{\"{a}}}{1}{å}{{\aa }}{1}{æ}{{\ae }}{1}{ç}{{\c{c}}}{1}{è}{{\`{e}}}{1}{é}{{\'{e}}}{1}{ê}{{\^{e}}}{1}{ë}{{\"{e}}}{1}{ì}{{\`{\i}}}{1}{í}{{\'{\i}}}{1}{î}{{\^{\i}}}{1}{ï}{{\"{\i}}}{1}{ð}{{\dh }}{1}{ñ}{{\~{n}}}{1}{ò}{{\`{o}}}{1}{ó}{{\'{o}}}{1}{ô}{{\^{o}}}{1}{õ}{{\~{o}}}{1}{ö}{{\"{o}}}{1}{÷}{{\textdiv }}{1}{ø}{{\o }}{1}{ù}{{\`{u}}}{1}{ú}{{\'{u}}}{1}{û}{{\^{u}}}{1}{ü}{{\"{u}}}{1}{ý}{{\'{y}}}{1}{þ}{{\th }}{1}{ÿ}{{\"{y}}}{1}}
+%% end: pdflatex-specific listings configuration
+}
+%% End of generic listing adjustments
+%% Inline code, typically from "c" element
+%% Global, document-wide options apply to \lstinline
+%% Search/replace \lstinline by \verb to remove this dependency
+%% (redefining \lstinline with \verb is unlikely to work)
+%% Also see "\renewcommand\UrlFont" below for matching font choice
+\lstset{basicstyle=\small\ttfamily,breaklines=true,breakatwhitespace=true,extendedchars=true,inputencoding=latin1}
+%% More flexible list management, esp. for references and exercises
+%% But also for specifying labels (i.e. custom order) on nested lists
+\usepackage{enumitem}
+%% Lists of exercises in their own section, maximum depth 4
+\newlist{exerciselist}{description}{4}
+\setlist[exerciselist]{leftmargin=0pt,itemsep=1.0ex,topsep=1.0ex,partopsep=0pt,parsep=0pt}
+%% Indented groups of exercises within an exercise section
+%% Add  debug=true  option to see boxes around contents
+\usepackage{tasks}
+\NewTasks[label-format=\bfseries,item-indent=3.3em,label-offset=0.4em,label-width=1.7em,label-align=right,after-item-skip=\smallskipamount,after-skip=\smallskipamount]{exercisegroup}[\exercise]
+%% hyperref driver does not need to be specified
+\usepackage{hyperref}
+%% configure hyperref's  \url  to match listings' inline verbatim
+\renewcommand\UrlFont{\small\ttfamily}
+%% Hyperlinking active in PDFs, all links solid and blue
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue}
+\hypersetup{pdftitle={Calculus Lab Manual}}
+%% If you manually remove hyperref, leave in this next command
+\providecommand\phantomsection{}
+%% Graphics Preamble Entries
+\usepackage{pgfplots}
+\usepackage{xparse}
+\usepgfplotslibrary{patchplots}
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usetikzlibrary{3d,calc}
+\usepackage{xltxtra}
+
+% curve, dot, and graph custom styles
+\pgfplotsset{pccplot/.style={color=red,mark=none,line width=1pt,<->,solid}} % primary style for curves
+\pgfplotsset{asymptote/.style={color=gray,mark=none,line width=1pt,<->,dashed}}
+\pgfplotsset{soldot/.style={color=red,only marks,mark=*}}
+\pgfplotsset{holdot/.style={color=red,fill=white,only marks,mark=*}}
+\pgfplotsset{blankgraph/.style={xmin=-10,xmax=10,ymin=-10,ymax=10,axis line style= {-, draw opacity=0 },axis lines=box,major tick length=0mm,xtick={-10,-9,...,10},ytick={-10,-9,...,10},grid=major,yticklabels={,,},xticklabels={,,},minor xtick=,minor ytick=,xlabel={},ylabel={},width=0.75\textwidth,grid style={solid,gray!40}}}
+
+% cycle list of plot styles for graphs with multiple plots
+\pgfplotscreateplotcyclelist{pccstylelist}{%
+    pccplot\\%
+    color=blue,mark=none,line width=1pt,<->,dashdotted\\%
+    color=gray,mark=none,line width=1pt,<->,dashdotdotted\\%
+}
+
+\pgfplotsset{every axis/.append style={
+    axis x line=middle,    % put the x axis in the middle
+    axis y line=middle,    % put the y axis in the middle
+    axis line style={<->}, % arrows on the axis
+    xlabel={$x$},          % default put x on x-axis
+    ylabel={$y$},          % default put y on y-axis
+    xmin = -7,xmax = 7,    % most graphs have this window
+    ymin = -7,ymax = 7,    % most graphs have this window
+    xtick = {-6,-4,...,6},       % fix ticks 
+    %extra x ticks={-6, -4, -2},
+    %extra x tick labels={$-6\phantom{-}$, $-4\phantom{-}$, $-2\phantom{-}$},
+    ytick = {-6,-4,...,6}, % fix ticks  
+    yticklabel style={inner sep=0.333ex},
+    minor xtick = {-7,-6,...,7}, % fix ticks
+    minor ytick = {-7,-6,...,7}, % fix ticks
+    scale only axis,       % don't factor in axis and tick labels for width= and height=
+    cycle list name=pccstylelist,
+    tick label style={font=\footnotesize},
+    %label style={font=\scriptsize},
+    legend cell align=left,
+    %legend style={font=\scriptsize},
+    width = 0.45\textwidth,
+    grid = minor,
+    grid style = {solid,gray!40},
+    %every node near coord/.append style={
+    %    font=\scriptsize
+    %},
+}}
+
+%\tikzset{axisnode/.style={font=\scriptsize,text=black}}
+
+% arrow style
+\tikzset{>=stealth}
+
+% framing the graphs
+\pgfplotsset{framed/.style={axis background/.style ={draw=gray}}}
+% next line is a bit more colorful
+%\pgfplotsset{framed/.style={axis background/.style ={draw=gray,fill=yellow!20,rounded corners=3ex}}}
+%% If tikz has been loaded, replace ampersand with \amp macro
+\ifdefined\tikzset
+    \tikzset{ampersand replacement = \amp}
+\fi
+%% NB: calc redefines \setlength
+\usepackage{calc}
+%% used repeatedly for vertical dimensions of sidebyside panels
+\newlength{\panelmax}
+%% extpfeil package for certain extensible arrows,
+%% as also provided by MathJax extension of the same name
+%% NB: this package loads mtools, which loads calc, which redefines
+%%     \setlength, so it can be removed if it seems to be in the 
+%%     way and your math does not use:
+%%     
+%%     \xtwoheadrightarrow, \xtwoheadleftarrow, \xmapsto, \xlongequal, \xtofrom
+%%     
+%%     we have had to be extra careful with variable thickness
+%%     lines in tables, and so also load this package late
+\usepackage{extpfeil}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header and Footer Adjustment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\sectionmark}[1]{%
+ \markright{\slshape\MakeUppercase{%
+ Activity \thesection.%
+ \ #1}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Allow multirow equations to break across pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\allowdisplaybreaks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic paragraph parameters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{0.5pc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extra hypehanation points
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hyphenation{non-diff-er-en-ti-able de-crea-sing po-si-tive}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exercise list paragraph separation to match ambient parskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist[exerciselist]{leftmargin=0pt,itemsep=-1.0ex,topsep=1.0ex,partopsep=0pt,parsep=0.5pc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create theorem* environment for appendix theorems
+% destroy-and-rebuild script adds *s to these
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem*{theorem*}{Theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Use commas for group separator in siunitx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\sisetup{group-separator={,}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In print, helping with stopping inline math breaks in captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup{justification=RaggedRight}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In print, trying to reduce color use
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false}
+    \pgfplotscreateplotcyclelist{pccstylelist}{%
+        color=black,mark=none,line width=1pt,<->,solid\\%
+        color=black,mark=none,line width=1pt,<->,dashdotted\\%
+        color=black,mark=none,line width=1pt,<->,dashdotdotted\\%
+    }
+    \pgfplotsset{pccplot/.style={color=black,mark=none,line width=1pt,<->}} % this is pretty redundant in most cases now that cycle list is implemented
+    \pgfplotsset{soldot/.style={color=black,only marks,mark=*}}
+    \pgfplotsset{holdot/.style={color=black,fill=white,only marks,mark=*}}
+
+
+\colorlet{blue}{black}
+
+%% Begin: Author-provided packages
+%% (From  docinfo/latex-preamble/package  elements)
+%% End: Author-provided packages
+%% Begin: Author-provided macros
+%% (From  docinfo/macros  element)
+%% Plus three from MBX for XML characters
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ < }
+\newcommand{\gt}{ > }
+\newcommand{\amp}{ & }
+%% End: Author-provided macros
+%% Title page information for book
+\title{Calculus Lab Manual\\
+{\large for MTH 251 at Portland Community College}}
+\author{Steve Simonds\\
+Department of Mathematics\\
+Portland Community College\\
+\href{mailto:ssimonds@pcc.edu}{\nolinkurl{ssimonds@pcc.edu}}
+Alex Jordan, Editor\\
+Department of Mathematics\\
+Portland Community College\\
+\href{mailto:alex.jordan@pcc.edu}{\nolinkurl{alex.jordan@pcc.edu}}
+}
+\date{November 28, 2016}
+\begin{document}
+\frontmatter
+%% begin: half-title
+\thispagestyle{empty}
+{\centering
+\vspace*{0.28\textheight}
+{\Huge Calculus Lab Manual}\\[2\baselineskip]
+{\LARGE for MTH 251 at Portland Community College}\\
+}
+\clearpage
+%% end:   half-title
+%% begin: adcard
+\thispagestyle{empty}
+\null%
+\clearpage
+%% end:   adcard
+%% begin: title page
+%% Inspired by Peter Wilson's "titleDB" in "titlepages" CTAN package
+\thispagestyle{empty}
+{\centering
+\vspace*{0.14\textheight}
+{\Huge Calculus Lab Manual}\\[\baselineskip]
+{\LARGE for MTH 251 at Portland Community College}\\[3\baselineskip]
+{\Large Steve Simonds}\\[0.5\baselineskip]
+{\Large Portland Community College}\\[3\baselineskip]
+{\Large Alex Jordan, Editor}\\[0.5\baselineskip]
+{\Large Portland Community College}\\[3\baselineskip]
+{\Large November 28, 2016}\\}
+\clearpage
+%% end:   title page
+%% begin: copyright-page
+\thispagestyle{empty}
+\vspace*{\stretch{2}}
+\noindent\textcopyright\ 2012\textendash{}2015\quad{}Portand Community College\\[0.5\baselineskip]
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.\par\medskip
+\vspace*{\stretch{1}}
+\null\clearpage
+%% end:   copyright-page
+%% begin: acknowledgement
+\chapter*{Acknowledgements}\label{acknowledgement-1}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+In 2012, Steve Simonds wrote most of this lab manual as a Word/PDF document with some support from PCC curriculum development grants.%
+\par
+In 2015, Alex Jordan converted the lab manual to MathBook XML (enabling the HTML output alongside a PDF) with some support from PCC's professional development grants.%
+\par
+Phil Thurber and Scot Leavitt created the cover composition using images provided by NASA, the Bodleian Library of the University of Oxford, and PCC instructor Ken Kidoguchi.%
+\par
+Special thanks to Joe Bradford, Pete Haberman, Kandace Kling, Ross Kouzes, and Scot Leavitt for proofreading.%
+%% end:   acknowledgement
+%% begin: preface
+\chapter*{To All}\label{to-all}
+\addcontentsline{toc}{chapter}{To All}
+Calculus I is taught at Portland Community College using a lecture/lab format. The laboratory time is set aside for students to investigate the topics and practice the skills that are covered during their lecture periods. This lab manual serves as a guide for the laboratory component of the course.%
+\typeout{************************************************}
+\typeout{Paragraphs  HTML and PDF}
+\typeout{************************************************}
+\paragraph[{HTML and PDF}]{HTML and PDF}\hypertarget{paragraphs-1}{}
+This manual has been released with several synchronous versions that offer different features. The essential content of each version is the same as for all others.%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}A web version is available at \url{http://spot.pcc.edu/math/clm}. Whenever there is an internet connection, and you do not prefer to have a print copy, this version is most recommended. The web version offers full walk-through solutions to supplemental problems. More importantly, it offers interactive elements and easier navigation than any of the PDFs below could offer.%
+\item{}A ``for-printing'' PDF is available at \url{http://spot.pcc.edu/math/clm/clm-print.pdf}. This version is designed to be printed, not read on a screen. To save on printing expense, this version is mostly black-and-white, and only offers short answers to the supplemental exercises (as opposed to full solutions).%
+\item{}A ``for-printing-with-color'' PDF is available at \url{http://spot.pcc.edu/math/clm/clm-print-color.pdf}. This version is like the above, except links and graphs retain their color.%
+\item{}A ``for-screen-reading'' PDF is available at \url{http://spot.pcc.edu/math/clm/clm-screen.pdf}. This version is intended to be stored on an electronic device and read when an internet connection is unavailable. It has page dimensions compatible with most laptops and tablets. The pages are not numbered since the page numbering would be inconsistent with the print versions, so this version should be navigated by section numbering. Because the page dimensions are customized for electronic devices, this version would also look strange printed on standard paper. Since this version is not intended to be printed, full solutions to the supplemental problems are offered. Keep in mind that even if you store this PDF version on your electronic device, when an internet connection is available, you might opt to use the HTML version instead, as that version has more interactive and accessible functionality than the PDF version.%
+\end{itemize}
+\typeout{************************************************}
+\typeout{Paragraphs  Copying Content}
+\typeout{************************************************}
+\paragraph[{Copying Content}]{Copying Content}\hypertarget{paragraphs-2}{}
+The graphs and other images that appear in this manual may be copied in various file formats using the HTML version. Below each image are links to \lstinline?.png?, \lstinline?.eps?, \lstinline?.svg?, \lstinline?.pdf?, and \lstinline?.tex? files that contain the image. The \lstinline?.eps?, \lstinline?.svg?, and \lstinline?.pdf? files will not lose sharpness no matter how much you zoom, but typically are large files. Some of these formats may not be recognized by applications that you use. The \lstinline?.png? file are of fairly high resolution, but will eventually lose sharpness if you zoom in too much. The \lstinline?.tex? files contain code that can be inserted into other \lstinline?.tex? documents to re-create the images.%
+\par
+Similarly, tables can be copied from the HTML version and pasted into applications like MS Word. However, mathematical content within tables will not always paste correctly without a little extra effort as described below.%
+\par
+Mathematical content can be copied from the HTML version. To copy math content into MS Word, right-click or control-click over the math content, and click to Show Math As MathML Code. Copy the resulting code, and Paste \emph{Special} into Word. In the Paste Special menu, paste it as Unformatted Text. To copy math content into \LaTeX{} source, right-click or control-click over the math content, and click to Show Math As TeX Commands.%
+\typeout{************************************************}
+\typeout{Paragraphs  Accessibility}
+\typeout{************************************************}
+\paragraph[{Accessibility}]{Accessibility}\hypertarget{paragraphs-3}{}
+The HTML version is intended to meet or exceed all web accessibility standards. If you encounter an accessibility issue, please report it to the editor.%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}All graphs and images should have meaningful alt text that communicates what a sighted person would see, without necessarily giving away anything that is intended to be deduced from the image.%
+\item{}All math content is rendered using MathJax. MathJax has a contextual menu that can be accessed in several ways, depending on what operating system and browser you are using. The most common way is to right-click or control-click on some piece of math content.%
+\item{}In the MathJax contextual menu, you may set options for triggering a zoom effect on math content, and also by what factor the zoom will be.%
+\item{}If you change the MathJax renderer to MathML, then a screen reader will generally have success verbalizing the math content.%
+\end{itemize}
+\typeout{************************************************}
+\typeout{Paragraphs  Tablets and Smartphones}
+\typeout{************************************************}
+\paragraph[{Tablets and Smartphones}]{Tablets and Smartphones}\hypertarget{paragraphs-4}{}
+MathBook XML documents like this lab manual are ``mobile-friendly''. The display adapts to whatever screen size or window size you are using. A math teacher will always recommend that you do not study from the small screen on a phone, but if it's necessary, this manual gives you that option.%
+%% end:   preface
+%% begin: preface
+\chapter*{To the Student}\label{to-the-student}
+\addcontentsline{toc}{chapter}{To the Student}
+The lab activities have been written under the presumption that students will be working in groups and will be actively discussing the examples and problems included in each activity. Many of the exercises and problems lend themselves quite naturally to discussion. Some of the more algebraic problems are not so much discussion problems as they are ``practice and help'' problems.%
+\par
+You do not need to fully understand an example before starting on the associated problems. The intent is that your understanding of the material will grow while you work on the problems.%
+\par
+While working through the lab activities, the students in a given group should be working on the same activity at the same time. Sometimes this means an individual student will have to go a little more slowly than he or she may like and sometimes it means an individual student will need to move on to the next activity before he or she fully grasps the current activity.%
+\par
+Many instructors will want you to focus some of your energy on the way you write your mathematics. It is important that you do not rush through the activities. Write your solutions as if they are going to be graded; that way you will know during lab time if you understand the proper way to write and organize your work.%
+\par
+If your lab section meets more than once a week, \emph{you should not work on lab activities between lab sections that occur during the same week.} It is OK to work on lab activities outside of class once the entire classroom time allotted for that lab has passed.%
+\par
+There are no written solutions for the lab activity problems. Between your group mates, your instructor, and (if you have one) your lab assistant, you should know whether or not you have the correct answers and proper writing strategies for these problems.%
+\par
+Each lab has a section of supplementary exercises; these exercises are fully keyed with solutions. The supplementary exercises are not simply copies of the problems in the lab activities. While some questions will look familiar, many others will challenge you to apply the material covered in the lab to a new type of problem. These questions are meant to supplement your textbook homework, not replace your textbook homework.%
+%% end:   preface
+%% begin: preface
+\chapter*{To the Instructor}\label{to-the-instructor}
+\addcontentsline{toc}{chapter}{To the Instructor}
+This version of the calculus lab manual is significantly different from versions prior to 2012. The topics have been arranged in a developmental order. Because of this, students who work each activity in the order they appear may not get to all of the topics covered in a particular week.%
+\par
+Additionally, a few changes have been introduced with the release of the MathBook XML version. The most notable changes are:%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}The numbering scheme does not match the earlier numbering scheme. This was a necessary consequence of converting to MathBook XML.%
+\item{}The related rates lab has been mostly rewritten using the DREDS approach.%
+\item{}In the implicit differentiation lab, a section on logarithmic differentiation has been added.%
+\item{}The printed version only contains short answers to the supplemental questions rather than complete walk-through solutions. However, complete solutions may still be found in the HTML version and the screen PDF version.%
+\end{itemize}
+\par
+It is strongly recommended that you pick and choose what you consider to be the most vital activities for a given week, and that you have your students work those activities first. For some activities you might also want to have the students only work selected problems in the activity. Students who complete the high priority activities and problems can then go back and work the activities that they initially skipped. There are also fully keyed problems in the supplementary exercises that the students could work on both during lab time and outside of class. (The full solutions are only in the HTML and screen PDF versions.)%
+\par
+A suggested schedule for the labs is shown in the table below. Again, you should choose what you feel to be the most relevant activities and problems for a given week, and have the students work those activities and problems first.%
+\par
+(\alert{Students should consult their syllabus for their schedule.})%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r }\hrulethick
+Week&Labs (Lab Activities)&Supplementary Exercises\tabularnewline\hrulemedium
+1&\hyperref[section-velocity]{Velocity} through\hyperref[section-limits]{Limits}&\hyperref[rates-of-change-supplementary-exercises]{Supplement}\tabularnewline\hrulemedium
+2&\hyperref[section-limit-laws]{Limits Laws} through\hyperref[section-piecewise-defined-functions]{Piecewise-Defined Functions}&\hyperref[limits-and-continuity-supplementary-exercises]{Supplement}\tabularnewline\hrulemedium
+3&{$\langle\langle$Unresolved xref, reference "section-instantaneous-velocity"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-derivative-units"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "introduction-first-derivative-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+4&{$\langle\langle$Unresolved xref, reference "section-graph-features"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-nondifferentiability"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "functions-derivatives-antiderivatives-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+5&{$\langle\langle$Unresolved xref, reference "section-higher-order-derivatives"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-graphical-features-from-derivatives"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "functions-derivatives-antiderivatives-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+6&{$\langle\langle$Unresolved xref, reference "section-leibniz-notation"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-derivative-formulas-and-function-behavior"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "derivative-formulas-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+7&{$\langle\langle$Unresolved xref, reference "section-introduction-to-the-chain-rule"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-chain-rule-and-leibniz"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "chain-rule-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+8&{$\langle\langle$Unresolved xref, reference "section-general-implicit-differentiation"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-logarithmic-differentiation"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "implicit-differentiation-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulemedium
+9, 10&{$\langle\langle$Unresolved xref, reference "section-introduction-related-rates"; check spelling or use "provisional" attribute$\rangle\rangle$} through{$\langle\langle$Unresolved xref, reference "section-making-graphs"; check spelling or use "provisional" attribute$\rangle\rangle$}&{$\langle\langle$Unresolved xref, reference "related-rates-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$},{$\langle\langle$Unresolved xref, reference "critical-numbers-graphing-from-formulas-supplementary-exercises"; check spelling or use "provisional" attribute$\rangle\rangle$}\tabularnewline\hrulethick
+\end{tabular}
+\end{table}
+%% end:   preface
+%% begin: table of contents
+\setcounter{tocdepth}{1}
+\renewcommand*\contentsname{Contents}
+\tableofcontents
+%% end:   table of contents
+\mainmatter
+\typeout{************************************************}
+\typeout{Lab 1 Rates Of Change}
+\typeout{************************************************}
+\chapter[{Rates Of Change}]{Rates Of Change}\label{chapter-rates-of-change}
+\typeout{************************************************}
+\typeout{Activity 1.1 Velocity}
+\typeout{************************************************}
+\section[{Velocity}]{Velocity}\label{section-velocity}
+Motion is frequently modeled using calculus. A building block for this application is the concept of \terminology{average velocity}. Average velocity is defined to be net displacement divided by elapsed time.  More precisely,%
+\begin{definition}[{Average Velocity}]\label{definition-average-velocity}
+If \(p\) is a position function for something moving along a numbered line, then we define the \terminology{average velocity} over the time interval \(\cinterval{t_0}{t_1}\) to be: \begin{equation*}\frac{\fe{p}{t_1}-\fe{p}{t_0}}{t_1-t_0}\text{.}\end{equation*}%
+\end{definition}
+\typeout{************************************************}
+\typeout{Exercises 1.1.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-1}
+\hypertarget{exercisegroup-velocity}{}\par\noindent According to simplified Newtonian physics, if an object is dropped from an elevation\footnote{If you encounter an unfamiliar unit of measure while reading this lab manual, see \hyperref[appendix-units]{Appendix~\ref{appendix-units}}.\label{fn-1}} of \(200\) meters (\si{\meter}) and allowed to free fall to the ground, then the elevation of the object is given by the position function \begin{equation*}\fe{p}{t}=200\,\text{m}-\left(4.9\,\sfrac{\text{m}}{\text{s}^2}\right)t^2\end{equation*} where \(t\) is the amount of time that has passed since the object was dropped. (The ``\SI{200}{\meter}'' in the formula represents the elevation from which the object was dropped, and the ``\SI{4.9}{\meter\per\second\tothe{2}}'' represents one half of the acceleration due to gravity near the surface of Earth.)%
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-calculate-position}{}Calculate \(\fe{p}{3\,\text{s}}\) and \(\fe{p}{5\,\text{s}}\). Make sure that you include the units specified in the formula for \(\fe{p}{t}\), and that you replace \(t\) with, respectively, \SI{3}{\second} and \SI{5}{\second}. Make sure that you simplify the units, as well as the numerical part of the function value.%
+\exercise[2.]\hypertarget{exercise-average-velocity}{}Calculate \(\frac{\fe{p}{5\,\text{s}}-\fe{p}{3\,\text{s}}}{{5\,\text{s}}-{3\,\text{s}}}\); \emph{include units while making the calculation}. Note that you already calculated \(\fe{p}{3\,\text{s}}\) and \(\fe{p}{5\,\text{s}}\) in \hyperlink{exercise-calculate-position}{Exercise~1.1.1.1}. What does the result tell you in the context of this problem?%
+\exercise[3.]\hypertarget{exercise-average-velocity-formula}{}Use \hyperref[definition-average-velocity]{Definition~\ref{definition-average-velocity}} to find a formula for the average velocity of this object over the general time interval \(\cinterval{t_0}{t_1}\). The first couple of lines of this process are shown below. Copy these lines onto your paper and continue the simplification process.\begin{align*}
+\frac{\fe{p}{t_1}-\fe{p}{t_0}}{t_1-t_0}&=\frac{\left[200-4.9t_1^2\right]-\left[200-4.9t_0^2\right]}{t_1-t_0}\\
+&=\frac{200-4.9t_1^2-200+4.9t_0^2}{t_1-t_0}\\
+&=\frac{-4.9t_1^2+4.9t_0^2}{t_1-t_0}\\
+&=\cdots
+\end{align*}%
+\exercise[4.]\hypertarget{exercise-4}{}Check the formula you derived in \hyperlink{exercise-average-velocity-formula}{Exercise~1.1.1.3} using \(t_0=3\) and \(t_1=5\); that is, compare the value generated by the formula to that you found in \hyperlink{exercise-average-velocity}{Exercise~1.1.1.2}.%
+\exercise[5.]\hypertarget{exercise-5}{}Now explore some average velocities in tabular form.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxEparagraphs}
+\savebox{\panelboxEparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Using the formula found in \hyperlink{exercise-average-velocity-formula}{Exercise~1.1.1.3}, replace \(t_0\) with \(3\) but leave \(t_1\) as a variable; simplify the result. Then copy \hyperref[table-velocity]{Table~\ref{table-velocity}} onto your paper and fill in the missing entries.%
+}}}
+\newlength{\phEparagraphs}\setlength{\phEparagraphs}{\ht\panelboxEparagraphs+\dp\panelboxEparagraphs}
+\settototalheight{\phEparagraphs}{\usebox{\panelboxEparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phEparagraphs}}
+\newsavebox{\panelboxBtabular}
+\savebox{\panelboxBtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{lc}\hrulethick
+\(t_1\) (\si{\second})&\(\frac{\fe{p}{t_1}-\fe{p}{3}}{t_1-3}\) (\si{\meter\per\second})\tabularnewline\hrulemedium
+2.9&\tabularnewline[0pt]
+2.99&\tabularnewline[0pt]
+2.999&\tabularnewline[0pt]
+3.001&\tabularnewline[0pt]
+3.01&\tabularnewline[0pt]
+3.1&\tabularnewline\hrulethick
+\end{tabular}
+}}}
+\newlength{\phBtabular}\setlength{\phBtabular}{\ht\panelboxBtabular+\dp\panelboxBtabular}
+\settototalheight{\phBtabular}{\usebox{\panelboxBtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phBtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxEparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxBtabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{Values of \(\frac{\fe{p}{t_1}-\fe{p}{3}}{t_1-3}\)\label{table-velocity}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\exercise[6.]\hypertarget{exercise-6}{}As the value of \(t_1\) gets closer to \(3\), the values in the \(y\)-column of \hyperref[table-velocity]{Table~\ref{table-velocity}} appear to be converging on a single quantity; what is this quantity? What does it mean in the context of this problem?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 1.2 Secant Line to a Curve}
+\typeout{************************************************}
+\section[{Secant Line to a Curve}]{Secant Line to a Curve}\label{section-secant}
+One of the building blocks in differential calculus is the \emph{secant line to a curve}. The only requirement for a line to be considered a secant line to a curve is that the line must intersect the curve in at least two points.%
+\par
+In \hyperref[figure-secant]{Figure~\ref{figure-secant}}, we see a secant line to the curve \(y=\fe{f}{x}\) through the points \(\point{0}{3}\) and \(\point{4}{-5}\). Verify that the slope of this line is \(-2\).%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxFparagraphs}
+\savebox{\panelboxFparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{The formula for \(f\) is \(\fe{f}{x}=3+2x-x^2\). We can use this formula to come up with a generalized formula for the slope of secant lines to this curve. Specifically, the slope of the line connecting the point \(\point{x_0}{\fe{f}{x_0}}\) to the point \(\point{x_1}{\fe{f}{x_1}}\) is derived in the following example.%
+}}}
+\newlength{\phFparagraphs}\setlength{\phFparagraphs}{\ht\panelboxFparagraphs+\dp\panelboxFparagraphs}
+\settototalheight{\phFparagraphs}{\usebox{\panelboxFparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phFparagraphs}}
+\newsavebox{\panelboxAimage}
+\savebox{\panelboxAimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot+[
+        domain=-2.3:4.3,
+        <->,
+    ]{3+2*x-x^2};
+    \addplot+[
+        domain=-1.945:4.945,
+        <->,
+    ]{3-2*x};
+    \addplot[
+        soldot
+    ]coordinates{
+        (0,3)
+        (4,-5)};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phAimage}\setlength{\phAimage}{\ht\panelboxAimage+\dp\panelboxAimage}
+\settototalheight{\phAimage}{\usebox{\panelboxAimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phAimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxFparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxAimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{A secant line to \(y=\fe{f}{x}=3+2x-x^2\)\label{figure-secant}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{example}[Calculating Secant Slope]\label{example-secant}
+\begin{align*}
+m_{\text{sec}}&=\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}\\
+&=\frac{\left(3+2x_1-x_1^2\right)-\left(3+2x_0-x_0^2\right)}{x_1-x_0}\\
+&=\frac{3+2x_1-x_1^2-3-2x_0+x_0^2}{x_1-x_0}\\
+&=\frac{\left(2x_1-2x_0\right)-\left(x_1^2-x_0^2\right)}{x_1-x_0}\\
+&=\frac{2\left(x_1-x_0\right)-\left(x_1+x_0\right)\left(x_1-x_0\right)}{x_1-x_0}\\
+&=\frac{\left[2-\left(x_1+x_0\right)\right]\left(x_1-x_0\right)}{x_1-x_0}\\
+&=2-x_1-x_0\text{ for }x_1\neq x_0
+\end{align*}%
+\par
+We can check our formula using the line in \hyperref[figure-secant]{Figure~\ref{figure-secant}}. If we let \(x_0=0\) and \(x_1=4\) then our simplified slope formula gives us: \(2-x_1-x_0=2-4-0\), which simplifies to \(-2\) as we expected.%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 1.2.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-2}
+\hypertarget{exercisegroup-2}{}\par\noindent Let \(\fe{g}{x}=x^2-5\).%
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-7}{}Following \hyperref[example-secant]{Example~\ref{example-secant}}, find a formula for the slope of the secant line connecting the points \(\point{x_0}{\fe{g}{x_0}}\) and \(\point{x_1}{\fe{g}{x_1}}\).%
+\exercise[2.]\hypertarget{exercise-8}{}Check your slope formula using the two points indicated in \hyperref[figure-secant-exercise]{Figure~\ref{figure-secant-exercise}}.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxGparagraphs}
+\savebox{\panelboxGparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{That is, use the graph to find the slope between the two points and then use your formula to find the slope; make sure that the two values agree!%
+}}}
+\newlength{\phGparagraphs}\setlength{\phGparagraphs}{\ht\panelboxGparagraphs+\dp\panelboxGparagraphs}
+\settototalheight{\phGparagraphs}{\usebox{\panelboxGparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phGparagraphs}}
+\newsavebox{\panelboxBimage}
+\savebox{\panelboxBimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot+[
+        domain=-3.45:3.45,
+    ]{x^2-5};
+    \addplot+[
+        domain=-6.9025:5.9025,
+    ]{x+1};
+    \addplot[
+        soldot
+    ]coordinates{
+        (-2,-1)
+        (3,4)};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phBimage}\setlength{\phBimage}{\ht\panelboxBimage+\dp\panelboxBimage}
+\settototalheight{\phBimage}{\usebox{\panelboxBimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phBimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxGparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxBimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{g}{x}=x^2-5\) and a secant line\label{figure-secant-exercise}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 1.3 The Difference Quotient}
+\typeout{************************************************}
+\section[{The Difference Quotient}]{The Difference Quotient}\label{section-difference-quotient}
+While it's easy to see that the formula \(\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}\) gives the slope of the line connecting two points on the function \(f\), the resultant expression can at times be awkward to work with. We actually already saw that in \hyperref[example-secant]{Example~\ref{example-secant}}.%
+\par
+The algebra associated with secant lines (and average velocities) can sometimes be simplified if we designate the variable \(h\) to be the run between the two points (or the length of the time interval). With this designation we have \(x_1-x_0=h\) which gives us \(x_1=x_0+h\). Making these substitutions we get \hyperref[equation-difference-quotient]{(\ref{equation-difference-quotient})}. The expression on the right side of \hyperref[equation-difference-quotient]{(\ref{equation-difference-quotient})} is called the \terminology{difference quotient} for \(f\).\begin{equation}\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}=\frac{\fe{f}{x_0+h}-\fe{f}{x_0}}{h}\label{equation-difference-quotient}\end{equation}%
+\par
+Let's revisit the function \(\fe{f}{x}=3+2x-x^2\) from \hyperref[example-secant]{Example~\ref{example-secant}}. The difference quotient for this function is derived in \hyperref[example-difference-quotient]{Example~\ref{example-difference-quotient}}.%
+\begin{example}[Calculating a Difference Quotient]\label{example-difference-quotient}
+\begin{align*}
+\frac{\fe{f}{x_0+h}-\fe{f}{x_0}}{h}&=\frac{\left[3+2\left(x_0+h\right)-\left(x_0+h\right)^2\right]-\left[3+2x_0-x_0^2\right]}{h}\\
+&=\frac{3+2x_0+2h-x_0^2-2x_0h-h^2-3-2x_0+x_0^2}{h}\\
+&=\frac{2h-2x_0h-h^2}{h}\\
+&=\frac{h\left(2-2x_0-h\right)}{h}\\
+&=2-2x_0-h\text{ for }h\neq 0
+\end{align*}Please notice that all of the terms without a factor of \(h\) subtracted to zero. Please notice, too, that we avoided all of the tricky factoring that appeared in \hyperref[example-secant]{Example~\ref{example-secant}}!%
+\end{example}
+\par
+For simplicity's sake, we generally drop the variable subscript when applying the difference quotient. So for future reference we will define the difference quotient as follows:%
+\begin{definition}[{The Difference Quotient}]\label{definition-difference-quotient}
+The \terminology{difference quotient} for the function \(y=\fe{f}{x}\) is the expression \(\frac{\fe{f}{x+h}-\fe{f}{x}}{h}\).%
+\end{definition}
+\typeout{************************************************}
+\typeout{Exercises 1.3.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-3}
+\hypertarget{exercisegroup-3}{}\par\noindent Completely simplify the difference quotient for each of the following functions. Please note that the template for the difference quotient needs to be adapted to the function name and independent variable in each given equation. For example, the difference quotient for the function in \hyperlink{exercise-first-difference-quotient}{Exercise~1.3.1.1} is \(\frac{\fe{v}{t+h}-\fe{v}{t}}{h}\).%
+\par
+Please make sure that you lay out your work in a manner consistent with the way the work is shown in \hyperref[example-difference-quotient]{Example~\ref{example-difference-quotient}} (excluding the subscripts, of course).%
+\begin{exercisegroup}(2)
+\exercise[1.]\hypertarget{exercise-first-difference-quotient}{}\(\fe{v}{t}=2.5t^2-7.5t\)%
+\exercise[2.]\hypertarget{exercise-10}{}\(\fe{g}{x}=3-7x\)%
+\exercise[3.]\hypertarget{exercise-11}{}\(\fe{w}{x}=\dfrac{3}{x+2}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-4}{}\par\noindent Suppose that an object is tossed directly upward in the air in such a way that the elevation of the object (measured in \si{\foot}) is given by the function \(f\) defined by \(\fe{f}{t}=40+40t-16t^2\) where \(t\) is the amount of time that has passed since the object was tossed (measured in \si{\second}).%
+\begin{exercisegroup}(1)
+\exercise[4.]\hypertarget{exercise-12}{}Simplify the difference quotient for \(f\).%
+\exercise[5.]\hypertarget{exercise-difference-quotient-average-velocity}{}Ignoring the unit, use the difference quotient to determine the average velocity over the interval \(\cinterval{1.6}{2.8}\).%
+\exercise[6.]\hypertarget{exercise-difference-quotient-values}{}Calculate \(\fe{f}{1.6}\) and \(\fe{f}{2.8}\). What unit is associated with the values of these expressions? What is the contextual significance of these values?%
+\exercise[7.]\hypertarget{exercise-difference-quotient-verify}{}Use the expression \(\frac{\fe{f}{2.8}-\fe{f}{1.6}}{2.8-1.6}\) and the answers to \hyperlink{exercise-difference-quotient-values}{Exercise~1.3.1.6} to verify the value you found in \hyperlink{exercise-difference-quotient-average-velocity}{Exercise~1.3.1.5}. What unit is associated with the values of this expression? What is the contextual significance of this value?%
+\exercise[8.]\hypertarget{exercise-16}{}Ignoring the unit, use the difference quotient to determine the average velocity over the interval \(\cinterval{0.4}{2.4}\).%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-5}{}\par\noindent Moose and squirrel were having casual conversation when suddenly, without any apparent provocation, Boris Badenov launched anti-moose missile in their direction. Fortunately, squirrel had ability to fly as well as great knowledge of missile technology, and he was able to disarm missile well before it hit ground.%
+\par
+The elevation (\si{\foot}) of the tip of the missile \(t\) seconds after it was launched is given by the function \(\fe{h}{t}=-16t^2+294.4t+15\).%
+\begin{exercisegroup}(1)
+\exercise[9.]\hypertarget{exercise-17}{}Calculate the value of \(\fe{h}{12}\). What unit is associated with this value? What does the value tell you about the flight of the missile?%
+\exercise[10.]\hypertarget{exercise-18}{}Calculate the value of \(\frac{\fe{h}{10}-\fe{h}{0}}{10}\). What unit is associated with this value? What does this value tell you about the flight of the missile?%
+\exercise[11.]\hypertarget{exercise-19}{}The velocity (\si{\foot\per\second}) function for the missile is \(\fe{v}{t}=-32t+294.4\). Calculate the value of \(\frac{\fe{v}{10}-\fe{v}{0}}{10}\). What unit is associated with this value? What does this value tell you about the flight of the missile?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-6}{}\par\noindent Timmy lived a long life in the 19th century. When Timmy was seven he found a rock that weighed exactly half a stone. (Timmy lived in jolly old England, don't you know.) That rock sat on Timmy's window sill for the next 80 years and wouldn't you know the weight of that rock did not change even one smidge the entire time. In fact, the weight function for this rock was \(\fe{w}{t}=0.5\) where \(\fe{w}{t}\) was the weight of the rock (stones) and \(t\) was the number of years that had passed since that day Timmy brought the rock home.%
+\begin{exercisegroup}(1)
+\exercise[12.]\hypertarget{exercise-20}{}What was the average rate of change in the weight of the rock over the 80 years it sat on Timmy's window sill?%
+\exercise[13.]\hypertarget{exercise-21}{}Ignoring the unit, simplify the expression \(\frac{\fe{w}{t_1}-\fe{w}{t_0}}{t_1-t_0}\). Does the result make sense in the context of this problem?%
+\exercise[14.]\hypertarget{exercise-22}{}Showing each step in the process and ignoring the unit, simplify the difference quotient for \(w\). Does the result make sense in the context of this problem?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-7}{}\par\noindent Truth be told, there was one day in 1842 when Timmy's mischievous son Nigel took that rock outside and chucked it into the air. The velocity of the rock (\si{\foot\per\second}) was given by \(\fe{v}{t}=60-32t\) where \(t\) was the number of seconds that had passed since Nigel chucked the rock.%
+\begin{exercisegroup}(1)
+\exercise[15.]\hypertarget{exercise-23}{}What, \emph{including unit}, are the values of \(\fe{v}{0}\), \(\fe{v}{1}\), and \(\fe{v}{2}\) and what do these values tell you in the context of this problem? Don't just write that the values tell you the velocity at certain times; explain what the velocity values tell you about the motion of the rock.%
+\exercise[16.]\hypertarget{exercise-24}{}Ignoring the unit, simplify the difference quotient for \(v\).%
+\exercise[17.]\hypertarget{exercise-25}{}What is the unit for the difference quotient for \(v\)? What does the value of the difference quotient (including unit) tell you in the context of this problem?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-vat}{}\par\noindent Suppose that a vat was undergoing a controlled drain and that the amount of fluid left in the vat (\si{\gallon}) was given by the formula \(\fe{V}{t}=100-2t^{3/2}\) where \(t\) is the number of minutes that had passed since the draining process began.%
+\begin{exercisegroup}(1)
+\exercise[18.]\hypertarget{exercise-vat-first}{}What, \emph{including unit}, is the value of \(\fe{V}{4}\) and what does that value tell you in the context of this problem?%
+\exercise[19.]\hypertarget{exercise-27}{}Ignoring the unit, write down the formula you get for the difference quotient of \(V\) when \(t=4\).%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxHparagraphs}
+\savebox{\panelboxHparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Copy \hyperref[table-vat]{Table~\ref{table-vat}} onto your paper and fill in the missing values. \emph{Look for a pattern in the output and write down enough digits for each entry so that the pattern is clearly illustrated;} the first two entries in the output column have been given to help you understand what is meant by this direction.%
+}}}
+\newlength{\phHparagraphs}\setlength{\phHparagraphs}{\ht\panelboxHparagraphs+\dp\panelboxHparagraphs}
+\settototalheight{\phHparagraphs}{\usebox{\panelboxHparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phHparagraphs}}
+\newsavebox{\panelboxCtabular}
+\savebox{\panelboxCtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{ll}\hrulethick
+\multicolumn{1}{c}{\(h\)}&\multicolumn{1}{c}{\(y\)}\tabularnewline\hrulemedium
+\(-0.1\)&\(-5.962\ldots\)\tabularnewline[0pt]
+\(-0.01\)&\(-5.9962\ldots\)\tabularnewline[0pt]
+\(-0.001\)&\tabularnewline[0pt]
+\(\phantom{-}0.001\)&\tabularnewline[0pt]
+\(\phantom{-}0.01\)&\tabularnewline[0pt]
+\(\phantom{-}0.1\)&
+\end{tabular}
+}}}
+\newlength{\phCtabular}\setlength{\phCtabular}{\ht\panelboxCtabular+\dp\panelboxCtabular}
+\settototalheight{\phCtabular}{\usebox{\panelboxCtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phCtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxHparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxCtabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(y=\frac{\fe{V}{4+h}-\fe{V}{4}}{h}\)\label{table-vat}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\exercise[20.]\hypertarget{exercise-28}{}What is the unit for the \(y\) values in \hyperref[table-vat]{Table~\ref{table-vat}}? What do these values (with their unit) tell you in the context of this problem?%
+\exercise[21.]\hypertarget{exercise-vat-last}{}As the value of \(h\) gets closer to \(0\), the values in the \(y\) column of \hyperref[table-vat]{Table~\ref{table-vat}} appear to be converging to a single number; what is this number and what do you think that value (with its unit) tells you in the context of this problem?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 1.4 Supplement}
+\typeout{************************************************}
+\section[{Supplement}]{Supplement}\label{rates-of-change-supplementary-exercises}
+\typeout{************************************************}
+\typeout{Exercises 1.4.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-4}
+\hypertarget{exercisegroup-9}{}\par\noindent The function \(z\) shown in \hyperref[figure-upside-down-parabola-supplement]{Figure~\ref{figure-upside-down-parabola-supplement}} was generated by the formula \(\fe{z}{x}=2+4x-x^2\).%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxCimage}
+\savebox{\panelboxCimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot+[
+        domain=-1.5:5.5,
+    ]{-(x-2)^2+6};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phCimage}\setlength{\phCimage}{\ht\panelboxCimage+\dp\panelboxCimage}
+\settototalheight{\phCimage}{\usebox{\panelboxCimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phCimage}}
+\newsavebox{\panelboxDtabular}
+\savebox{\panelboxDtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{lc}\hrulethick
+\(h\)&\(\frac{\fe{z}{4+h}-\fe{z}{4}}{h}\)\tabularnewline\hrulemedium
+\(-0.1\)&\(-3.9\)\tabularnewline[0pt]
+\(-0.01\)&\tabularnewline[0pt]
+\(-0.001\)&\tabularnewline[0pt]
+\(\phantom{-}0.001\)&\tabularnewline[0pt]
+\(\phantom{-}0.01\)&\tabularnewline[0pt]
+\(\phantom{-}0.1\)&\tabularnewline\hrulethick
+\end{tabular}
+}}}
+\newlength{\phDtabular}\setlength{\phDtabular}{\ht\panelboxDtabular+\dp\panelboxDtabular}
+\settototalheight{\phDtabular}{\usebox{\panelboxDtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phDtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxCimage}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxDtabular}\end{minipage}\tabularnewline
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{z}{x}=2+4x-x^2\)\label{figure-upside-down-parabola-supplement}}
+}&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\frac{\fe{z}{4+h}-\fe{z}{4}}{h}\)\label{table-upside-down-parabola-supplement}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-30}{}Simplify the difference quotient for \(z\).%
+\exercise[2.]\hypertarget{exercise-31}{}Use the graph to find the slope of the secant line to \(z\) between the points where \(x=-1\) and \(x=2\).  Check your simplified difference quotient for \(z\) by using it to find the slope of the same secant line.%
+\exercise[3.]\hypertarget{exercise-32}{}Replace \(x\) with \(4\) in your difference quotient formula and simplify the result.  Then copy \hyperref[table-upside-down-parabola-supplement]{Table~\ref{table-upside-down-parabola-supplement}} onto your paper and fill in the missing values.%
+\exercise[4.]\hypertarget{exercise-upside-down-parabola-slope}{}As the value of \(h\) gets closer to \(0\), the values in the \(y\) column of \hyperref[table-upside-down-parabola-supplement]{Table~\ref{table-upside-down-parabola-supplement}} appear to be converging on a single number; what is this number?%
+\exercise[5.]\hypertarget{exercise-34}{}The value found in \hyperlink{exercise-upside-down-parabola-slope}{Exercise~1.4.1.4} is called \emph{the slope of the tangent line to \(z\) at \(4\)}.  Draw onto \hyperref[figure-upside-down-parabola-supplement]{Figure~\ref{figure-upside-down-parabola-supplement}} the line that passes through the point \(\point{4}{2}\) with this slope.  The line you just drew is called \emph{the tangent line to \(z\) at \(4\)}.%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-10}{}\par\noindent Find the difference quotient for each function showing all relevant steps in an organized manner.%
+\begin{exercisegroup}(2)
+\exercise[6.]\hypertarget{exercise-35}{}\(\fe{f}{x}=3-7x\)%
+\exercise[7.]\hypertarget{exercise-36}{}\(\fe{g}{x}=\dfrac{7}{x+4}\)%
+\exercise[8.]\hypertarget{exercise-37}{}\(\fe{z}{x}=\pi\)%
+\exercise[9.]\hypertarget{exercise-38}{}\(\fe{s}{t}=t^3-t-9\)%
+\exercise[10.]\hypertarget{exercise-39}{}\(\fe{k}{t}=\dfrac{(t-8)^2}{t}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-11}{}\par\noindent Suppose that an object is tossed directly upward in the air in such a way that the elevation of the object (measured in \si{\foot}) is given by the function \(\fe{s}{t}=150+60t-16t^2\) where \(t\) is the amount of time that has passed since the object was tossed (measure in seconds).%
+\begin{exercisegroup}(1)
+\exercise[11.]\hypertarget{exercise-40}{}Find the difference quotient for \(s\).%
+\exercise[12.]\hypertarget{exercise-41}{}Use the difference quotient to determine the average velocity of the object over the interval \(\cinterval{4}{4.2}\) and then verify the value by calculating \(\frac{\fe{s}{4.2}-\fe{s}{4}}{4.2-4}\).%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-12}{}\par\noindent Several applied functions are given below.  In each case, find the indicated quantity (including unit) and interpret the value in the context of the application.%
+\begin{exercisegroup}(1)
+\exercise[13.]\hypertarget{exercise-42}{}The velocity, \(v\), of a roller coaster (in \si{\foot\per\second}) is given by \begin{equation*}\fe{v}{t}=-100\fe{\sin}{\frac{\pi t}{15}}\end{equation*} where \(t\) is the amount of time (\si{\second}) that has passed since the coaster topped the first hill.  Find and interpret \(\frac{\fe{v}{7.5}-\fe{v}{0}}{7.5-0}\).%
+\exercise[14.]\hypertarget{exercise-43}{}The elevation of a ping pong ball relative to the table top (in \si{\meter}) is given by the function \(\fe{h}{t}=1.1\abs{\fe{\cos}{\frac{2\pi t}{3}}}\) where \(t\) is the amount of time (\si{\second}) that has passed since the ball went into play.  Find and interpret \(\frac{\fe{h}{3}-\fe{h}{1.5}}{3-1.5}\).%
+\exercise[15.]\hypertarget{exercise-44}{}The period of a pendulum (\si{\second}) is given by \(\fe{P}{x}=\frac{6}{x+1}\) where \(x\) is the number of swings the pendulum has made.  Find and interpret \(\frac{\fe{P}{29}-\fe{P}{1}}{29-1}\).%
+\exercise[16.]\hypertarget{exercise-45}{}The acceleration of a rocket (\si{\mileperhour\per\second}) is given by \(\fe{a}{t}=0.02+0.13t\) where \(t\) is the amount of time (\si{\second}) that has passed since lift-off.  Find and interpret \(\frac{\fe{a}{120}-\fe{a}{60}}{120-60}\).%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Lab 2 Limits and Continuity}
+\typeout{************************************************}
+\chapter[{Limits and Continuity}]{Limits and Continuity}\label{chapter-limits}
+\typeout{************************************************}
+\typeout{Activity 2.1 Limits}
+\typeout{************************************************}
+\section[{Limits}]{Limits}\label{section-limits}
+While working \hyperlink{exercisegroup-vat}{Exercise Group~1.3.1.18--1.3.1.21} from \hyperref[section-difference-quotient]{Activity~\ref{section-difference-quotient}} you completed \hyperref[table-vat]{Table~\ref{table-vat}}. In the context of that problem the difference quotient being evaluated returned the average rate of change in the volume of fluid remaining in a vat between times \(t=4\) and \(t=4+h\). As the elapsed time closes in on \(0\) this average rate of change converges to \(-6\). From that we deduce that the rate of change in the volume \(4\) minutes into the draining process must have been \SI{6}{\gallon\per\minute}.%
+\par
+Please note that we could not deduce the rate of change \(4\) minutes into the process by replacing \(h\) with \(0\); in fact, there are at least two things preventing us from doing so. From a strictly mathematical perspective, we cannot replace \(h\) with \(0\) because that would lead to division by zero in the difference quotient. From a more physical perspective, replacing \(h\) with \(0\) would in essence stop the clock. If time is frozen, so is the amount of fluid in the vat and the entire concept of ``rate of change'' becomes moot.%
+\par
+It turns out that it is frequently more useful (not to mention interesting) to explore the \emph{trend} in a function as the input variable \emph{approaches} a number rather than the actual value of the function at that number. Mathematically we describe these trends using \terminology{limits}.%
+\par
+If we denote \(\fe{f}{h}=\frac{\fe{V}{4+h}-\fe{V}{4}}{h}\) to be the difference quotient in \hyperref[table-vat]{Table~\ref{table-vat}}, then we could describe the trend evidenced in the table by saying ``the limit of \(\fe{f}{h}\) as \(h\) approaches zero is \(-6\).'' Please note that as \(h\) changes value, the value of \(\fe{f}{h}\) changes, not the value of the limit. The limit value is a fixed number to which the value of \(\fe{f}{h}\) converges. Symbolically we write \(\lim\limits_{h\to0}\fe{f}{h}=-6\).%
+\par
+Most of the time the value of a function at the number \(a\) and the limit of the function as \(x\) approaches \(a\) are in fact the same number. When this occurs we say that the function is \terminology{continuous} at \(a\). We will explore the concept of continuity more in depth at the end of the this lab, once we have a handle on the idea of limits. To help you better understand the concept of limit we need to have you confront situations where the function value and limit value are not equal to one another. Graphs can be useful for helping distinguish function values from limit values, so that is the perspective you are going to use in the first couple of problems in this lab.%
+\typeout{************************************************}
+\typeout{Exercises 2.1.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-5}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-46}{}Several function values and limit values for the function in \hyperref[figure-first-limit]{Figure~\ref{figure-first-limit}} are given below. You and your group mates should take turns reading the equations aloud. Make sure that you read the symbols correctly, that's part of what you are learning! Also, discuss why the values are what they are and make sure that you get help from your instructor to clear up any confusion.%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\fe{f}{-2}=6\), but \(\lim\limits_{x\to-2}\fe{f}{x}=3\)%
+\item{}\(\fe{f}{-4}\) is undefined, but \(\lim\limits_{x\to-4}\fe{f}{x}=2\)%
+\item{}\(\fe{f}{1}=-1\), but \(\lim\limits_{x\to1}\fe{f}{x}\) does not exist%
+\item{}\(\underbrace{\lim_{x\to1^{-}}\fe{f}{x}}_{\begin{array}{c}\text{the limit of }\fe{f}{x}\\\text{as }x\text{ approaches }1\\\text{from the left}\end{array}}=-3\), but \(\underbrace{\lim_{x\to1^{+}}\fe{f}{x}}_{\begin{array}{c}\text{the limit of }\fe{f}{x}\\\text{as }x\text{ approaches }1\\\text{from the right}\end{array}}=-1\)%
+\end{itemize}
+\leavevmode%
+\begin{figure}
+\centering
+{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot[
+       pccplot,
+        ->
+        ]coordinates{
+            (1,-3)
+            (-3,5)
+            (-6.9,-6.7)};
+    \addplot[
+        pccplot,
+        ->
+        ]coordinates{
+            (1,-1)
+            (6.9,4.9)};
+    \addplot[
+        soldot,
+        ]coordinates{
+            (-2,6)
+            (1,-1)};
+    \addplot[
+        holdot,
+        ]coordinates{
+            (-4,2)
+            (-2,3)
+            (1,-3)};
+\end{axis}
+\end{tikzpicture}
+}
+\caption{\(y=\fe{f}{x}\)\label{figure-first-limit}}
+\end{figure}
+\par\smallskip
+\end{exerciselist}
+\hypertarget{exercisegroup-13}{}\par\noindent % group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxIparagraphs}
+\savebox{\panelboxIparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Copy each of the following expressions onto your paper and either state the value or state that the value is undefined or doesn't exist. Make sure that when discussing the values you use proper terminology. All expressions are in reference to the function \(g\) shown in \hyperref[figure-second-limit]{Figure~\ref{figure-second-limit}}.%
+}}}
+\newlength{\phIparagraphs}\setlength{\phIparagraphs}{\ht\panelboxIparagraphs+\dp\panelboxIparagraphs}
+\settototalheight{\phIparagraphs}{\usebox{\panelboxIparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phIparagraphs}}
+\newsavebox{\panelboxGimage}
+\savebox{\panelboxGimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[xlabel = {$t$},]
+    \addplot[
+        pccplot,
+        ->,
+        ]coordinates{
+            (-2,5)
+            (-6.9,-2.35)};
+    \addplot[
+        pccplot,
+        -,
+        ]coordinates{
+            (-2,-3.5)
+            (3,-1)};
+    \addplot[
+        pccplot,
+        ->,
+        domain=3:6.9,
+        ]{(x-4)^2-2};
+    \addplot[
+        soldot,
+        ]coordinates{
+            (-2,5)
+            (5,1)};
+    \addplot[
+        holdot,
+        ]coordinates{
+            (-2,-3.5)
+            (2,-1.5)
+            (5,-1)};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phGimage}\setlength{\phGimage}{\ht\panelboxGimage+\dp\panelboxGimage}
+\settototalheight{\phGimage}{\usebox{\panelboxGimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phGimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxIparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxGimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{g}{t}\)\label{figure-second-limit}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{exercisegroup}(3)
+\exercise[2.]\hypertarget{exercise-47}{}\(\fe{g}{5}\)%
+\exercise[3.]\hypertarget{exercise-48}{}\(\lim\limits_{t\to5}\fe{g}{t}\)%
+\exercise[4.]\hypertarget{exercise-49}{}\(\fe{g}{3}\)%
+\exercise[5.]\hypertarget{exercise-50}{}\(\lim\limits_{t\to3^{-}}\fe{g}{t}\)%
+\exercise[6.]\hypertarget{exercise-51}{}\(\lim\limits_{t\to3^{+}}\fe{g}{t}\)%
+\exercise[7.]\hypertarget{exercise-52}{}\(\lim\limits_{t\to3}\fe{g}{t}\)%
+\exercise[8.]\hypertarget{exercise-53}{}\(\fe{g}{2}\)%
+\exercise[9.]\hypertarget{exercise-54}{}\(\lim\limits_{t\to2}\fe{g}{t}\)%
+\exercise[10.]\hypertarget{exercise-55}{}\(\fe{g}{-2}\)%
+\exercise[11.]\hypertarget{exercise-56}{}\(\lim\limits_{t\to-2^{-}}\fe{g}{t}\)%
+\exercise[12.]\hypertarget{exercise-57}{}\(\lim\limits_{t\to-2^{+}}\fe{g}{t}\)%
+\exercise[13.]\hypertarget{exercise-58}{}\(\lim\limits_{t\to-2}\fe{g}{t}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-14}{}\par\noindent Values of the function \(f\), where \(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\), are shown in \hyperref[table-rational-function-values]{Table~\ref{table-rational-function-values}}, and values of the function \(p\), where \(\fe{p}{t}=\sqrt{t-12}\), are shown in \hyperref[table-square-root-values]{Table~\ref{table-square-root-values}}. These questions are in reference to these functions.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxFtabular}
+\savebox{\panelboxFtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{ll}\hrulethick
+\multicolumn{1}{c}{\(x\)}&\multicolumn{1}{c}{\(\fe{f}{x}\)}\tabularnewline\hrulemedium
+\(4.99\)&\(2.0014\)\tabularnewline[0pt]
+\(4.999\)&\(2.00014\)\tabularnewline[0pt]
+\(4.9999\)&\(2.000014\)\tabularnewline[0pt]
+\(5.0001\)&\(1.999986\)\tabularnewline[0pt]
+\(5.001\)&\(1.99986\)\tabularnewline[0pt]
+\(5.01\)&\(1.9986\)
+\end{tabular}
+}}}
+\newlength{\phFtabular}\setlength{\phFtabular}{\ht\panelboxFtabular+\dp\panelboxFtabular}
+\settototalheight{\phFtabular}{\usebox{\panelboxFtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phFtabular}}
+\newsavebox{\panelboxGtabular}
+\savebox{\panelboxGtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{ll}\hrulethick
+\multicolumn{1}{c}{\(t\)}&\multicolumn{1}{c}{\(\fe{p}{t}\)}\tabularnewline\hrulemedium
+\(20.9\)&\(2.98\ldots\)\tabularnewline[0pt]
+\(20.99\)&\(2.998\ldots\)\tabularnewline[0pt]
+\(20.999\)&\(2.9998\ldots\)\tabularnewline[0pt]
+\(21.001\)&\(3.0002\ldots\)\tabularnewline[0pt]
+\(21.01\)&\(3.002\ldots\)\tabularnewline[0pt]
+\(21.1\)&\(3.02\ldots\)
+\end{tabular}
+}}}
+\newlength{\phGtabular}\setlength{\phGtabular}{\ht\panelboxGtabular+\dp\panelboxGtabular}
+\settototalheight{\phGtabular}{\usebox{\panelboxGtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phGtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxFtabular}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxGtabular}\end{minipage}\tabularnewline
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\)\label{table-rational-function-values}}
+}&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{p}{t}=\sqrt{t-12}\)\label{table-square-root-values}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{exercisegroup}(1)
+\exercise[14.]\hypertarget{exercise-59}{}What is the value of \(\fe{f}{5}\)?%
+\exercise[15.]\hypertarget{exercise-60}{}What is the value of \(\lim\limits_{x\to5}\dfrac{3x^2-16x+5}{2x^2-13x+15}\)?%
+\exercise[16.]\hypertarget{exercise-61}{}What is the value of \(\fe{p}{21}\)?%
+\exercise[17.]\hypertarget{exercise-62}{}What is the value of \(\lim\limits_{t\to21}\sqrt{t-12}\)?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-15}{}\par\noindent Create tables similar to \hyperref[table-rational-function-values]{\ref{table-rational-function-values}} and \hyperref[table-square-root-values]{\ref{table-square-root-values}} from which you can deduce each of the following limit values. Make sure that you include table numbers, table captions, and meaningful column headings. Make sure that your input values follow patterns similar to those used in \hyperref[table-rational-function-values]{\ref{table-rational-function-values}} and \hyperref[table-square-root-values]{\ref{table-square-root-values}}. Make sure that you round your output values in such a way that a clear and compelling pattern in the output is clearly demonstrated by your stated values. Make sure that you state the limit value!%
+\begin{exercisegroup}(2)
+\exercise[18.]\hypertarget{exercise-63}{}\(\lim\limits_{t\to6}\dfrac{t^2-10t+24}{t-6}\)%
+\exercise[19.]\hypertarget{exercise-64}{}\(\lim\limits_{x\to-1^{+}}\dfrac{\sin(x+1)}{3x+3}\)%
+\exercise[20.]\hypertarget{exercise-65}{}\(\lim\limits_{h\to0^{-}}\dfrac{h}{4-\sqrt{16-h}}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.2 Limits Laws}
+\typeout{************************************************}
+\section[{Limits Laws}]{Limits Laws}\label{section-limit-laws}
+When proving the value of a limit we frequently rely upon laws that are easy to prove using the technical definitions of limit. These laws can be found in \hyperref[appendix-limit-laws]{Appendix~\ref{appendix-limit-laws}}. The first of these type laws are called replacement laws. Replacement laws allow us to replace limit expressions with the actual values of the limits.%
+\typeout{************************************************}
+\typeout{Exercises 2.2.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-6}
+\hypertarget{exercisegroup-16}{}\par\noindent The value of each of the following limits can be established using one of the replacement laws. Copy each limit expression onto your own paper, state the value of the limit (e.g.\@ \(\lim\limits_{x\to9}5=5\)), and state the replacement law (by number) that establishes the value of the limit.%
+\begin{exercisegroup}(3)
+\exercise[1.]\hypertarget{exercise-66}{}\(\lim\limits_{t\to\pi}t\)%
+\exercise[2.]\hypertarget{exercise-67}{}\(\lim\limits_{x\to14}23\)%
+\exercise[3.]\hypertarget{exercise-68}{}\(\lim\limits_{x\to14}x\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\begin{example}[Applying Limit Laws]\label{example-apply-limit-laws}
+\begin{align*}
+\lim_{x\to7}\left(4x^2+3\right)&=\lim_{x\to7}\left(4x^2\right)+\lim_{x\to7}3&&\hyperref[lla1]{\text{Limit Law A1}}\\
+&=4\lim_{x\to7}x^2+\lim_{x\to7}3&&\hyperref[lla3]{\text{Limit Law A3}}\\
+&=4\left(\lim_{x\to7}x\right)^2+\lim_{x\to7}3&&\hyperref[lla6]{\text{Limit Law A6}}\\
+&=4\cdot7^2+3&&\hyperref[llr1]{\text{Limit Law R1}}, \hyperref[llr2]{\text{Limit Law R2}}\\
+&=199
+\end{align*}%
+\end{example}
+\hypertarget{exercisegroup-17}{}\par\noindent The algebraic limit laws allow us to replace limit expressions with equivalent limit expressions. When applying limit laws our first goal is to come up with an expression in which every limit in the expression can be replaced with its value based upon one of the replacement laws. This process is shown in \hyperref[example-apply-limit-laws]{Example~\ref{example-apply-limit-laws}}. Please note that all replacement laws are saved for the second to last step and that each replacement is explicitly shown. Please note also that each limit law used is referenced by number.%
+\par
+Use the limit laws to establish the value of each of the following limits. Make sure that you use the step-by-step, vertical format shown in example \hyperref[example-apply-limit-laws]{Example~\ref{example-apply-limit-laws}}. Make sure that you cite the limit laws used in each step. To help you get started, the steps necessary in \hyperlink{exercise-first-apply-limit-laws}{Exercise~2.2.1.4} are outlined as:%
+\leavevmode%
+\begin{enumerate}[label=(\alph*)]
+\item\hypertarget{li-17}{}Apply \hyperref[lla6]{Limit Law A6}%
+\item\hypertarget{li-18}{}Apply \hyperref[lla1]{Limit Law A1}%
+\item\hypertarget{li-19}{}Apply \hyperref[lla3]{Limit Law A3}%
+\item\hypertarget{li-20}{}Apply \hyperref[llr1]{Limit Law R1} and \hyperref[llr2]{Limit Law R2}%
+\end{enumerate}
+\begin{exercisegroup}(3)
+\exercise[4.]\hypertarget{exercise-first-apply-limit-laws}{}\(\lim\limits_{t\to4}\sqrt{6t+1}\)%
+\exercise[5.]\hypertarget{exercise-70}{}\(\lim\limits_{y\to7}\dfrac{y+3}{y-\sqrt{y+9}}\)%
+\exercise[6.]\hypertarget{exercise-71}{}\(\lim\limits_{x\to\pi}x\cos(x)\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.3 Indeterminate Limits}
+\typeout{************************************************}
+\section[{Indeterminate Limits}]{Indeterminate Limits}\label{section-indeterminate-limits}
+Many limits have the form \(\frac{0}{0}\) which means the expressions in both the numerator and denominator limit to zero (e.g.\@\(\lim\limits_{x\to3}\frac{2x-6}{x-3}\)). The form \(\frac{0}{0}\) is called \terminology{indeterminate} because we do not know the value of the limit (or even if it exists) so long as the limit has that form. When confronted with limits of form \(\frac{0}{0}\) we must first manipulate the expression so that common factors causing the zeros in the numerator and denominator are isolated. Limit law A7 can then be used to justify eliminating the common factors and once they are gone we may proceed with the application of the remaining limit laws. \hyperref[example-first-indeterminate]{\ref{example-first-indeterminate}} and \hyperref[example-second-indeterminate]{\ref{example-second-indeterminate}} illustrate this situation.%
+\begin{example}[]\label{example-first-indeterminate}
+\begin{align*}
+\lim_{x\to3}\frac{x^2-8x+15}{x-3}&=\lim_{x\to3}\frac{(x-5)(x-3)}{x-3}\\
+&=\lim_{x\to3}(x-5)&&\hyperref[lla7]{\text{Limit Law A7}}\\
+&=\lim_{x\to3}x-\lim_{x\to3}5&&\hyperref[lla2]{\text{Limit Law A2}}\\
+&=3-5&&\hyperref[llr1]{\text{Limit Law R1}}, \hyperref[llr2]{\text{Limit Law R2}}\\
+&=-2
+\end{align*}%
+\par
+Note that the forms of the limits on either side of the first line are \(\frac{0}{0}\), but the form of the limit in the second line is no longer indeterminate. So at the second line, we can begin applying limit laws.%
+\end{example}
+\begin{example}[]\label{example-second-indeterminate}
+\begin{align*}
+\lim_{\theta\to0}\frac{1-\fe{\cos}{\theta}}{\fe{\sin^2}{\theta}}&=\lim_{\theta\to0}\left(\frac{1-\fe{\cos}{\theta}}{\fe{\sin^2}{\theta}}\cdot\frac{1+\fe{\cos}{\theta}}{1+\fe{\cos}{\theta}}\right)\\
+&=\lim_{\theta\to0}\frac{1-\fe{\cos^2}{\theta}}{\fe{\sin^2}{\theta}\cdot\left(1+\fe{\cos}{\theta}\right)}\\
+&=\lim_{\theta\to0}\frac{\fe{\sin^2}{\theta}}{\fe{\sin^2}{\theta}\cdot\left(1+\fe{\cos}{\theta}\right)}\\
+&=\lim_{\theta\to0}\frac{1}{1+\fe{\cos}{\theta}}&&\hyperref[lla7]{\text{Limit Law A7}}\\
+&=\frac{\lim_{\theta\to0}1}{\lim_{\theta\to0}\left(1+\fe{\cos}{\theta}\right)}&&\hyperref[lla5]{\text{Limit Law A5}}\\
+&=\frac{\lim_{\theta\to0}1}{\lim_{\theta\to0}1+\lim_{\theta\to0}\fe{\cos}{\theta}}&&\hyperref[lla1]{\text{Limit Law A1}}\\
+&=\frac{\lim_{\theta\to0}1}{\lim_{\theta\to0}1+\fe{\cos}{\lim_{\theta\to0}\theta}}&&\hyperref[lla6]{\text{Limit Law A6}}\\
+&=\frac{1}{1+\fe{\cos}{0}}&&\hyperref[llr1]{\text{Limit Law R1}}, \hyperref[llr2]{\text{Limit Law R2}}\\
+&=\frac{1}{2}
+\end{align*}%
+\par
+The form of each limit above was \(\frac{0}{0}\) until the fourth line, where we were able to begin applying limit laws.%
+\end{example}
+\par
+As seen in \hyperref[example-second-indeterminate]{Example~\ref{example-second-indeterminate}}, trigonometric identities can come into play while trying to eliminate the form \(\frac{0}{0}\). Elementary rules of logarithms can also play a role in this process. Before you begin evaluating limits whose initial form is \(\frac{0}{0}\), you need to make sure that you recall some of these basic rules. That is the purpose of \hyperlink{exercise-identities-review}{Exercise~2.3.1.1}.%
+\typeout{************************************************}
+\typeout{Exercises 2.3.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-7}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-identities-review}{}Complete each of the following identities (over the real numbers). Make sure that you check with your lecture instructor so that you know which of these identities you are expected to memorize.%
+\par
+The following identities are valid for all values of \(x\) and \(y\).\begin{align*}
+1-\fe{\cos^2}{x}&=\phantom{\fe{\sin^2}{x}}&\fe{\tan^2}{x}&=\phantom{\fe{\sec^2}{x}-1}\\
+\fe{\sin}{2x}&=\phantom{2\fe{\sin}{x}\fe{\cos}{x}}&\fe{\tan}{2x}&=\phantom{\frac{2\fe{\tan}{x}}{1-\fe{\tan^2}{x}}}\\
+\fe{\sin}{x+y}&=\phantom{\fe{\sin}{x}\fe{\cos}{y}+\fe{\cos}{x}\fe{\sin}{y}}&\fe{\cos}{x+y}&=\phantom{\fe{\cos}{x}\fe{\cos}{y}-\fe{\sin}{x}\fe{\sin}{y}}\\
+\fe{\sin}{\frac{x}{2}}&=\phantom{\sqrt{\frac{1-\fe{\cos}{x}}{2}}}&\fe{\cos}{\frac{x}{2}}&=\phantom{\sqrt{\frac{1+\fe{\cos}{x}}{2}}}
+\end{align*}%
+\par
+There are three versions of the following identity; write them all.\begin{align*}
+\fe{\cos}{2x}&=\phantom{\fe{\cos^2}{x}-\fe{\sin^2}{x}}&\fe{\cos}{2x}&=\phantom{2\fe{\cos^2}{x}-1}&\fe{\cos}{2x}&=\phantom{1-2\fe{\sin^2}{x}}
+\end{align*}%
+\par
+The following identities are valid for all positive values of \(x\) and \(y\) and all values of \(n\).\begin{align*}
+\fe{\ln}{xy}&=\phantom{\fe{\ln}{x}+\fe{\ln}{y}}&\fe{\ln}{\frac{x}{y}}&=\phantom{\fe{\ln}{x}-\fe{\ln}{y}}\\
+\fe{\ln}{x^n}&=\phantom{n\fe{\ln}{x}}&\fe{\ln}{e^n}&=\phantom{n}
+\end{align*}%
+\par\smallskip
+\end{exerciselist}
+\hypertarget{exercisegroup-18}{}\par\noindent Use the limit laws to establish the value of each of the following limits after first manipulating the expression so that it
+no longer has form \(\frac{0}{0}\). Make sure that you use the step-by-step, vertical format shown in \hyperref[example-first-indeterminate]{\ref{example-first-indeterminate}} and \hyperref[example-second-indeterminate]{Example~\ref{example-second-indeterminate}}. Make sure that you cite each limit law used.%
+\begin{exercisegroup}(2)
+\exercise[2.]\hypertarget{exercise-73}{}\(\lim\limits_{x\to-4}\dfrac{x+4}{2x^2+5x-12}\)%
+\exercise[3.]\hypertarget{exercise-74}{}\(\lim\limits_{x\to0}\dfrac{\fe{\sin}{2x}}{\fe{\sin}{x}}\)%
+\exercise[4.]\hypertarget{exercise-75}{}\(\lim\limits_{\beta\to0}\dfrac{\fe{\sin}{\beta+\pi}}{\fe{\sin}{\beta}}\)%
+\exercise[5.]\hypertarget{exercise-76}{}\(\lim\limits_{t\to0}\dfrac{\fe{\cos}{2t}-1}{\fe{\cos}{t}-1}\)%
+\exercise[6.]\hypertarget{exercise-77}{}\(\lim\limits_{x\to1}\dfrac{4\fe{\ln}{x}+2\fe{\ln}{x^3}}{\fe{\ln}{x}-\fe{\ln}{\sqrt{x}}}\)%
+\exercise[7.]\hypertarget{exercise-78}{}\(\lim\limits_{w\to9}\dfrac{9-w}{\sqrt{w}-3}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.4 Limits at Infinity}
+\typeout{************************************************}
+\section[{Limits at Infinity}]{Limits at Infinity}\label{section-limits-at-infinity}
+We are frequently interested in a function's ``end behavior.'' That is, what is the behavior of the function as the input variable increases without bound or decreases without bound.%
+\par
+Many times a function will approach a horizontal asymptote as its end behavior. Assuming that the horizontal asymptote \(y=L\) represents the end behavior of the function \(f\) both as \(x\) increases without bound and as \(x\) decreases into the negative without bound, we write \(\lim\limits_{x\to\infty}\fe{f}{x}=L\) and \(\lim\limits_{x\to\infty}\fe{f}{x}=L\).%
+\par
+The formalistic way to read \(\lim\limits_{x\to\infty}\fe{f}{x}=L\) is ``the limit of \(\fe{f}{x}\) as \(x\) approaches infinity equals \(L\).'' When read that way, however, the words need to be taken \emph{anything but literally}. In the first place, \(x\) isn't approaching anything! The entire point is that \(x\) is increasing without any bound on how large its value becomes. Secondly, there is no place on the real number line called ``infinity''; infinity is not a number. Hence \(x\) certainly can't be approaching something that isn't even there!%
+\typeout{************************************************}
+\typeout{Exercises 2.4.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-8}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-79}{}For the function in {$\langle\langle$Unresolved xref, reference "figure-match-rationals-1"; check spelling or use "provisional" attribute$\rangle\rangle$} from {$\langle\langle$Unresolved xref, reference "chapter-critical-numbers-graphing-from-formulas"; check spelling or use "provisional" attribute$\rangle\rangle$}, we could (correctly) write down that \(\lim\limits_{x\to\infty}\fe{f_1}{x}=-2\) and \(\lim\limits_{x\to-\infty}\fe{f_1}{x}=-2\).  Go ahead and write (and say aloud) the analogous limits for the functions in {$\langle\langle$Unresolved xref, reference "figure-match-rationals-2"; check spelling or use "provisional" attribute$\rangle\rangle$}, {$\langle\langle$Unresolved xref, reference "figure-match-rationals-3"; check spelling or use "provisional" attribute$\rangle\rangle$}, {$\langle\langle$Unresolved xref, reference "figure-match-rationals-4"; check spelling or use "provisional" attribute$\rangle\rangle$}, and {$\langle\langle$Unresolved xref, reference "figure-match-rationals-5"; check spelling or use "provisional" attribute$\rangle\rangle$},.%
+\par\smallskip
+\end{exerciselist}
+\hypertarget{exercisegroup-19}{}\par\noindent % group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxJparagraphs}
+\savebox{\panelboxJparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Values of the function \(f\) defined by \(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\) are shown in \hyperref[table-limit-at-minus-infinity]{Table~\ref{table-limit-at-minus-infinity}}. Both of the questions below are in reference to this function.%
+}}}
+\newlength{\phJparagraphs}\setlength{\phJparagraphs}{\ht\panelboxJparagraphs+\dp\panelboxJparagraphs}
+\settototalheight{\phJparagraphs}{\usebox{\panelboxJparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phJparagraphs}}
+\newsavebox{\panelboxHtabular}
+\savebox{\panelboxHtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{rl}\hrulethick
+\multicolumn{1}{c}{\(x\)}&\multicolumn{1}{c}{\(\fe{f}{x}\)}\tabularnewline\hrulemedium
+\(-1000\)&\(1.498\ldots\)\tabularnewline[0pt]
+\(-10{,}000\)&\(1.4998\ldots\)\tabularnewline[0pt]
+\(-100{,}000\)&\(1.49998\ldots\)\tabularnewline[0pt]
+\(-1{,}000{,}000\)&\(1.499998\ldots\)
+\end{tabular}
+}}}
+\newlength{\phHtabular}\setlength{\phHtabular}{\ht\panelboxHtabular+\dp\panelboxHtabular}
+\settototalheight{\phHtabular}{\usebox{\panelboxHtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phHtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxJparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxHtabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{f}{x}=\frac{3x^2-16x+5}{2x^2-13x+15}\)\label{table-limit-at-minus-infinity}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{exercisegroup}(1)
+\exercise[2.]\hypertarget{exercise-80}{}Find \(\lim\limits_{x\to-\infty}\fe{f}{x}\).%
+\exercise[3.]\hypertarget{exercise-81}{}What is the equation of the horizontal asymptote for the graph of \(y=\fe{f}{x}\)?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-20}{}\par\noindent % group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxKparagraphs}
+\savebox{\panelboxKparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Jorge and Vanessa were in a heated discussion about horizontal asymptotes. Jorge said that functions never cross horizontal asymptotes. Vanessa said Jorge was nuts. Vanessa whipped out her trusty calculator and generated the values in \hyperref[table-limit-crossing-asymptote]{Table~\ref{table-limit-crossing-asymptote}} to prove her point.%
+}}}
+\newlength{\phKparagraphs}\setlength{\phKparagraphs}{\ht\panelboxKparagraphs+\dp\panelboxKparagraphs}
+\settototalheight{\phKparagraphs}{\usebox{\panelboxKparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phKparagraphs}}
+\newsavebox{\panelboxItabular}
+\savebox{\panelboxItabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{ll}\hrulethick
+\multicolumn{1}{c}{\(t\)}&\multicolumn{1}{c}{\(\fe{g}{t}\)}\tabularnewline\hrulemedium
+\(10^3\)&\(1.008\ldots\)\tabularnewline[0pt]
+\(10^4\)&\(0.9997\ldots\)\tabularnewline[0pt]
+\(10^5\)&\(1.0000004\ldots\)\tabularnewline[0pt]
+\(10^6\)&\(0.9999997\ldots\)\tabularnewline[0pt]
+\(10^7\)&\(1.00000004\ldots\)\tabularnewline[0pt]
+\(10^8\)&\(1.000000009\ldots\)\tabularnewline[0pt]
+\(10^9\)&\(1.0000000005\ldots\)\tabularnewline[0pt]
+\(10^{10}\)&\(0.99999999995\ldots\)
+\end{tabular}
+}}}
+\newlength{\phItabular}\setlength{\phItabular}{\ht\panelboxItabular+\dp\panelboxItabular}
+\settototalheight{\phItabular}{\usebox{\panelboxItabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phItabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxKparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxItabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{g}{t}=1+\frac{\fe{\sin}{t}}{t}\)\label{table-limit-crossing-asymptote}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\begin{exercisegroup}(1)
+\exercise[4.]\hypertarget{exercise-82}{}Find \(\lim\limits_{t\to\infty}\fe{g}{t}\).%
+\exercise[5.]\hypertarget{exercise-83}{}What is the equation of the horizontal asymptote for the graph of \(y=\fe{g}{t}\)?%
+\exercise[6.]\hypertarget{exercise-84}{}Just how many times does the curve \(y=\fe{g}{t}\) cross its horizontal asymptote?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.5 Limits at Infinity Tending to Zero}
+\typeout{************************************************}
+\section[{Limits at Infinity Tending to Zero}]{Limits at Infinity Tending to Zero}\label{section-limits-at-infinity-tending-to-zero}
+When using limit laws to establish limit values as \(x\to\infty\) or \(x\to-\infty\), \hyperref[lla1]{Limit Law A1}\textendash{}\hyperref[lla6]{Limit Law A6} and  \hyperref[llr2]{Limit Law R2} are still in play (when applied in a valid manner), but \hyperref[llr1]{Limit Law R1} cannot be applied. (The reason it cannot be applied is discussed in detail in \hyperlink{exercisegroup-hear-me}{Exercise Group~2.8.1.11--2.8.1.18} from \hyperref[section-vertical-asymptotes]{Activity~\ref{section-vertical-asymptotes}}.)%
+\par
+There is a new replacement law that can only be applied when \(x\to\infty\) or \(x\to-\infty\); this is \hyperref[llr3]{Limit Law R3}. \hyperref[llr3]{Limit Law R3} essentially says that if the value of a function is increasing without any bound on how large it becomes or if the function is decreasing without any bound on how large its absolute value becomes, then the value of a constant divided by that function must be approaching zero. An analogy can be found in extremely poor party planning. Let's say that you plan to have a pizza party and you buy five pizzas. Suppose that as the hour of the party approaches more and more guests come in the door\textemdash{}in fact the guests never stop coming! Clearly as the number of guests continues to rise the amount of pizza each guest will receive quickly approaches zero (assuming the pizzas are equally divided among the guests).%
+\typeout{************************************************}
+\typeout{Exercises 2.5.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-9}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-85}{}Consider the function \(f\) defined by \(\fe{f}{x}=\frac{12}{x}\).%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxLparagraphs}
+\savebox{\panelboxLparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Complete \hyperref[table-limit-to-zero]{Table~\ref{table-limit-to-zero}} without the use of your calculator. What limit value and limit law are being illustrated in the table?%
+}}}
+\newlength{\phLparagraphs}\setlength{\phLparagraphs}{\ht\panelboxLparagraphs+\dp\panelboxLparagraphs}
+\settototalheight{\phLparagraphs}{\usebox{\panelboxLparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phLparagraphs}}
+\newsavebox{\panelboxJtabular}
+\savebox{\panelboxJtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{rl}\hrulethick
+\multicolumn{1}{c}{\(x\)}&\multicolumn{1}{c}{\(\fe{f}{x}\)}\tabularnewline\hrulemedium
+\(1000\)&\tabularnewline[0pt]
+\(10{,}000\)&\tabularnewline[0pt]
+\(100{,}000\)&\tabularnewline[0pt]
+\(1{,}000{,}000\)&\(\phantom{1{,}000{,}000}\)
+\end{tabular}
+}}}
+\newlength{\phJtabular}\setlength{\phJtabular}{\ht\panelboxJtabular+\dp\panelboxJtabular}
+\settototalheight{\phJtabular}{\usebox{\panelboxJtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phJtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxLparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxJtabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{f}{x}=\frac{12}{x}\)\label{table-limit-to-zero}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\par\smallskip
+\end{exerciselist}
+\typeout{************************************************}
+\typeout{Activity 2.6 Ratios of Infinities}
+\typeout{************************************************}
+\section[{Ratios of Infinities}]{Ratios of Infinities}\label{section-ratios-of-infinities}
+Many limits have the form \(\frac{\infty}{\infty}\), which we take to mean that the expressions in both the numerator and denominator are increasing or decreasing without bound. When confronted with a limit of type \(\lim\limits_{x\to\infty}\frac{\fe{f}{x}}{\fe{g}{x}}\) or \(\lim\limits_{x\to-\infty}\frac{\fe{f}{x}}{\fe{g}{x}}\) that has the form \(\frac{\infty}{\infty}\), we can frequently resolve the limit if we first divide the dominant factor of the dominant term of the denominator from both the numerator and the denominator. When we do this, we need to completely simplify each of the resultant fractions and make sure that the resultant limit exists before we start to apply limit laws. We then apply the algebraic limit laws until all of the resultant limits can be replaced using \hyperref[llr2]{Limit Law R2} and \hyperref[llr3]{Limit Law R3}. This process is illustrated in \hyperref[example-ratio-of-infinities]{Example~\ref{example-ratio-of-infinities}}.%
+\begin{example}[]\label{example-ratio-of-infinities}
+\begin{align*}
+\lim_{t\to\infty}\frac{3t^2+5t}{3-5t^2}&=\lim_{t\to\infty}\left(\frac{3t^2+5t}{3-5t^2}\cdot\frac{\sfrac{1}{t^2}}{\sfrac{1}{t^2}}\right)\\
+&=\lim_{t\to\infty}\frac{3+\sfrac{5}{t}}{\sfrac{3}{t^2}-5}&&\text{No longer indeterminate form}\\
+&=\frac{\lim_{t\to\infty}\left(3+\sfrac{5}{t}\right)}{\lim_{t\to\infty}\left(\sfrac{3}{t^2}-5\right)}&&\hyperref[lla5]{\text{Limit Law A5}}\\
+&=\frac{\lim_{t\to\infty}3+\lim_{t\to\infty}\frac{5}{t}}{\lim_{t\to\infty}\frac{3}{t^2}-\lim_{t\to\infty}5}&&\hyperref[lla1]{\text{Limit Law A1}}, \hyperref[lla2]{\text{Limit Law A2}}\\
+&=\frac{3+0}{0-5}&&\hyperref[llr2]{\text{Limit Law R2}}, \hyperref[llr3]{\text{Limit Law R3}}\\
+&=-\frac{3}{5}
+\end{align*}%
+\end{example}
+\typeout{************************************************}
+\typeout{Exercises 2.6.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-10}
+\hypertarget{exercisegroup-21}{}\par\noindent Use the limit laws to establish the value of each limit after dividing the dominant term-factor in the denominator from both the numerator and denominator. Remember to simplify each resultant expression before you begin to apply the limit laws.%
+\begin{exercisegroup}(3)
+\exercise[1.]\hypertarget{exercise-86}{}\(\lim\limits_{t\to-\infty}\dfrac{4t^2}{4t^2+t^3}\)%
+\exercise[2.]\hypertarget{exercise-87}{}\(\lim\limits_{t\to\infty}\dfrac{6e^t+10e^{2t}}{2e^{2t}}\)%
+\exercise[3.]\hypertarget{exercise-88}{}\(\lim\limits_{y\to\infty}\sqrt{\dfrac{4y+5}{5+9y}}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.7 Non-existent Limits}
+\typeout{************************************************}
+\section[{Non-existent Limits}]{Non-existent Limits}\label{section-nonexistent-limits}
+Many limit values do not exist. Sometimes the non-existence is caused by the function value either increasing without bound or decreasing without bound. In these special cases we use the symbols \(\infty\) and \(-\infty\) to communicate the non-existence of the limits. \hyperref[figure-first-nonexistent-limit]{\ref{figure-first-nonexistent-limit}}\textendash{}\hyperref[figure-last-nonexistent-limit]{\ref{figure-last-nonexistent-limit}} can be used to illustrate some ways in which we communicate the \terminology{non-existence} of these types of limits.%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}In \hyperref[figure-first-nonexistent-limit]{Figure~\ref{figure-first-nonexistent-limit}} we could (correctly) write\(\lim\limits_{x\to2}\fe{k}{x}=\infty\), \(\lim\limits_{x\to2^{-}}\fe{k}{x}=\infty\), and \(\lim\limits_{x\to2^{+}}\fe{k}{x}=\infty\).%
+\item{}In \hyperref[figure-middle-nonexistent-limit]{Figure~\ref{figure-middle-nonexistent-limit}} we could (correctly) write\(\lim\limits_{t\to4}\fe{w}{t}=-\infty\), \(\lim\limits_{t\to4^{-}}\fe{w}{t}=-\infty\), and \(\lim\limits_{t\to4^{+}}\fe{w}{t}=-\infty\).%
+\item{}In \hyperref[figure-last-nonexistent-limit]{Figure~\ref{figure-last-nonexistent-limit}} we could (correctly) write\(\lim\limits_{x\to-3^{-}}\fe{T}{x}=\infty\) and \(\lim\limits_{x\to-3^{+}}\fe{T}{x}=-\infty\). There is no shorthand way of communicating the non-existence of the two-sided limit \(\lim\limits_{x\to-3}\fe{T}{x}\).%
+\end{itemize}
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxHimage}
+\savebox{\panelboxHimage}{%
+\resizebox{0.333333333333333\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:28.8167615,
+             ]
+             ({2+1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2}); 
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:35.489593,
+             ]
+             ({2-1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2});
+    \addplot[asymptote
+    ]coordinates{
+        (2,7)
+        (2,-7)} node[above left] {\rotatebox{90}{$x=2$}};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phHimage}\setlength{\phHimage}{\ht\panelboxHimage+\dp\panelboxHimage}
+\settototalheight{\phHimage}{\usebox{\panelboxHimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phHimage}}
+\newsavebox{\panelboxIimage}
+\savebox{\panelboxIimage}{%
+\resizebox{0.333333333333333\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[,
+             xlabel = {$t$},]
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:22.6496693,
+             ]
+             ({4+1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:37.7066604,
+             ]
+             ({4-1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+    \addplot[asymptote
+    ]coordinates{
+        (4,-7)
+        (4,7)} node[below left] {\rotatebox{90}{$t=4$}};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phIimage}\setlength{\phIimage}{\ht\panelboxIimage+\dp\panelboxIimage}
+\settototalheight{\phIimage}{\usebox{\panelboxIimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phIimage}}
+\newsavebox{\panelboxJimage}
+\savebox{\panelboxJimage}{%
+\resizebox{0.333333333333333\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:36.6565789,
+             ]
+             ({-3+1/sqrt(13)*1.1^t}, {6.5-1/(1/sqrt(13)*1.1^t)^2});
+    \addplot[pccplot,
+             variable=\t,
+             domain=0:26.1799558,
+             ]
+             ({-3-1/sqrt(13)*1.1^t}, {-6.5+1/(1/sqrt(13)*1.1^t)^2});
+    \addplot[asymptote
+    ]coordinates{
+        (-3,7)
+        (-3,-7)} node[above left] {\rotatebox{90}{$x=-3$}};
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phJimage}\setlength{\phJimage}{\ht\panelboxJimage+\dp\panelboxJimage}
+\settototalheight{\phJimage}{\usebox{\panelboxJimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phJimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{3}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.333333333333333\textwidth}\usebox{\panelboxHimage}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.333333333333333\textwidth}\usebox{\panelboxIimage}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.333333333333333\textwidth}\usebox{\panelboxJimage}\end{minipage}\tabularnewline
+\parbox[t]{0.333333333333333\textwidth}{\captionof{figure}{\(y=\fe{k}{x}\)\label{figure-first-nonexistent-limit}}
+}&
+\parbox[t]{0.333333333333333\textwidth}{\captionof{figure}{\(y=\fe{w}{t}\)\label{figure-middle-nonexistent-limit}}
+}&
+\parbox[t]{0.333333333333333\textwidth}{\captionof{figure}{\(y=\fe{T}{x}\)\label{figure-last-nonexistent-limit}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\typeout{************************************************}
+\typeout{Exercises 2.7.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-11}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-89}{}In the plane provided, draw the graph of a single function, \(f\), that satisfies each of the following limit statements. Make sure that you draw the necessary asymptotes and that you label each asymptote with its equation.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxMparagraphs}
+\savebox{\panelboxMparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\lim\limits_{x\to3^{-}}\fe{f}{x}&=-\infty\\
+\lim\limits_{x\to\infty}\fe{f}{x}&=0\\
+\lim\limits_{x\to3^{+}}\fe{f}{x}&=\infty\\
+\lim\limits_{x\to-\infty}\fe{f}{x}&=2
+\end{align*}%
+}}}
+\newlength{\phMparagraphs}\setlength{\phMparagraphs}{\ht\panelboxMparagraphs+\dp\panelboxMparagraphs}
+\settototalheight{\phMparagraphs}{\usebox{\panelboxMparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phMparagraphs}}
+\newsavebox{\panelboxKimage}
+\savebox{\panelboxKimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phKimage}\setlength{\phKimage}{\ht\panelboxKimage+\dp\panelboxKimage}
+\settototalheight{\phKimage}{\usebox{\panelboxKimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phKimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxMparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxKimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{f}{x}\)\label{figure-9}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\par\smallskip
+\end{exerciselist}
+\typeout{************************************************}
+\typeout{Activity 2.8 Vertical Asymptotes}
+\typeout{************************************************}
+\section[{Vertical Asymptotes}]{Vertical Asymptotes}\label{section-vertical-asymptotes}
+Whenever \(\lim\limits_{x\to a}\fe{f}{x}\neq0\) but \(\lim\limits_{x\to a}\fe{g}{x}=0\), then \(\lim\limits_{x\to a}\frac{\fe{f}{x}}{\fe{g}{x}}\) \emph{does not exist} because from either side of \(a\) the value of \(\frac{\fe{f}{x}}{\fe{g}{x}}\) has an absolute value that will become arbitrarily large. In these situations the line \(x=a\) is a vertical asymptote for the graph of \(y=\frac{\fe{f}{x}}{\fe{g}{x}}\). For example, the line \(x=2\) is a vertical asymptote for the function \(h\) defined by \(\fe{h}{x}=\frac{x+5}{2-x}\). We say that \(\lim\limits_{x\to 2}\frac{x+5}{2-x}\) has the form ``not-zero over zero.'' (Specifically, the form of \(\lim\limits_{x\to 2}\frac{x+5}{2-x}\) is \(\frac{7}{0}\).) Every limit with form ``not-zero over zero'' \emph{does not exist}. However, we frequently can communicate the non-existence of the limit using an infinity symbol. In the case of \(\fe{h}{x}=\frac{x+5}{2-x}\) it's pretty easy to see that \(\fe{h}{1.99}\) is a positive number whereas \(\fe{h}{2.01}\) is a negative number. Consequently, we can infer that \(\lim\limits_{x\to 2^{-}}\fe{h}{x}=\infty\) and \(\lim\limits_{x\to 2^{+}}\fe{h}{x}=-\infty\). Remember, these equations are communicating that the limits \emph{do not exist} as well as the reason for their non-existence. There is no short-hand way to communicate the non-existence of the two-sided limit \(\lim\limits_{x\to 2}\fe{h}{x}\).%
+\typeout{************************************************}
+\typeout{Exercises 2.8.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-12}
+\hypertarget{exercisegroup-22}{}\par\noindent Suppose that \(\fe{g}{t}=\frac{t+4}{t+3}\).%
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-90}{}What is the vertical asymptote on the graph of \(y=\fe{g}{t}\)?%
+\exercise[2.]\hypertarget{exercise-91}{}Write an equality about \(\lim\limits_{t\to-3^{-}}\fe{g}{t}\).%
+\exercise[3.]\hypertarget{exercise-92}{}Write an equality about \(\lim\limits_{t\to-3^{+}}\fe{g}{t}\).%
+\exercise[4.]\hypertarget{exercise-93}{}Is it possible to write an equality about \(\lim\limits_{t\to-3}\fe{g}{t}\)? If so, do it.%
+\exercise[5.]\hypertarget{exercise-94}{}Which of the following limits exist? \(\lim\limits_{t\to-3^{-}}\fe{g}{t}\)? \(\lim\limits_{t\to-3^{+}}\fe{g}{t}\)? \(\lim\limits_{t\to-3}\fe{g}{t}\)?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-23}{}\par\noindent Suppose that \(\fe{z}{x}=\frac{7-3x^2}{\left(x-2\right)^2}\).%
+\begin{exercisegroup}(1)
+\exercise[6.]\hypertarget{exercise-95}{}What is the vertical asymptote on the graph of \(y=\fe{z}{x}\)?%
+\exercise[7.]\hypertarget{exercise-96}{}Is it possible to write an equality about \(\lim\limits_{x\to2}\fe{z}{x}\)? If so, do it.%
+\exercise[8.]\hypertarget{exercise-97}{}What is the horizontal asymptote on the graph of \(y=\fe{z}{x}\)?%
+\exercise[9.]\hypertarget{exercise-98}{}Which of the following limits exist? \(\lim\limits_{x\to2^{-}}\fe{z}{x}\)? \(\lim\limits_{x\to2^{+}}\fe{z}{x}\)? \(\lim\limits_{x\to2}\fe{z}{x}\)?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\begin{exerciselist}
+\item[10.]\hypertarget{exercise-99}{}Consider the function \(f\) defined by \(\fe{f}{x}=\frac{x+7}{x-8}\). Complete \hyperref[table-vertical-asymptote]{Table~\ref{table-vertical-asymptote}} without the use of your calculator.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxNparagraphs}
+\savebox{\panelboxNparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{Use this as an opportunity to discuss why limits of form ``not-zero over zero'' are ``infinite limits.'' What limit equation is being illustrated in the table?%
+}}}
+\newlength{\phNparagraphs}\setlength{\phNparagraphs}{\ht\panelboxNparagraphs+\dp\panelboxNparagraphs}
+\settototalheight{\phNparagraphs}{\usebox{\panelboxNparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phNparagraphs}}
+\newsavebox{\panelboxKtabular}
+\savebox{\panelboxKtabular}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\centering\begin{tabular}{llll}\hrulethick
+\multicolumn{1}{c}{\(x\)}&\multicolumn{1}{c}{\(x+7\)}&\multicolumn{1}{c}{\(x-8\)}&\multicolumn{1}{c}{\(\fe{f}{x}\)}\tabularnewline\hrulemedium
+\(8.1\)&\(15.1\)&\(0.1\)&\tabularnewline[0pt]
+\(8.01\)&\(15.01\)&\(0.01\)&\tabularnewline[0pt]
+\(8.001\)&\(15.001\)&\(0.001\)&\tabularnewline[0pt]
+\(8.0001\)&\(15.0001\)&\(0.0001\)&
+\end{tabular}
+}}}
+\newlength{\phKtabular}\setlength{\phKtabular}{\ht\panelboxKtabular+\dp\panelboxKtabular}
+\settototalheight{\phKtabular}{\usebox{\panelboxKtabular}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phKtabular}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxNparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxKtabular}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{table}{\(\fe{f}{x}=\frac{x+7}{x-8}\)\label{table-vertical-asymptote}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\par\smallskip
+\hypertarget{exercisegroup-hear-me}{}\par\noindent Hear me, and hear me loud\dots{}\(\infty\) \emph{does not exist}. This, in part, is why we cannot apply \hyperref[llr1]{Limit Law R1} to an expression like \(\lim\limits_{x\to\infty}x\) to see that \(\lim\limits_{x\to\infty}x=\infty\). When we write, say, \(\lim\limits_{x\to7}x=7\), we are replacing the limit, we are replacing the limit expression \emph{with its value}\textemdash{}that's what the replacement laws are all about! When we write \(\lim\limits_{x\to\infty}x=\infty\), we are not replacing the limit expression with a value! We are explicitly saying that the limit has no value (i.e.\@ does not exist) as well as saying the reason the limit does not exist. The limit laws can only be applied when all of the limits in the equation exist. With this in mind, discuss and decide whether each of the following equations are \emph{true} or \emph{false}.%
+\begin{exercisegroup}(1)
+\exercise[11.]\hypertarget{exercise-hear-me-first}{}True or False? \(\lim\limits_{x\to0}\left(\dfrac{e^x}{e^x}\right)=\dfrac{\lim\limits_{x\to0}e^x}{\lim\limits_{x\to0}e^x}\)%
+\exercise[12.]\hypertarget{exercise-101}{}True or False? \(\lim\limits_{x\to1}\dfrac{e^x}{\fe{\ln}{x}}=\dfrac{\lim\limits_{x\to1}e^x}{\lim\limits_{x\to1}\fe{\ln}{x}}\)%
+\exercise[13.]\hypertarget{exercise-102}{}True or False? \(\lim\limits_{x\to0^{+}}\left(2\fe{\ln}{x}\right)=2\lim\limits_{x\to0^{+}}\fe{\ln}{x}\)%
+\exercise[14.]\hypertarget{exercise-103}{}True or False? \(\lim\limits_{x\to\infty}\left(e^x-\fe{\ln}{x}\right)=\lim\limits_{x\to\infty}e^x-\lim\limits_{x\to\infty}\fe{\ln}{x}\)%
+\exercise[15.]\hypertarget{exercise-104}{}True or False? \(\lim\limits_{x\to-\infty}\left(\dfrac{e^{-x}}{e^{-x}}\right)=\dfrac{\lim\limits_{x\to-\infty}e^{-x}}{\lim\limits_{x\to-\infty}e^{-x}}\)%
+\exercise[16.]\hypertarget{exercise-105}{}True or False? \(\lim\limits_{x\to1}\left(\dfrac{\fe{\ln}{x}}{e^x}\right)=\dfrac{\lim\limits_{x\to1}\fe{\ln}{x}}{\lim\limits_{x\to1}e^x}\)%
+\exercise[17.]\hypertarget{exercise-106}{}True or False? \(\lim\limits_{\theta\to\infty}\dfrac{\fe{\sin}{\theta}}{\fe{\sin}{\theta}}=\dfrac{\lim\limits_{\theta\to\infty}\fe{\sin}{\theta}}{\lim\limits_{\theta\to\infty}\fe{\sin}{\theta}}\)%
+\exercise[18.]\hypertarget{exercise-hear-me-last}{}True or False? \(\lim\limits_{x\to-\infty}e^{\sfrac{1}{x}}=e^{\lim_{x\to-\infty}\sfrac{1}{x}}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\item[19.]\hypertarget{exercise-108}{}Mindy tried to evaluate \(\lim\limits_{x\to6^{+}}\frac{4x-24}{x^2-12x+36}\) using the limit laws. Things went horribly wrong for Mindy (her work is shown below). Identify what is wrong in Mindy's work and discuss what a more reasonable approach might have been. \alert{This ``solution'' is not correct! Do not emulate Mindy's work!}%
+\par
+\begin{align*}
+\lim_{x\to6^{+}}\frac{4x-24}{x^2-12x+36}&=\lim_{x\to6^{+}}\frac{4(x-6)}{(x-6)^2}\\
+&=\lim_{x\to6^{+}}\frac{4}{x-6}\\
+&=\frac{\lim\limits_{x\to6^{+}}4}{\lim\limits_{x\to6^{+}}(x-6)}&&\text{Limit Law A5}\\
+&=\frac{\lim\limits_{x\to6^{+}}4}{\lim\limits_{x\to6^{+}}x-\lim\limits_{x\to6^{+}}6}&&\text{Limit Law A2}\\
+&=\frac{4}{6-6}&&\text{Limit Laws R1 and R2}\\
+&=\frac{4}{0}
+\end{align*}%
+\par
+\alert{This ``solution'' is not correct! Do not emulate Mindy's work!}%
+\par\smallskip
+\end{exerciselist}
+\typeout{************************************************}
+\typeout{Activity 2.9 Continuity}
+\typeout{************************************************}
+\section[{Continuity}]{Continuity}\label{section-continuity}
+Many statements we make about functions are only true over intervals where the function is \terminology{continuous}. When we say a function is continuous over an interval, we basically mean that there are no breaks in the function over that interval; that is, there are no vertical asymptotes, holes, jumps, or gaps along that interval.%
+\begin{definition}[{Continuity}]\label{definition-continuity}
+The function \(f\) is \terminology{continuous at the number \(a\)} if and only if \(\lim\limits_{x\to a}\fe{f}{x}=\fe{f}{a}\).%
+\par
+There are three ways that the defining property can fail to be satisfied at a given value of \(a\). To facilitate exploration of these three manners of failure, we can separate the defining property into three sub-properties.%
+\leavevmode%
+\begin{enumerate}
+\item\hypertarget{fofa-is-defined}{}\(\fe{f}{a}\) must be defined%
+\item\hypertarget{limfofx-is-defined}{}\(\lim\limits_{x\to a}\fe{f}{x}\) must exist%
+\item\hypertarget{limit-equals-value}{}\(\lim\limits_{x\to a}\fe{f}{x}\) must equal \(\fe{f}{a}\)%
+\end{enumerate}
+\par
+Please note that if either property 1 or property 2 fails to be satisfied at a given value of \(a\), then property 3 also fails to be satisfied at \(a\).%
+\end{definition}
+\typeout{************************************************}
+\typeout{Exercises 2.9.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-13}
+\hypertarget{exercisegroup-25}{}\par\noindent These questions refer to the function in \hyperref[figure-discontinuities]{Figure~\ref{figure-discontinuities}}.%
+\leavevmode%
+\begin{figure}
+\centering
+{
+\begin{tikzpicture}
+\begin{axis}[xlabel = {$t$},]
+    \addplot[pccplot,
+             domain=-6.7:-4,
+             <-,]
+             {1+6/5*(x+4)};
+    \addplot[pccplot,
+             domain=-4:-2,
+             -]
+             {4};
+             ]
+    \addplot[pccplot,
+             domain=-2:3,
+             -,]
+             {-x+2};
+             ]
+    \addplot[pccplot,
+             domain=0:22.4536998,
+             variable=t,
+             <-,]
+             ({5-2/8.5*1.1^t},{1/(1/8.5*1.1^t)-2});
+    \addplot[pccplot,
+             domain=0:15.38769119,
+             variable=t,
+             ]
+             ({5+1/sqrt(6.5)*1.1^t},{1/(1/sqrt(6.5)*1.1^t)^2});
+    \addplot[asymptote
+    ]coordinates{
+        (5,7)
+        (5,-7)} node[above left] {\rotatebox{90}{$t=5$}};
+    \addplot[soldot
+    ]coordinates{
+        (-4,4)
+        (2,-3)};
+    \addplot[holdot
+    ]coordinates{
+        (-4,1)
+        (-1,3)
+        (2,0)};
+\end{axis}
+\end{tikzpicture}
+}
+\caption{\(y=\fe{h}{t}\)\label{figure-discontinuities}}
+\end{figure}
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-109}{}Complete \hyperref[table-discontinuities]{Table~\ref{table-discontinuities}}.%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{CrBcAcAcAcC}\hrulethick
+\(a\)&\(\fe{h}{a}\)&\(\lim\limits_{t\to a^{-}}\fe{h}{t}\)&\(\lim\limits_{t\to a^{+}}\fe{h}{t}\)&\(\lim\limits_{t\to a}\fe{h}{t}\)\tabularnewline\hrulemedium
+\(-4\)&\(\phantom{\text{the answer}}\)&\(\phantom{\text{the answer}}\)&\(\phantom{\text{the answer}}\)&\(\phantom{\text{the answer}}\)\tabularnewline\hrulethin
+\(-1\)&&&&\tabularnewline\hrulethin
+\(2\)&&&&\tabularnewline\hrulethin
+\(3\)&&&&\tabularnewline\hrulethin
+\(5\)&&&&\tabularnewline\hrulethick
+\end{tabular}
+\caption{Function values and limit values for \(h\)\label{table-discontinuities}}
+\end{table}
+\exercise[2.]\hypertarget{exercise-110}{}State the values of \(t\) at which the function \(h\) is discontinuous. For each instance of discontinuity, state (by number) all of the sub-properties in \hyperref[definition-continuity]{Definition~\ref{definition-continuity}} that fail to be satisfied.%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.10 Discontinuities}
+\typeout{************************************************}
+\section[{Discontinuities}]{Discontinuities}\label{section-discontinuities}
+When a function has a discontinuity at \(a\), the function is sometimes continuous from only the right or only the left at \(a\). (Please note that when we say ``the function is continuous at \(a\)'' we mean that the function is continuous from \emph{both} the right and left at \(a\).)%
+\begin{definition}[{One-sided Continuity}]\label{definition-4}
+The function \(f\) is continuous from the left at \(a\) if and only if \begin{equation*}\lim\limits_{x\to a^{-}}\fe{f}{x}=\fe{f}{a}\text{.}\end{equation*}%
+\par
+The function \(f\) is continuous from the right at \(a\) if and only if \begin{equation*}\lim\limits_{x\to a^{+}}\fe{f}{x}=\fe{f}{a}\text{.}\end{equation*}%
+\end{definition}
+\par
+Some discontinuities are classified as \terminology{removable discontinuities}. Discontinuities that are holes or skips (holes with a secondary point) are \terminology{removable}.%
+\begin{definition}[{Removable Discontinuity}]\label{definition-5}
+We say that \(f\) has a removable discontinuity at \(a\) if \(f\) is discontinuous at \(a\) but \(\lim\limits_{x\to a}\fe{f}{x}\) exists.%
+\end{definition}
+\typeout{************************************************}
+\typeout{Exercises 2.10.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-14}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-111}{}Referring to the function \(h\) shown in \hyperref[figure-discontinuities]{Figure~\ref{figure-discontinuities}}, state the values of \(t\) where the function is continuous from the right but not the left. Then state the values of \(t\) where the function is continuous from the left but not the right.%
+\par\smallskip
+\item[2.]\hypertarget{exercise-112}{}Referring again to the function \(h\) shown in \hyperref[figure-discontinuities]{Figure~\ref{figure-discontinuities}}, state the values of \(t\) where the function has removable discontinuities.%
+\par\smallskip
+\end{exerciselist}
+\typeout{************************************************}
+\typeout{Activity 2.11 Continuity on an Interval}
+\typeout{************************************************}
+\section[{Continuity on an Interval}]{Continuity on an Interval}\label{section-continuity-on-an-interval}
+Now that we have a definition for continuity at a number, we can go ahead and define what we mean when we say a function is continuous over an interval.%
+\begin{definition}[{Continuity on an Interval}]\label{definition-continuity-on-an-interval}
+The function \(f\) is \terminology{continuous} over an open interval if and only if it is continuous at each and every number on that interval.%
+\par
+The function \(f\) is \terminology{continuous} over a closed interval \(\cinterval{a}{b}\) if and only if it is continuous on \(\ointerval{a}{b}\), continuous from the right at \(a\), and continuous from the left at \(b\). Similar definitions apply to half-open intervals.%
+\end{definition}
+\typeout{************************************************}
+\typeout{Exercises 2.11.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-15}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-113}{}Write a definition for continuity on the half-open interval \(\ocinterval{a}{b}\).%
+\par\smallskip
+\end{exerciselist}
+\hypertarget{exercisegroup-26}{}\par\noindent Referring to the function in \hyperref[figure-discontinuities]{Figure~\ref{figure-discontinuities}}, decide whether each of the following statements are \emph{true} or \emph{false}.%
+\begin{exercisegroup}(1)
+\exercise[2.]\hypertarget{exercise-114}{}True or False? \(h\) is continuous on \(\cointerval{-4}{-1}\).%
+\exercise[3.]\hypertarget{exercise-115}{}True or False? \(h\) is continuous on \(\ointerval{-4}{-1}\).%
+\exercise[4.]\hypertarget{exercise-116}{}True or False? \(h\) is continuous on \(\ocinterval{-4}{-1}\).%
+\exercise[5.]\hypertarget{exercise-117}{}True or False? \(h\) is continuous on \(\ocinterval{-1}{2}\).%
+\exercise[6.]\hypertarget{exercise-118}{}True or False? \(h\) is continuous on \(\ointerval{-1}{2}\).%
+\exercise[7.]\hypertarget{exercise-119}{}True or False? \(h\) is continuous on \(\ointerval{-\infty}{-4}\).%
+\exercise[8.]\hypertarget{exercise-120}{}True or False? \(h\) is continuous on \(\ocinterval{-\infty}{-4}\).%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-27}{}\par\noindent Several functions are described below. Your task is to sketch a graph for each function on its provided axis system. Do not introduce any unnecessary discontinuities or intercepts that are not directly implied by the stated properties. Make sure that you draw all implied asymptotes and label them with their equations.%
+\begin{exercisegroup}(1)
+\exercise[9.]\hypertarget{exercise-121}{}Sketch a graph of a function \(f\) satisfying:%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxOparagraphs}
+\savebox{\panelboxOparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\fe{f}{0}&=4\\
+\fe{f}{4}&=5\\
+\lim_{x\to4^{-}}\fe{f}{x}&=2\\
+\lim_{x\to4^{+}}\fe{f}{x}&=5\\
+\lim_{x\to-\infty}\fe{f}{x}&=4\\
+\lim_{x\to\infty}\fe{f}{x}&=4
+\end{align*}%
+}}}
+\newlength{\phOparagraphs}\setlength{\phOparagraphs}{\ht\panelboxOparagraphs+\dp\panelboxOparagraphs}
+\settototalheight{\phOparagraphs}{\usebox{\panelboxOparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phOparagraphs}}
+\newsavebox{\panelboxMimage}
+\savebox{\panelboxMimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phMimage}\setlength{\phMimage}{\ht\panelboxMimage+\dp\panelboxMimage}
+\settototalheight{\phMimage}{\usebox{\panelboxMimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phMimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxOparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxMimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{f}{x}\)\label{figure-11}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\exercise[10.]\hypertarget{exercise-122}{}Sketch a graph of a function \(g\) satisfying:%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxPparagraphs}
+\savebox{\panelboxPparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\fe{g}{0}&=4\\
+\fe{g}{3}&=-2\\
+\fe{g}{6}&=0\\
+\lim_{x\to-2}\fe{g}{x}&=\infty\\
+\lim_{x\to-\infty}\fe{g}{x}&=\infty
+\end{align*}
+                            And \(g\) is continuous and has constant slope on \(\ointerval{0}{\infty}\).%
+}}}
+\newlength{\phPparagraphs}\setlength{\phPparagraphs}{\ht\panelboxPparagraphs+\dp\panelboxPparagraphs}
+\settototalheight{\phPparagraphs}{\usebox{\panelboxPparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phPparagraphs}}
+\newsavebox{\panelboxNimage}
+\savebox{\panelboxNimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phNimage}\setlength{\phNimage}{\ht\panelboxNimage+\dp\panelboxNimage}
+\settototalheight{\phNimage}{\usebox{\panelboxNimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phNimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxPparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxNimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{g}{x}\)\label{figure-12}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\exercise[11.]\hypertarget{exercise-123}{}Sketch a graph of a function \(m\) satisfying:%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxQparagraphs}
+\savebox{\panelboxQparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\fe{m}{-6}&=5\\
+\lim_{x\to3}\fe{m}{x}&=-\infty\\
+\lim_{x\to-4^{+}}\fe{m}{x}&=-2\\
+\lim_{x\to\infty}\fe{m}{x}&=-\infty
+\end{align*}
+                            The only discontinuities on \(m\) are at \(-4\) and \(3\).
+                            \(m\) has no \(x\)-intercepts.
+                            \(m\) has constant slope of \(-2\) over \(\ointerval{-\infty}{-4}\).
+                            \(m\) is continuous over \(\cointerval{-4}{3}\).
+                            %
+}}}
+\newlength{\phQparagraphs}\setlength{\phQparagraphs}{\ht\panelboxQparagraphs+\dp\panelboxQparagraphs}
+\settototalheight{\phQparagraphs}{\usebox{\panelboxQparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phQparagraphs}}
+\newsavebox{\panelboxOimage}
+\savebox{\panelboxOimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}[]
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phOimage}\setlength{\phOimage}{\ht\panelboxOimage+\dp\panelboxOimage}
+\settototalheight{\phOimage}{\usebox{\panelboxOimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phOimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxQparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxOimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{m}{x}\)\label{figure-13}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.12 Discontinuous Formulas}
+\typeout{************************************************}
+\section[{Discontinuous Formulas}]{Discontinuous Formulas}\label{section-discontinuous-formulas}
+Discontinuities are a little more challenging to identify when working with formulas than when working with graphs. One reason for the added difficulty is that when working with a function formula you have to dig into your memory bank and retrieve fundamental properties about certain types of functions.%
+\typeout{************************************************}
+\typeout{Exercises 2.12.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-16}
+\begin{exerciselist}
+\item[1.]\hypertarget{exercise-124}{}What would cause a discontinuity on a rational function (a polynomial divided by another polynomial)?%
+\par\smallskip
+\item[2.]\hypertarget{exercise-125}{}If \(y\) is a function of \(u\), defined by \(y=\fe{\ln}{u}\), what is always true about the \terminology{argument} of the function, \(u\), over intervals where the function is continuous?%
+\par\smallskip
+\item[3.]\hypertarget{exercise-126}{}Name three values of \(\theta\) where the function \(\fe{\tan}{\theta}\) is discontinuous.%
+\par\smallskip
+\item[4.]\hypertarget{exercise-127}{}What is the domain of the function \(k\), where \(\fe{k}{t}=\sqrt{t-4}\)?%
+\par\smallskip
+\item[5.]\hypertarget{exercise-128}{}What is the domain of the function \(g\), where \(\fe{g}{t}=\sqrt[3]{t-4}\)?%
+\par\smallskip
+\end{exerciselist}
+\typeout{************************************************}
+\typeout{Activity 2.13 Piecewise-Defined Functions}
+\typeout{************************************************}
+\section[{Piecewise-Defined Functions}]{Piecewise-Defined Functions}\label{section-piecewise-defined-functions}
+Piecewise-defined functions are functions where the formula used depends upon the value of the input. When looking for discontinuities on piecewise-defined functions, you need to investigate the behavior at values where the formula changes as well as values where the issues discussed in \hyperref[section-discontinuous-formulas]{Activity~\ref{section-discontinuous-formulas}} might pop up.%
+\typeout{************************************************}
+\typeout{Exercises 2.13.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-17}
+\hypertarget{exercisegroup-28}{}\par\noindent This question is all about the function \(f\) defined by \begin{equation*}\fe{f}{x}=\begin{cases}\frac{4}{5-x}&x\lt1\\\frac{x-3}{x-3}&1\lt x\lt4\\2x+1&4\leq x\leq7\\\frac{15}{8-x}&x\gt7\text{.}\end{cases}\end{equation*}%
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-129}{}Complete \hyperref[table-piecewise-discontinuities]{Table~\ref{table-piecewise-discontinuities}}.%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{CrBcAcAcAcC}\hrulethick
+\(a\)&\(\fe{f}{a}\)&\(\lim\limits_{x\to a^{-}}\fe{f}{x}\)&\(\lim\limits_{x\to a^{+}}\fe{f}{x}\)&\(\lim\limits_{x\to a}\fe{f}{x}\)\tabularnewline\hrulemedium
+\(1\)&&&&\tabularnewline\hrulethin
+\(3\)&&&&\tabularnewline\hrulethin
+\(4\)&&&&\tabularnewline\hrulethin
+\(5\)&&&&\tabularnewline\hrulethin
+\(7\)&&&&\tabularnewline\hrulethin
+\(8\)&&&&\tabularnewline\hrulethick
+\end{tabular}
+\caption{Function values and limit values for \(f\)\label{table-piecewise-discontinuities}}
+\end{table}
+\exercise[2.]\hypertarget{exercise-130}{}Complete \hyperref[table-piecewise-discontinuities-analysis]{Table~\ref{table-piecewise-discontinuities-analysis}}.%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Location of discontinuity&From \hyperref[definition-continuity]{Definition~\ref{definition-continuity}}, sub-property (1, 2, or 3) that is not met&Removable?&Continuous from one side?\tabularnewline\hrulemedium
+\(\strut\)&&&\tabularnewline\hrulethin
+\(\strut\)&&&\tabularnewline\hrulethin
+\(\strut\)&&&\tabularnewline\hrulethin
+\(\strut\)&&&\tabularnewline\hrulethin
+\end{tabular}
+\caption{Discontinuity analysis for \(f\)\label{table-piecewise-discontinuities-analysis}}
+\end{table}
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-29}{}\par\noindent Consider the function \(f\) defined by \(\fe{f}{x}=\begin{cases}\frac{5}{x-10}&x\leq5\\\frac{5}{5x-30}&5\lt x\lt7\\\frac{x-2}{12-x}&x>7\text{.}\end{cases}\)%
+\par
+State the values of \(x\) where each of the following occur. If a stated property doesn't occur, make sure that you state that (as opposed to simply not responding to the question). No explanation necessary.%
+\begin{exercisegroup}(1)
+\exercise[3.]\hypertarget{exercise-131}{}At what values of \(x\) is \(f\) discontinuous?%
+\exercise[4.]\hypertarget{exercise-132}{}At what values of \(x\) is \(f\) continuous from the left, but not from the right?%
+\exercise[5.]\hypertarget{exercise-133}{}At what values of \(x\) is \(f\) continuous from the right, but not from the left?%
+\exercise[6.]\hypertarget{exercise-134}{}At what values of \(x\) does \(f\) have removable discontinuities?%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-30}{}\par\noindent Consider the function \(g\) defined by \(\fe{g}{x}=\begin{cases}\frac{C}{x-17}&x\lt10\\C+3x&x=10\\2C-4&x\gt10\text{.}\end{cases}\)%
+\par
+The symbol \(C\) represents the same real number in each of the piecewise formulas.%
+\begin{exercisegroup}(1)
+\exercise[7.]\hypertarget{exercise-135}{}Find the value for \(C\) that makes the function continuous on \(\ocinterval{-\infty}{10}\). Make sure that your reasoning is clear.%
+\exercise[8.]\hypertarget{exercise-136}{}Is it possible to find a value for \(C\) that makes the function continuous over \(\ointerval{-\infty}{\infty}\)? Explain.%
+\end{exercisegroup}
+\par\smallskip\noindent
+\typeout{************************************************}
+\typeout{Activity 2.14 Supplement}
+\typeout{************************************************}
+\section[{Supplement}]{Supplement}\label{limits-and-continuity-supplementary-exercises}
+\typeout{************************************************}
+\typeout{Exercises 2.14.1 Exercises}
+\typeout{************************************************}
+\subsection[{Exercises}]{Exercises}\label{exercises-18}
+\hypertarget{exercisegroup-31}{}\par\noindent For \hyperlink{exercise-limits-supplement-first}{2.14.1.1}\textendash{}\hyperlink{exercise-limits-supplement-last}{2.14.1.5}, state the limit suggested by the values in the table and state whether or not the limit exists.  The correct answer for \hyperlink{exercise-limits-supplement-first}{Exercise~2.14.1.1} has been given to help you understand the instructions.%
+\begin{exercisegroup}(1)
+\exercise[1.]\hypertarget{exercise-limits-supplement-first}{}\begin{tabular}{rc}\hrulethick
+\(t\)&\(\fe{g}{t}\)\tabularnewline\hrulemedium
+\(-10{,}000\)&\(99.97\)\tabularnewline[0pt]
+\(-100{,}000\)&\(999.997\)\tabularnewline[0pt]
+\(-1{,}000{,}000\)&\(9999.9997\)\tabularnewline\hrulethick
+\end{tabular}
+\begin{align*}
+\text{Limit}&&&\text{Limit Exists?}\\
+\lim\limits_{t\to-\infty}\fe{g}{t}&=\infty&&\text{No}
+\end{align*}%
+\exercise[2.]\hypertarget{exercise-138}{}\begin{tabular}{rr}\hrulethick
+\(x\)&\(\fe{f}{x}\)\tabularnewline\hrulemedium
+\(51{,}000\)&\(-3.2\times10^{-5}\)\tabularnewline[0pt]
+\(510{,}000\)&\(-3.02\times10^{-7}\)\tabularnewline[0pt]
+\(5{,}100{,}000\)&\(-3.002\times10^{-9}\)\tabularnewline\hrulethick
+\end{tabular}
+\begin{align*}
+\text{Limit}&&&\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&=\mathord{?}
+\end{align*}%
+\exercise[3.]\hypertarget{exercise-139}{}\begin{tabular}{ll}\hrulethick
+\(t\)&\(\fe{z}{t}\)\tabularnewline\hrulemedium
+\(0.33\)&\(0.66\)\tabularnewline[0pt]
+\(0.333\)&\(0.666\)\tabularnewline[0pt]
+\(0.3333\)&\(0.6666\)\tabularnewline\hrulethick
+\end{tabular}
+\begin{align*}
+\text{Limit}&&&\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&=\mathord{?}
+\end{align*}%
+\exercise[4.]\hypertarget{exercise-140}{}\begin{tabular}{lc}\hrulethick
+\(\theta\)&\(\fe{g}{\theta}\)\tabularnewline\hrulemedium
+\(-0.9\)&\(2{,}999{,}990\)\tabularnewline[0pt]
+\(-0.99\)&\(2{,}999{,}999\)\tabularnewline[0pt]
+\(-0.999\)&\(2{,}999{,}999.9\)\tabularnewline\hrulethick
+\end{tabular}
+\begin{align*}
+\text{Limit}&&&\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&=\mathord{?}
+\end{align*}%
+\exercise[5.]\hypertarget{exercise-limits-supplement-last}{}\begin{tabular}{lc}\hrulethick
+\(t\)&\(\fe{T}{t}\)\tabularnewline\hrulemedium
+\(0.778\)&\(29{,}990\)\tabularnewline[0pt]
+\(0.7778\)&\(299{,}999\)\tabularnewline[0pt]
+\(0.77778\)&\(2{,}999{,}999.9\)\tabularnewline\hrulethick
+\end{tabular}
+\begin{align*}
+\text{Limit}&&&\text{Limit Exists?}\\
+\lim\limits_{x\to\mathord{?}}\mathord{?}&=\mathord{?}
+\end{align*}%
+\end{exercisegroup}
+\par\smallskip\noindent
+\begin{exerciselist}
+\item[6.]\hypertarget{exercise-142}{}Sketch onto \hyperref[figure-sketch-properties-supplement]{Figure~\ref{figure-sketch-properties-supplement}} a function, \(f\), with the following properties. Your graph should include all of the features addressed in lab.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxRparagraphs}
+\savebox{\panelboxRparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\lim\limits_{x\to-4^{-}}\fe{f}{x}&=1\\
+\lim\limits_{x\to-4^{+}}\fe{f}{x}&=-2\\
+\lim\limits_{x\to3}\fe{f}{x}&=-\infty\\
+\lim\limits_{x\to\infty}\fe{f}{x}&=-\infty
+\end{align*}
+                        The only discontinuities on \(f\) are at \(-4\) and \(3\).
+                        \(f\) has no \(x\)-intercepts.
+                        \(f\) is continuous from the right at \(-4\).
+                        \(f\) has constant slope \(-2\) over \(\ointerval{-\infty}{-4}\).
+                        %
+}}}
+\newlength{\phRparagraphs}\setlength{\phRparagraphs}{\ht\panelboxRparagraphs+\dp\panelboxRparagraphs}
+\settototalheight{\phRparagraphs}{\usebox{\panelboxRparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phRparagraphs}}
+\newsavebox{\panelboxPimage}
+\savebox{\panelboxPimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phPimage}\setlength{\phPimage}{\ht\panelboxPimage+\dp\panelboxPimage}
+\settototalheight{\phPimage}{\usebox{\panelboxPimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phPimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxRparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxPimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{f}{x}\)\label{figure-sketch-properties-supplement}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\par\smallskip
+\item[7.]\hypertarget{exercise-143}{}Sketch onto \hyperref[figure-second-sketch-properties-supplement]{Figure~\ref{figure-second-sketch-properties-supplement}} a function, \(f\), with each of the properties stated below. Assume that there are no intercepts or discontinuities other than those directly implied by the given properties. Make sure that your graph includes all of the relevant features addressed in lab.%
+% group protects changes to lengths, releases boxes (?)
+{% begin: group for a single side-by-side
+% set panel max height to practical minimum, created in preamble
+\setlength{\panelmax}{0pt}
+\newsavebox{\panelboxSparagraphs}
+\savebox{\panelboxSparagraphs}{%
+\raisebox{\depth}{\parbox{0.5\textwidth}{\begin{align*}
+\fe{f}{-2}&=0\\
+\fe{f}{0}&=-1\\
+\fe{f}{-4}&=5\\
+\lim\limits_{x\to-\infty}\fe{f}{x}&=\lim\limits_{x\to\infty}\fe{f}{x}=3\\
+\lim\limits_{x\to-4^{+}}\fe{f}{x}&=-2\\
+\lim\limits_{x\to-4^{-}}\fe{f}{x}&=5\\
+\lim\limits_{x\to3{-}}\fe{f}{x}&=-\infty\\
+\lim\limits_{x\to3^{+}}\fe{f}{x}&=\infty
+\end{align*}%
+}}}
+\newlength{\phSparagraphs}\setlength{\phSparagraphs}{\ht\panelboxSparagraphs+\dp\panelboxSparagraphs}
+\settototalheight{\phSparagraphs}{\usebox{\panelboxSparagraphs}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phSparagraphs}}
+\newsavebox{\panelboxSimage}
+\savebox{\panelboxSimage}{%
+\resizebox{0.5\linewidth}{!}{{
+\begin{tikzpicture}
+\begin{axis}
+\end{axis}
+\end{tikzpicture}
+}
+}}
+\newlength{\phSimage}\setlength{\phSimage}{\ht\panelboxSimage+\dp\panelboxSimage}
+\settototalheight{\phSimage}{\usebox{\panelboxSimage}}
+\setlength{\panelmax}{\maxof{\panelmax}{\phSimage}}
+\leavevmode%
+% begin: side-by-side as figure/tabular
+% \tabcolsep change local to group
+\setlength{\tabcolsep}{0\textwidth}
+% @{} suppress \tabcolsep at extremes, so margins behave as intended
+\begin{figure}
+\begin{tabular}{@{}*{2}{c}@{}}
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxSparagraphs}\end{minipage}&
+\begin{minipage}[c][\panelmax][t]{0.5\textwidth}\usebox{\panelboxSimage}\end{minipage}\tabularnewline
+&
+\parbox[t]{0.5\textwidth}{\captionof{figure}{\(y=\fe{f}{x}\)\label{figure-second-sketch-properties-supplement}}
+}\end{tabular}
+\end{figure}
+% end: side-by-side as tabular/figure
+}% end: group for a single side-by-side
+\par\smallskip
+\item[8.]\hypertarget{exercise-144}{}Determine all of the values of \(x\) where the function \(f\) (given below) has discontinuities.  At each value where \(f\) has a discontinuity, determine if \(f\) is continuous from either the right or left at \(x\) and also state whether or not the discontinuity is removable.%
+\begin{equation*}\fe{f}{x}=\begin{cases}\frac{2\pi}{x}&x\leq3\\\fe{\sin}{\frac{2\pi}{x}}&3\lt x\lt 4\\\frac{\fe{\sin}{x}}{\fe{\sin}{x}}&4\lt x\leq7\\3-\frac{2x-8}{x-4}&x\gt7\end{cases}\end{equation*}\par\smallskip
+\item[9.]\hypertarget{exercise-145}{}Determine the value(s) of \(k\) that make(s) the function \(g\) defined by \(\fe{g}{t}=\begin{cases}t^2+kt-k&t\geq3\\t^2-4k&t\lt 3\end{cases}\) continuous over \(\ointerval{-\infty}{\infty}\).%
+\par\smallskip
+\end{exerciselist}
+\hypertarget{exercisegroup-32}{}\par\noindent Determine the appropriate symbol to write after an equal sign following each of the given limits.  In each case, the appropriate symbol is either a real number, \(\infty\), or \(-\infty\).  Also, state whether or not each limit exists and if the limit exists prove its existence (and value) by applying the appropriate limit laws.  The Rational Limit Forms table in \hyperref[appendix-limit-laws]{Appendix~\ref{appendix-limit-laws}} summarizes strategies to be employed based upon the initial form of the limit.%
+\begin{exercisegroup}(2)
+\exercise[10.]\hypertarget{exercise-146}{}\(\lim\limits_{x\to4^{-}}\left(5-\dfrac{1}{x-4}\right)\)%
+\exercise[11.]\hypertarget{exercise-147}{}\(\lim\limits_{x\to\infty}\dfrac{e^{\sfrac{2}{x}}}{e^{\sfrac{1}{x}}}\)%
+\exercise[12.]\hypertarget{exercise-148}{}\(\lim\limits_{x\to2^{+}}\dfrac{x^2-4}{x^2+4}\)%
+\exercise[13.]\hypertarget{exercise-149}{}\(\lim\limits_{x\to2^{+}}\dfrac{x^2-4}{x^2-4x+4}\)%
+\exercise[14.]\hypertarget{exercise-150}{}\(\lim\limits_{x\to\infty}\dfrac{\fe{\ln}{x}+\fe{\ln}{x^6}}{7\fe{\ln}{x^2}}\)%
+\exercise[15.]\hypertarget{exercise-151}{}\(\lim\limits_{x\to-\infty}\dfrac{3x^3+2x}{3x-2x^3}\)%
+\exercise[16.]\hypertarget{exercise-152}{}\(\lim\limits_{x\to\infty}\fe{\sin}{\dfrac{\pi e^{3x}}{2e^x+4e^{3x}}}\)%
+\exercise[17.]\hypertarget{exercise-153}{}\(\lim\limits_{x\to\infty}\dfrac{\fe{\ln}{\sfrac{1}{x}}}{\fe{\ln}{\sfrac{x}{x}}}\)%
+\exercise[18.]\hypertarget{exercise-154}{}\(\lim\limits_{x\to5}\sqrt{\dfrac{x^2-12x+35}{5-x}}\)%
+\exercise[19.]\hypertarget{exercise-155}{}\(\lim\limits_{h\to0}\dfrac{4(3+h)^2-5(3+h)-21}{h}\)%
+\exercise[20.]\hypertarget{exercise-156}{}\(\lim\limits_{h\to0}\dfrac{5h^2+3}{2-3h^2}\)%
+\exercise[21.]\hypertarget{exercise-157}{}\(\lim\limits_{h\to0}\dfrac{\sqrt{9-h}-3}{h}\)%
+\exercise[22.]\hypertarget{exercise-158}{}\(\lim\limits_{\theta\to\frac{\pi}{2}}\dfrac{\fe{\sin}{\theta+\frac{\pi}{2}}}{\fe{\sin}{2\theta+\pi}}\)%
+\exercise[23.]\hypertarget{exercise-159}{}\(\lim\limits_{x\to0^{+}}\dfrac{\fe{\ln}{x^e}}{\fe{\ln}{e^x}}\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+\hypertarget{exercisegroup-33}{}\par\noindent Draw sketches of the curves \(y=e^x\), \(y=e^{-x}\), \(y=\fe{\ln}{x}\), and \(y=\frac{1}{x}\).  Note the coordinates of any and all intercepts.  This is something you should be able to do from memory/intuition.  If you cannot already do so, spend some time reviewing whatever you need to review so that you can do so. Once you have the graphs drawn, fill in each of the blanks below and decide whether or not each limit exists.  The appropriate symbol for some of the blanks is either \(\infty\) or \(-\infty\).%
+\begin{exercisegroup}(2)
+\exercise[24.]\hypertarget{exercise-160}{}\(\lim\limits_{x\to\infty}e^x=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[25.]\hypertarget{exercise-161}{}\(\lim\limits_{x\to-\infty}e^x=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[26.]\hypertarget{exercise-162}{}\(\lim\limits_{x\to0}e^x=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[27.]\hypertarget{exercise-163}{}\(\lim\limits_{x\to\infty}e^{-x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[28.]\hypertarget{exercise-164}{}\(\lim\limits_{x\to-\infty}e^{-x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[29.]\hypertarget{exercise-165}{}\(\lim\limits_{x\to0}e^{-x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[30.]\hypertarget{exercise-166}{}\(\lim\limits_{x\to\infty}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[31.]\hypertarget{exercise-167}{}\(\lim\limits_{x\to1}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[32.]\hypertarget{exercise-168}{}\(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[33.]\hypertarget{exercise-169}{}\(\lim\limits_{x\to\infty}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[34.]\hypertarget{exercise-170}{}\(\lim\limits_{x\to-\infty}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[35.]\hypertarget{exercise-171}{}\(\lim\limits_{x\to0^{+}}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[36.]\hypertarget{exercise-172}{}\(\lim\limits_{x\to0^{-}}\dfrac{1}{x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[37.]\hypertarget{exercise-173}{}\(\lim\limits_{x\to\infty}e^{\sfrac{1}{x}}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[38.]\hypertarget{exercise-174}{}\(\lim\limits_{x\to\infty}\dfrac{1}{e^x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[39.]\hypertarget{exercise-175}{}\(\lim\limits_{x\to-\infty}\dfrac{1}{e^x}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[40.]\hypertarget{exercise-176}{}\(\lim\limits_{x\to\infty}\dfrac{1}{e^{-x}}=\underline{\qquad}\,(\text{exists?})\)%
+\exercise[41.]\hypertarget{exercise-177}{}\(\lim\limits_{x\to-\infty}\dfrac{1}{e^{-x}}=\underline{\qquad}\,(\text{exists?})\)%
+\end{exercisegroup}
+\par\smallskip\noindent
+>
+        %
+%% A lineskip in table of contents as transition to appendices, backmatter
+\addtocontents{toc}{\vspace{\normalbaselineskip}}
+%
+%
+\appendix
+%
+\typeout{************************************************}
+\typeout{Appendix A Limit Laws}
+\typeout{************************************************}
+\chapter[{Limit Laws}]{Limit Laws}\label{appendix-limit-laws}
+\typeout{************************************************}
+\typeout{Paragraphs  Replacement Limit Laws}
+\typeout{************************************************}
+\paragraph[{Replacement Limit Laws}]{Replacement Limit Laws}\hypertarget{paragraphs-20}{}
+The following laws allow you to replace a limit expression with an actual value.  For example, the expression \(\lim\limits_{t\to5}t\) can be replaced with the number \(5\), the expression \(\lim\limits_{t\to7^{-}}6\) can be replaced with the number \(6\), and the expression \(\lim\limits_{z\to\infty}\frac{12}{e^z}\) can be replaced with the number \(0\).%
+\par
+In all cases both \(a\) and \(C\) represent real numbers.%
+\begin{theorem}[{Limit Law R1}]\label{llr1}
+\begin{gather*}
+\lim_{x\to a}x=\lim_{x\to a^{-}}x=\lim_{x\to a^{+}}x=a
+\end{gather*}%
+\end{theorem}
+\begin{theorem}[{Limit Law R2}]\label{llr2}
+\begin{gather*}
+\lim_{x\to a}C=\lim_{x\to a^{-}}C=\lim_{x\to a^{+}}C=\lim_{x\to \infty}C=\lim_{x\to -\infty}C=C
+\end{gather*}%
+\end{theorem}
+\begin{theorem}[{Limit Law R3}]\label{llr3}
+\begin{align*}
+\lim_{x\to \infty}\fe{f}{x}=\infty&\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to \infty}\fe{f}{x}=-\infty&\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=\infty&\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=-\infty&\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0
+\end{align*}%
+\end{theorem}
+\typeout{************************************************}
+\typeout{Paragraphs  Infinite Limit Laws: Limits as the output increases or decreases without bound }
+\typeout{************************************************}
+\paragraph[{Infinite Limit Laws: Limits as the output increases or decreases without bound }]{Infinite Limit Laws: Limits as the output increases or decreases without bound }\hypertarget{paragraphs-21}{}
+Many limit values do not exist.  Sometimes the non-existence is caused by the function value either increasing without bound or decreasing without bound.  In these special cases we use the symbols \(\infty\) and \(-\infty\) to communicate the non-existence of the limits.%
+\par
+Some examples of these type of non-existent limits follow.%
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\lim\limits_{x\to\infty}x^n=\infty\) (if \(n\) is a positive real number)%
+\item{}\(\lim\limits_{x\to-\infty}x^n=\infty\) (if \(n\) is an even positive integer)%
+\item{}\(\lim\limits_{x\to-\infty}x^n=-\infty\) (if \(n\) is an odd positive integer)%
+\item{}\(\lim\limits_{x\to\infty}e^x=\infty\), \(\lim\limits_{x\to-\infty}e^{-x}=\infty\), \(\lim\limits_{x\to\infty}\fe{\ln}{x}=\infty\), \(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=-\infty\)%
+\end{itemize}
+\typeout{************************************************}
+\typeout{Paragraphs  Algebraic Limit Laws}
+\typeout{************************************************}
+\paragraph[{Algebraic Limit Laws}]{Algebraic Limit Laws}\hypertarget{paragraphs-22}{}
+The following laws allow you to replace a limit expression with equivalent limit expressions. For example, the expression \begin{equation*}\lim\limits_{x\to5}\left(2+x^2\right)\end{equation*} can be replaced with the expression \begin{equation*}\lim\limits_{x\to5}2+\lim\limits_{x\to5}x^2\text{.}\end{equation*}%
+\par
+\emph{Limit Laws A1\textendash{}A6 are valid if and only if every limit in the equation exists.}%
+\par
+In all cases \(a\) can represent a real number, a real number from the left, a real number from the right, the symbol \(\infty\), or the symbol \(-\infty\).%
+\begin{theorem}[{Limit Law A1}]\label{lla1}
+\(\lim\limits_{x\to a}\left(\fe{f}{x}+\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}+\lim\limits_{x\to a}\fe{g}{x}\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A2}]\label{lla2}
+\(\lim\limits_{x\to a}\left(\fe{f}{x}-\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}-\lim\limits_{x\to a}\fe{g}{x}\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A3}]\label{lla3}
+\(\lim\limits_{x\to a}\left(C\fe{f}{x}\right)=C\lim\limits_{x\to a}\fe{f}{x}\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A4}]\label{lla4}
+\(\lim\limits_{x\to a}\left(\fe{f}{x}\cdot\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}\cdot\lim\limits_{x\to a}\fe{g}{x}\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A5}]\label{lla5}
+\(\lim\limits_{x\to a}\frac{\fe{f}{x}}{\fe{g}{x}}=\frac{\lim\limits_{x\to a}\fe{f}{x}}{\lim\limits_{x\to a}\fe{g}{x}}\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}\neq0\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A6}]\label{lla6}
+\(\lim\limits_{x\to a}\fe{f}{\fe{g}{x}}=\fe{f}{\lim\limits_{x\to a}\fe{g}{x}}\) when \(f\) is continuous at \(\lim\limits_{x\to a}\fe{g}{x}\)%
+\end{theorem}
+\begin{theorem}[{Limit Law A7}]\label{lla7}
+If there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\lim\limits_{x\to a}\fe{g}{x}\) (provided that both limits exist).%
+\par
+Additionally, if there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=\infty\), and, similarly, \(\lim\limits_{x\to a}\fe{f}{x}=-\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=-\infty\).%
+\end{theorem}
+\typeout{************************************************}
+\typeout{Paragraphs  Rational Limit Forms}
+\typeout{************************************************}
+\paragraph[{Rational Limit Forms}]{Rational Limit Forms}\hypertarget{paragraphs-23}{}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{real number}}{\text{non-zero real number}}\). Example: \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}\) (the form is \(\frac{22}{11}\))%
+\par
+The value of the limit is the number to which the limit form simplifies; for example, \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}=2\). You can immediately begin applying limit laws if you are ``proving'' the limit value. %
+\end{itemize}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{non-zero real number}}{\text{zero}}\). Example: \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}\) (the form is \(\frac{14}{0}\))%
+\par
+The limit value doesn't exist. The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, if the value of \(x\) is a little less than \(7\), the value of \(\frac{x+7}{7-x}\) is positive.  Hence you could write \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}=\infty\).%
+\end{itemize}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{zero}}{\text{zero}}\). Example: \(\lim\limits_{x\to-2}\frac{x^2-4}{x^2+3x+2}\) (the form is \(\frac{0}{0}\))%
+\par
+This is an \terminology{indeterminate form limit}. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to-2}\frac{x^2-4}{x^2+3x+2}&=\lim_{x\to-2}\frac{(x+2)(x-2)}{(x+2)(x+1)}\\
+&=\lim_{x\to-2}\frac{x-2}{x+1}\text{.}
+\end{align*}The limit form is now \(\frac{-4}{-1}\); you may begin applying the limit laws.%
+\end{itemize}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{real number}}{\text{infinity}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{1-4e^{x}}{\fe{\ln}{x}}\) (the form is \(\frac{-3}{-\infty}\))%
+\par
+The limit value is zero and this is justified by logic similar to that used to justify Limit Law R3.%
+\end{itemize}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{infinity}}{\text{real number}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}\) (the form is \(\frac{-\infty}{-3}\))%
+\par
+The limit value doesn't exist.  The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, you can write \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}=\infty\).%
+\end{itemize}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}\(\frac{\text{infinity}}{\text{infinity}}\). Example: \(\lim\limits_{x\to\infty}\frac{3+e^x}{1+3e^x}\) (the form is \(\frac{\infty}{\infty}\))%
+\par
+This is an \terminology{indeterminate form limit}. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to\infty}\frac{3+e^x}{1+3e^x}&=\lim_{x\to\infty}\left(\frac{3+e^x}{1+3e^x}\cdot\frac{\sfrac{1}{e^x}}{\sfrac{1}{e^x}}\right)\\
+&=\lim_{x\to\infty}\frac{\frac{3}{e^x}+1}{\frac{1}{e^x}+3}\text{.}
+\end{align*}The limit form is now \(\frac{1}{3}\); you may begin applying the limit laws.%
+\end{itemize}
+There are other indeterminate limit forms, although the two mentioned here are the only two \terminology{rational indeterminate forms}.  The other indeterminate forms are discussed in future calculus courses.%
+\typeout{************************************************}
+\typeout{Appendix B Derivative Formulas}
+\typeout{************************************************}
+\chapter[{Derivative Formulas}]{Derivative Formulas}\label{appendix-derivative-formulas}
+\(k\), \(a\), and \(n\) represent constants; \(u\) and \(y\) represent functions of \(x\).%
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{ccc}\hrulethick
+Basic Formulas&Chain Rule Format&Implicit Derivative Format\tabularnewline\hrulemedium
+\(\lzoo{x}{k}=0\)&&\tabularnewline\hrulethin
+\(\lzoo{x}{x^n}=nx^{n-1}\)&\(\lzoo{x}{u^n}=nu^{n-1}\lzoo{x}{u}\)&\(\lzoo{x}{y^n}=ny^{n-1}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\sqrt{x}}=\frac{1}{2\sqrt{x}}\)&\(\lzoo{x}{\sqrt{u}}=\frac{1}{2\sqrt{u}}\lzoo{x}{u}\)&\(\lzoo{x}{\sqrt{y}}=\frac{1}{2\sqrt{y}}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\sin}{x}}=\fe{\cos}{x}\)&\(\lzoo{x}{\fe{\sin}{u}}=\fe{\cos}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\sin}{y}}=\fe{\cos}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\cos}{x}}=-\fe{\sin}{x}\)&\(\lzoo{x}{\fe{\cos}{u}}=-\fe{\sin}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\cos}{y}}=-\fe{\sin}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\tan}{x}}=\fe{\sec^2}{x}\)&\(\lzoo{x}{\fe{\tan}{u}}=\fe{\sec^2}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\tan}{y}}=\fe{\sec^2}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\sec}{x}}=\fe{\sec}{x}\fe{\tan}{x}\)&\(\lzoo{x}{\fe{\sec}{u}}=\fe{\sec}{u}\fe{\tan}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\sec}{y}}=\fe{\sec}{y}\fe{\tan}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\cot}{x}}=-\fe{\csc^2}{x}\)&\(\lzoo{x}{\fe{\cot}{u}}=-\fe{\csc^2}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\cot}{y}}=-\fe{\csc^2}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\csc}{x}}=-\fe{\csc}{x}\fe{\cot}{x}\)&\(\lzoo{x}{\fe{\csc}{u}}=-\fe{\csc}{u}\fe{\cot}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\csc}{y}}=-\fe{\csc}{y}\fe{\cot}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\tan^{-1}}{x}}=\frac{1}{1+x^2}\)&\(\lzoo{x}{\fe{\tan^{-1}}{u}}=\frac{1}{1+u^2}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\tan^{-1}}{y}}=\frac{1}{1+y^2}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\sin^{-1}}{x}}=\frac{1}{\sqrt{1-x^2}}\)&\(\lzoo{x}{\fe{\sin^{-1}}{u}}=\frac{1}{\sqrt{1-u^2}}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\sin^{-1}}{y}}=\frac{1}{\sqrt{1-y^2}}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\sec^{-1}}{x}}=\frac{1}{\abs{x}\sqrt{x^2-1}}\)&\(\lzoo{x}{\fe{\sec^{-1}}{u}}=\frac{1}{\abs{u}\sqrt{u^2-1}}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\sec^{-1}}{y}}=\frac{1}{\abs{y}\sqrt{y^2-1}}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{e^x}=e^x\)&\(\lzoo{x}{e^u}=e^u\lzoo{x}{u}\)&\(\lzoo{x}{e^y}=e^y\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{a^x}=\fe{\ln}{a}a^x\)&\(\lzoo{x}{a^u}=\fe{\ln}{a}a^u\lzoo{x}{u}\)&\(\lzoo{x}{a^y}=\fe{\ln}{a}a^y\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\fe{\ln}{x}}=\frac{1}{x}\)&\(\lzoo{x}{\fe{\ln}{u}}=\frac{1}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\fe{\ln}{y}}=\frac{1}{y}\lz{y}{x}\)\tabularnewline\hrulethin
+\(\lzoo{x}{\abs{x}}=\frac{\abs{x}}{x}\)&\(\lzoo{x}{\abs{u}}=\frac{\abs{u}}{u}\lzoo{x}{u}\)&\(\lzoo{x}{\abs{y}}=\frac{\abs{y}}{y}\lz{y}{x}\)\tabularnewline\hrulethick
+\end{tabular}
+\caption{\label{table-15}}
+\end{table}
+\begin{theorem}[{Constant Factor Rule of Differentiation}]\label{theorem-11}
+\begin{equation*}\lzoo{x}{k\fe{f}{x}}=k\lzoo{x}{\fe{f}{x}}\end{equation*}%
+\par
+Alternatively, if \(y=\fe{f}{x}\), then \(\lzoo{x}{ky}=k\lz{y}{x}\).%
+\end{theorem}
+\begin{theorem}[{Sum/Difference Rule of Differentiation}]\label{theorem-12}
+\begin{equation*}\lzoo{x}{\fe{f}{x}\pm\fe{g}{x}}=\lzoo{x}{\fe{f}{x}}\pm\lzoo{x}{\fe{g}{x}}\end{equation*}%
+\end{theorem}
+\begin{theorem}[{Product Rule of Differentiation}]\label{theorem-13}
+\begin{equation*}\lzoo{x}{\fe{f}{x}\cdot\fe{g}{x}}=\lzoo{x}{\fe{f}{x}}\cdot\fe{g}{x}+\fe{f}{x}\cdot\lzoo{x}{\fe{g}{x}}\end{equation*}%
+\end{theorem}
+\begin{theorem}[{Quotient Rule of Differentiation}]\label{theorem-14}
+\begin{equation*}\lzoo{x}{\frac{\fe{f}{x}}{\fe{g}{x}}}=\frac{\lzoo{x}{\fe{f}{x}}\cdot\fe{g}{x}-\fe{f}{x}\cdot\lzoo{x}{\fe{g}{x}}}{\left[\fe{g}{x}\right]^2}\end{equation*}%
+\end{theorem}
+\begin{theorem}[{Chain Rule of Differentiation}]\label{theorem-15}
+\begin{equation*}\lzoo{x}{\fe{f}{\fe{g}{x}}}=\fe{\fd{f}}{\fe{g}{x}}\cdot\fe{\fd{g}}{x}\end{equation*}%
+\par
+Alternatively, if \(u=\fe{g}{x}\), then \(\lzoo{x}{\fe{f}{u}}=\fe{\fd{f}}{u}\cdot\lzoo{x}{u}\).%
+\par
+Alternatively, if \(y=\fe{f}{u}\), where \(u=\fe{g}{x}\), then \(\lz{y}{x}=\lz{y}{u}\cdot\lz{u}{x}\).%
+\end{theorem}
+\typeout{************************************************}
+\typeout{Appendix C Some Useful Rules of Algebra}
+\typeout{************************************************}
+\chapter[{Some Useful Rules of Algebra}]{Some Useful Rules of Algebra}\label{appendix-useful-algebra}
+\leavevmode%
+\begin{itemize}[label=\textbullet]
+\item{}For positive integers \(m\) and \(n\), \(\sqrt[n]{x^m}=x^{\sfrac{m}{n}}\). This is universally true when \(x\) is positive. When \(x\) is negative, things are more complicated. It boils down to a choice. Some computer algebra systems choose to define an expression like \((-8)^{\sfrac{1}{3}}\) as a certain negative real number (\(-2\)). Others choose to define an expression like \((-8)^{\sfrac{1}{3}}\) as a complex number in the upper half plane of the complex plane (\(1+i\sqrt{3}\)). Because of the ambiguity, some choose to simply declare expressions like \((-8)^{\sfrac{1}{3}}\), with a negative base, to be undefined. The point is, if your computer tells you that say, \((-8)^{\sfrac{1}{3}}\) is undefined, you should realize that you may be expected to interpret \((-8)^{\sfrac{1}{3}}\) as \(-2\).%
+\item{}For real numbers \(k\) and \(n\), and \(x\neq0\), \(\frac{k}{x^n}=kx^{-n}\).%
+\item{}For a real number \(k\neq0\), \(\frac{\fe{f}{x}}{k}=\frac{1}{k}\fe{f}{x}\).%
+\item{}For positive real numbers \(A\) and \(B\) and all real numbers \(n\),%
+%
+\begin{itemize}[label=$\circ$]
+\item{}\(\fe{\ln}{AB}=\fe{\ln}{A}+\fe{\ln}{B}\)%
+\item{}\(\fe{\ln}{\frac{A}{B}}=\fe{\ln}{A}-\fe{\ln}{B}\)%
+\item{}\(\fe{\ln}{A^n}=n\fe{\ln}{A}\)%
+\end{itemize}
+\end{itemize}
+\typeout{************************************************}
+\typeout{Appendix D Units of Measure}
+\typeout{************************************************}
+\chapter[{Units of Measure}]{Units of Measure}\label{appendix-units}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\meter}&meter&the distance light travels in \(\sfrac{1}{299792458}\) of a second&half the height of a typical doorway\tabularnewline\hrulethin
+\si{\milli\meter}&millimeter&exactly \(\sfrac{1}{1000}\) of a meter&the thickness of a credit card\tabularnewline\hrulethin
+\si{\centi\meter}&centimeter&exactly \(\sfrac{1}{100}\) of a meter&the width of your pinky finger\tabularnewline\hrulethin
+\si{\kilo\meter}&kilometer&exactly \(1000\) meters&in parts of Portland where the city blocks are square, about \(12.5\) blocks\tabularnewline\hrulethin
+\si{\inch}&inch&exactly \(0.0254\) meters&the diameter of a bottle cap\tabularnewline\hrulethin
+\si{\foot}&foot&exactly \(12\) inches&the exterior length of an average adult male's shoe\tabularnewline\hrulethin
+\si{\mile}&mile&exactly \(5280\) feet&in parts of Portland where the city blocks are square, about \(20\) blocks\tabularnewline\hrulethick
+\end{tabular}
+\caption{Distance\label{table-16}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\centi\meter\tothe{2}}&square centimeter&the area of a square whose sides are each one centimeter&a little less than the circular area of a new pencil eraser\tabularnewline\hrulethin
+\si{\inch\tothe{2}}&square inch&the area of a square whose sides are each one inch&the area of a photograph on an ID card\tabularnewline\hrulethick
+\end{tabular}
+\caption{Area\label{table-17}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\centi\meter\tothe{3}}&cubic centimeter&the volume of a cube whose sides are each one centimeter&the volume of a blueberry\tabularnewline\hrulethin
+\si{\liter}&liter&exactly \(1000\) cubic centimeters&a bottle of wine is \(\sfrac{3}{4}\) of a liter\tabularnewline\hrulethin
+\si{\milli\liter}&milliliter&exactly \(1\) cubic centimeter; \(\sfrac{1}{1000}\) of a liter&the volume of a blueberry\tabularnewline\hrulethin
+\si{\inch\tothe{3}}&cubic inch&the volume of a cube whose sides are each one inch&the volume of an shelled whole walnut\tabularnewline\hrulethin
+\si{\gallon}&liter&exactly \(231\) cubic inches&the volume of the larger type of plastic milk containers sold in supermarkets\tabularnewline\hrulethick
+\end{tabular}
+\caption{Volume\label{table-18}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\second}&second&the duration of \num{9192631770} periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the cesium-133 atom&the time it takes you to say the phrase ``differential calculus''\tabularnewline\hrulethin
+\si{\minute}&minute&exactly \(60\) seconds&how long it takes to microwave a full dinner plate from the refrigerator\tabularnewline\hrulethin
+\si{\hour}&hour&exactly \(3600\) seconds; exaclty \(60\) minutes&the length of one episode of a premium cable television show\tabularnewline\hrulethick
+\end{tabular}
+\caption{Time\label{table-19}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r rr}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\mileperhour}&mile per hour&exactly one mile per hour&a typical walking speed is about three miles per hour\tabularnewline\hrulethick
+\end{tabular}
+\caption{Speed\label{table-20}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\kilo\gram}&kilogram&the mass of a certain cylindrical object made of a platinum-iridium alloy called the International Protoype of the Kilogram, which is stored in Sèvres, France&the mass of a \(500\)-page paberback book\tabularnewline\hrulethin
+\si{\milli\gram}&milligram&exactly \(\sfrac{1}{1000000}\) of a kilogram&the mass of a small snowflake\tabularnewline\hrulethick
+\end{tabular}
+\caption{Mass\label{table-21}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\radian}&radian&the angle subtended at the center of a circle by an arc that is equal in length to the radius of the circle&a little less than the angles on an equilateral triangle\tabularnewline\hrulethin
+\si{\degree}&degree&the angle subtended at the center of a circly by an arc whose length is \(\sfrac{1}{360}\) the circumferece of the circle&a very small angle; if you could look directly at the bottom of the sun, and then moved your eyes to look at the top of the sun, you would have moved your eyes about half of one degree\tabularnewline\hrulethick
+\end{tabular}
+\caption{Angle\label{table-22}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\newton}&newton&the force needed to accelerate one kilogram from rest up to a speed of one meter per second with one second of time&if you hold an apple in the palm of your hand, it applies about two newtons of force\tabularnewline\hrulethick
+\end{tabular}
+\caption{Force\label{table-23}}
+\end{table}
+\leavevmode%
+\begin{table}
+\centering
+\begin{tabular}{r r r r}\hrulethick
+Unit&Stands For&Definition&Roughly\tabularnewline\hrulemedium
+\si{\kilo\watt}&kilowatt&the power to transfer one thousand joules of energy in one second (one joule is the amount of energy used when one newton of force pushes an object one meter)&the power used by a nicer microwave oven\tabularnewline\hrulethick
+\end{tabular}
+\caption{Power\label{table-24}}
+\end{table}
+\typeout{************************************************}
+\typeout{Appendix E Solutions to Supplemental Exercises}
+\typeout{************************************************}
+\chapter[{Solutions to Supplemental Exercises}]{Solutions to Supplemental Exercises}\label{supplemental-solutions}
+\subsection*{1.4.1 Exercises}
+\noindent\textbf{1.}\quad{}\(4-2x-h\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{2.}\quad{}The slope is \(3\).%
+\par\smallskip
+\noindent\textbf{3.}\quad{}\(-4-h\)%
+\par\smallskip
+\noindent\textbf{4.}\quad{}\(-4\)%
+\par\smallskip
+\noindent\textbf{5.}\quad{}{
+\begin{tikzpicture}
+\begin{axis}[]
+    \addplot+[
+        domain=-1.5:5.5,
+    ]{-(x-2)^2+6};
+    \addplot+[
+        domain=2.8:6.2,
+    ]{-4*(x-4)+2};
+\end{axis}
+\end{tikzpicture}
+}
+\par\smallskip
+\noindent\textbf{6.}\quad{}\(-7\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{7.}\quad{}\(\frac{-7}{(x+h+4)(x+4)}\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{8.}\quad{}\(0\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{9.}\quad{}\(3t^2+3th+h^2-1\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{10.}\quad{}\(\frac{t^2+th-64}{t(t+h)}\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{11.}\quad{}\(60-32t-16h\) for \(h\neq0\)%
+\par\smallskip
+\noindent\textbf{12.}\quad{}\SI{-71.2}{\foot\per\second}%
+\par\smallskip
+\noindent\textbf{13.}\quad{}The average rate of change in the coaster's velocity over the first \SI{7.5}{\second} of descent is \(-13\frac{1}{3}\,\frac{\text{ft/s}}{\text{s}}\).%
+\par\smallskip
+\noindent\textbf{14.}\quad{}The average velocity experienced by the ball between the 1.5th second of play and the third second of play is \SI{0}{\meter\per\second}.%
+\par\smallskip
+\noindent\textbf{15.}\quad{}Between the first swing and the 29th swing the average rate of change in the pendulum's period is \(-0.1\frac{\text{s}}{\text{swing}}\).%
+\par\smallskip
+\noindent\textbf{16.}\quad{}During the second minute of flight, the average rate of change in the rocket's acceleration is \SI{0.13}{\mileperhour\per\second\per\second}.%
+\par\smallskip
+\subsection*{2.14.1 Exercises}
+\noindent\textbf{1.}\quad{}\(\lim\limits_{t\to-\infty}\fe{g}{t}=\infty\); \(\lim\limits_{t\to-\infty}\fe{g}{t}\) does not exist.%
+\par\smallskip
+\noindent\textbf{2.}\quad{}\(\lim\limits_{x\to\infty}\fe{f}{x}=0\); \(\lim\limits_{x\to0}\fe{f}{x}\) exists.%
+\par\smallskip
+\noindent\textbf{3.}\quad{}\(\lim\limits_{t\to\frac{1}{3}^{-}}\fe{z}{t}=\frac{2}{3}\); \(\lim\limits_{t\to\frac{1}{3}^{-}}\fe{z}{t}\) exists.%
+\par\smallskip
+\noindent\textbf{4.}\quad{}\(\lim\limits_{\theta\to-1^{+}}\fe{g}{\theta}=3{,}000{,}000\); \(\lim\limits_{\theta\to-1^{+}}\fe{g}{\theta}\) exists.%
+\par\smallskip
+\noindent\textbf{5.}\quad{}\(\lim\limits_{t\to\frac{7}{9}^{+}}\fe{T}{t}=\infty\); \(\lim\limits_{t\to\frac{7}{9}^{+}}\fe{T}{t}\) does not exist.%
+\par\smallskip
+\noindent\textbf{6.}\quad{}{
+\begin{tikzpicture}
+\begin{axis}
+    \addplot[pccplot,domain=-6.8:-4,<-] {-2*(x+4)+1};
+    \addplot[pccplot,domain=-4:2.8,->] {1/(x-3)-13/7};
+    \addplot[pccplot,domain=3.5:6.8,<->] {-exp(x-3)/(x-3)^2};
+    \addplot[holdot] coordinates {(-4,1)};
+    \addplot[soldot] coordinates {(-4,-2)};
+\end{axis}
+\end{tikzpicture}
+}
+\par\smallskip
+\noindent\textbf{7.}\quad{}{
+\begin{tikzpicture}
+\begin{axis}
+    \addplot[pccplot,domain=-6.8:-4,<-] {2*exp(x+4)+3};
+    \addplot[pccplot,domain=-4:2.7,->] {-(x+2)^2/(sqrt(3-x)*(x+5))*(sqrt(7)/-4)*-2};
+    \addplot[pccplot,domain=3.08:6.8,<->] {1/sqrt(x-3)+3};
+    \addplot[holdot] coordinates {(-4,-2)};
+    \addplot[soldot] coordinates {(-4,5)};
+\end{axis}
+\end{tikzpicture}
+}
+\par\smallskip
+\noindent\textbf{8.}\quad{}Discontinuitues at \(0,3,4\), and \(2\pi\). Continuous from the left at \(3\). Removable discontinuities at \(4\) and \(2\pi\).%
+\par\smallskip
+\noindent\textbf{9.}\quad{}\(k=0\)%
+\par\smallskip
+\noindent\textbf{10.}\quad{}\(\lim\limits_{x\to4^{-}}\left(5-\frac{1}{x-4}\right)=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{11.}\quad{}\(\lim\limits_{x\to\infty}\frac{e^{\sfrac{2}{x}}}{e^{\sfrac{1}{x}}}=1\). This limit exists.%
+\par\smallskip
+\noindent\textbf{12.}\quad{}\(\lim\limits_{x\to2^{+}}\frac{x^2-4}{x^2+4}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{13.}\quad{}\(\lim\limits_{x\to2^{+}}\frac{x^2-4}{x^2-4x+4}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{14.}\quad{}\(\lim\limits_{x\to\infty}\frac{\fe{\ln}{x}+\fe{\ln}{x^6}}{7\fe{\ln}{x^2}}=\frac{1}{2}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{15.}\quad{}\(\lim\limits_{x\to-\infty}\frac{3+\frac{2}{x^2}}{\frac{3}{x^2}-2}=-\frac{3}{2}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{16.}\quad{}\(\lim\limits_{x\to\infty}\fe{\sin}{\frac{\pi e^{3x}}{2e^x+4e^{3x}}}=\frac{1}{\sqrt{2}}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{17.}\quad{}\(\frac{\fe{\ln}{\sfrac{1}{x}}}{\fe{\ln}{\sfrac{x}{x}}}\) does not exist.%
+\par\smallskip
+\noindent\textbf{18.}\quad{}\(\lim\limits_{x\to5}\sqrt{\frac{x^2-12x+35}{5-x}}=\sqrt{2}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{19.}\quad{}\(\lim\limits_{h\to0}\frac{4(3+h)^2-5(3+h)-21}{h}=19\). This limit exists.%
+\par\smallskip
+\noindent\textbf{20.}\quad{}\(\lim\limits_{h\to0}\frac{5h^2+3}{2-3h^2}=\frac{3}{2}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{21.}\quad{}\(\lim\limits_{h\to0}\frac{\sqrt{9-h}-3}{h}=-\frac{1}{6}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{22.}\quad{}\(\lim\limits_{\theta\to\frac{\pi}{2}}\frac{\fe{\sin}{\theta+\frac{\pi}{2}}}{\fe{\sin}{2\theta+\pi}}=-\frac{1}{2}\). This limit exists.%
+\par\smallskip
+\noindent\textbf{23.}\quad{}\(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x^e}}{\fe{\ln}{e^x}}=-\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{24.}\quad{}\(\lim\limits_{x\to\infty}e^x=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{25.}\quad{}\(\lim\limits_{x\to-\infty}e^x=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{26.}\quad{}\(\lim\limits_{x\to0}e^x=1\). This limit exists.%
+\par\smallskip
+\noindent\textbf{27.}\quad{}\(\lim\limits_{x\to\infty}e^{-x}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{28.}\quad{}\(\lim\limits_{x\to-\infty}e^{-x}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{29.}\quad{}\(\lim\limits_{x\to0}e^{-x}=1\). This limit exists.%
+\par\smallskip
+\noindent\textbf{30.}\quad{}\(\lim\limits_{x\to\infty}\fe{\ln}{x}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{31.}\quad{}\(\lim\limits_{x\to1}\fe{\ln}{x}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{32.}\quad{}\(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=-\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{33.}\quad{}\(\lim\limits_{x\to\infty}\frac{1}{x}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{34.}\quad{}\(\lim\limits_{x\to-\infty}\frac{1}{x}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{35.}\quad{}\(\lim\limits_{x\to0^{+}}\frac{1}{x}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{36.}\quad{}\(\lim\limits_{x\to0^{-}}\frac{1}{x}=-\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{37.}\quad{}\(\lim\limits_{x\to\infty}e^{\sfrac{1}{x}}=1\). This limit exists.%
+\par\smallskip
+\noindent\textbf{38.}\quad{}\(\lim\limits_{x\to\infty}\frac{1}{e^x}=0\). This limit exists.%
+\par\smallskip
+\noindent\textbf{39.}\quad{}\(\lim\limits_{x\to-\infty}\frac{1}{e^x}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{40.}\quad{}\(\lim\limits_{x\to\infty}\frac{1}{e^{-x}}=\infty\). This limit does not exist.%
+\par\smallskip
+\noindent\textbf{41.}\quad{}\(\lim\limits_{x\to-\infty}\frac{1}{e^{-x}}=0\). This limit exists.%
+\par\smallskip
+%
+\backmatter
+%
+\end{document}

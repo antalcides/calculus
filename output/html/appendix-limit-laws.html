@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-30T18:15:12-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CLM Limit Laws</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/javascript" src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+// contrib directory for accessibility menu, moot after v2.6+?
+MathJax.Ajax.config.path["Contrib"] = "https://cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']],
+    },
+    TeX: {
+        // [Contrib]accessibility menu moot after v2.6+?
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", "[Contrib]/a11y/accessibility-menu.js", ],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           // JS comment, XML CDATA protect XHTML quality of file
+                           // if removed in XSL, use entities
+                           //<![CDATA[
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                           //]]>
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    
+    /* support for the sfrac command in MathJax (Beveled fraction)
+        see: https://github.com/mathjax/MathJax-docs/wiki/Beveled-fraction-like-sfrac,-nicefrac-bfrac */
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  var MML = MathJax.ElementJax.mml,
+      TEX = MathJax.InputJax.TeX;
+
+  TEX.Definitions.macros.sfrac = "myBevelFraction";
+
+  TEX.Parse.Augment({
+    myBevelFraction: function (name) {
+      var num = this.ParseArg(name),
+          den = this.ParseArg(name);
+      this.Push(MML.mfrac(num,den).With({bevelled: true}));
+    }
+  });
+});
+    </script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><link href="https://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://aimath.org/mathbook/js/Mathbook.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-6.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+<link href="css/clm.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="" target="_blank"><img src="images/logo_ua.png"></a><div class="title-container">
+<h1 class="heading"><a href="clm.html"><span class="title">Cálculo Diferencial</span><span class="subtitle">Programa de Matemáticas UA</span></a></h1>
+<p class="byline">Antalcides Olivo</p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="backmatter-1.html">Previous</a><a class="up-button button toolbar-item" href="backmatter-1.html">Up</a><a class="next-button button toolbar-item" href="appendix-derivative-formulas.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="backmatter-1.html">Previous</a><a class="up-button button toolbar-item" href="backmatter-1.html">Up</a><a class="next-button button toolbar-item" href="appendix-derivative-formulas.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="index.html"><span class="title">Front Matter</span></a></h2>
+<ul>
+<li><a href="colophon-1.html">Colophon</a></li>
+<li><a href="acknowledgement-1.html">Acknowledgements</a></li>
+<li><a href="to-all.html">To All</a></li>
+<li><a href="to-the-student.html">To the Student</a></li>
+<li><a href="to-the-instructor.html">To the Instructor</a></li>
+</ul>
+<h2 class="link"><a href="chapter-rates-of-change.html"><span class="codenumber">1</span><span class="title">Rates Of Change</span></a></h2>
+<ul>
+<li><a href="section-velocity.html">Velocidad</a></li>
+<li><a href="section-secant.html">Secant Line to a Curve</a></li>
+<li><a href="section-difference-quotient.html">The Difference Quotient</a></li>
+<li><a href="rates-of-change-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link"><a href="chapter-limits.html"><span class="codenumber">2</span><span class="title">Limits and Continuity</span></a></h2>
+<ul>
+<li><a href="section-limits.html">Limits</a></li>
+<li><a href="section-limit-laws.html">Limits Laws</a></li>
+<li><a href="section-indeterminate-limits.html">Indeterminate Limits</a></li>
+<li><a href="section-limits-at-infinity.html">Limits at Infinity</a></li>
+<li><a href="section-limits-at-infinity-tending-to-zero.html">Limits at Infinity Tending to Zero</a></li>
+<li><a href="section-ratios-of-infinities.html">Ratios of Infinities</a></li>
+<li><a href="section-nonexistent-limits.html">Non-existent Limits</a></li>
+<li><a href="section-vertical-asymptotes.html">Vertical Asymptotes</a></li>
+<li><a href="section-continuity.html">Continuity</a></li>
+<li><a href="section-discontinuities.html">Discontinuities</a></li>
+<li><a href="section-continuity-on-an-interval.html">Continuity on an Interval</a></li>
+<li><a href="section-discontinuous-formulas.html">Discontinuous Formulas</a></li>
+<li><a href="section-piecewise-defined-functions.html">Piecewise-Defined Functions</a></li>
+<li><a href="limits-and-continuity-supplementary-exercises.html">Supplement</a></li>
+</ul>
+<h2 class="link active"><a href="backmatter-1.html"><span class="title">Back Matter</span></a></h2>
+<ul>
+<li><a href="appendix-limit-laws.html" class="active">Limit Laws</a></li>
+<li><a href="appendix-derivative-formulas.html">Derivative Formulas</a></li>
+<li><a href="appendix-useful-algebra.html">Some Useful Rules of Algebra</a></li>
+<li><a href="appendix-units.html">Units of Measure</a></li>
+<li><a href="supplemental-solutions.html">Solutions to Supplemental Exercises</a></li>
+</ul></nav><div class="extras"><nav><a class="mathbook-link" href="https://mathbook.pugetsound.edu">Authored in MathBook XML</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://cdn.mathjax.org/mathjax/badge/badge.gif" border="0" alt="Powered by MathJax"></a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="appendix" id="appendix-limit-laws"><header title="Appendix A Limit Laws"><h1 class="heading hide-type" alt="Appendix A Limit Laws">
+<span class="type">Appendix</span><span class="codenumber">A</span><span class="title">Limit Laws</span><a href="appendix-limit-laws.html" class="permalink">¶ permalink</a>
+</h1></header><article class="paragraphs" id="paragraphs-20"><h5 class="heading"><span class="title">Replacement Limit Laws</span></h5>
+<p id="p-442">The following laws allow you to replace a limit expression with an actual value.  For example, the expression \(\lim\limits_{t\to5}t\) can be replaced with the number \(5\), the expression \(\lim\limits_{t\to7^{-}}6\) can be replaced with the number \(6\), and the expression \(\lim\limits_{z\to\infty}\frac{12}{e^z}\) can be replaced with the number \(0\).</p>
+<p id="p-443">In all cases both \(a\) and \(C\) represent real numbers.</p></article><article class="theorem-like" id="llr1"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law R1</span>
+</h5>
+<p id="p-444">\begin{gather*}
+\lim_{x\to a}x=\lim_{x\to a^{-}}x=\lim_{x\to a^{+}}x=a
+\end{gather*}</p></article><article class="theorem-like" id="llr2"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law R2</span>
+</h5>
+<p id="p-445">\begin{gather*}
+\lim_{x\to a}C=\lim_{x\to a^{-}}C=\lim_{x\to a^{+}}C=\lim_{x\to \infty}C=\lim_{x\to -\infty}C=C
+\end{gather*}</p></article><article class="theorem-like" id="llr3"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law R3</span>
+</h5>
+<p id="p-446">\begin{align*}
+\lim_{x\to \infty}\fe{f}{x}=\infty&amp;\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to \infty}\fe{f}{x}=-\infty&amp;\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=\infty&amp;\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=-\infty&amp;\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0
+\end{align*}</p></article><article class="paragraphs" id="paragraphs-21"><h5 class="heading"><span class="title">Infinite Limit Laws: Limits as the output increases or decreases without bound </span></h5>
+<p id="p-447">Many limit values do not exist.  Sometimes the non-existence is caused by the function value either increasing without bound or decreasing without bound.  In these special cases we use the symbols \(\infty\) and \(-\infty\) to communicate the non-existence of the limits.</p>
+<p id="p-448">Some examples of these type of non-existent limits follow.</p>
+<ul style="list-style-type: disc;">
+<li id="li-27"><p id="p-449">\(\lim\limits_{x\to\infty}x^n=\infty\) (if \(n\) is a positive real number)</p></li>
+<li id="li-28"><p id="p-450">\(\lim\limits_{x\to-\infty}x^n=\infty\) (if \(n\) is an even positive integer)</p></li>
+<li id="li-29"><p id="p-451">\(\lim\limits_{x\to-\infty}x^n=-\infty\) (if \(n\) is an odd positive integer)</p></li>
+<li id="li-30"><p id="p-452">\(\lim\limits_{x\to\infty}e^x=\infty\), \(\lim\limits_{x\to-\infty}e^{-x}=\infty\), \(\lim\limits_{x\to\infty}\fe{\ln}{x}=\infty\), \(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=-\infty\)</p></li>
+</ul></article><article class="paragraphs" id="paragraphs-22"><h5 class="heading"><span class="title">Algebraic Limit Laws</span></h5>
+<p id="p-453">The following laws allow you to replace a limit expression with equivalent limit expressions. For example, the expression \begin{equation*}\lim\limits_{x\to5}\left(2+x^2\right)\end{equation*} can be replaced with the expression \begin{equation*}\lim\limits_{x\to5}2+\lim\limits_{x\to5}x^2\text{.}\end{equation*}</p>
+<p id="p-454"><!--Style me with CSS--><em>Limit Laws A1–A6 are valid if and only if every limit in the equation exists.</em></p>
+<p id="p-455">In all cases \(a\) can represent a real number, a real number from the left, a real number from the right, the symbol \(\infty\), or the symbol \(-\infty\).</p></article><article class="theorem-like" id="lla1"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A1</span>
+</h5>
+<p id="p-456">\(\lim\limits_{x\to a}\left(\fe{f}{x}+\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}+\lim\limits_{x\to a}\fe{g}{x}\)</p></article><article class="theorem-like" id="lla2"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A2</span>
+</h5>
+<p id="p-457">\(\lim\limits_{x\to a}\left(\fe{f}{x}-\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}-\lim\limits_{x\to a}\fe{g}{x}\)</p></article><article class="theorem-like" id="lla3"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A3</span>
+</h5>
+<p id="p-458">\(\lim\limits_{x\to a}\left(C\fe{f}{x}\right)=C\lim\limits_{x\to a}\fe{f}{x}\)</p></article><article class="theorem-like" id="lla4"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A4</span>
+</h5>
+<p id="p-459">\(\lim\limits_{x\to a}\left(\fe{f}{x}\cdot\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}\cdot\lim\limits_{x\to a}\fe{g}{x}\)</p></article><article class="theorem-like" id="lla5"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A5</span>
+</h5>
+<p id="p-460">\(\lim\limits_{x\to a}\frac{\fe{f}{x}}{\fe{g}{x}}=\frac{\lim\limits_{x\to a}\fe{f}{x}}{\lim\limits_{x\to a}\fe{g}{x}}\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}\neq0\)</p></article><article class="theorem-like" id="lla6"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A6</span>
+</h5>
+<p id="p-461">\(\lim\limits_{x\to a}\fe{f}{\fe{g}{x}}=\fe{f}{\lim\limits_{x\to a}\fe{g}{x}}\) when \(f\) is continuous at \(\lim\limits_{x\to a}\fe{g}{x}\)</p></article><article class="theorem-like" id="lla7"><h5 class="heading">
+<span class="type">Theorem</span><span class="title">Limit Law A7</span>
+</h5>
+<p id="p-462">If there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\lim\limits_{x\to a}\fe{g}{x}\) (provided that both limits exist).</p>
+<p id="p-463">Additionally, if there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=\infty\), and, similarly, \(\lim\limits_{x\to a}\fe{f}{x}=-\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=-\infty\).</p></article><article class="paragraphs" id="paragraphs-23"><h5 class="heading"><span class="title">Rational Limit Forms</span></h5>
+<ul style="list-style-type: disc;"><li id="li-31">
+<p id="p-464">\(\frac{\text{real number}}{\text{non-zero real number}}\). Example: \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}\) (the form is \(\frac{22}{11}\))</p>
+<p id="p-465">The value of the limit is the number to which the limit form simplifies; for example, \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}=2\). You can immediately begin applying limit laws if you are “proving” the limit value. </p>
+</li></ul>
+<ul style="list-style-type: disc;"><li id="li-32">
+<p id="p-466">\(\frac{\text{non-zero real number}}{\text{zero}}\). Example: \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}\) (the form is \(\frac{14}{0}\))</p>
+<p id="p-467">The limit value doesn't exist. The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, if the value of \(x\) is a little less than \(7\), the value of \(\frac{x+7}{7-x}\) is positive.  Hence you could write \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}=\infty\).</p>
+</li></ul>
+<ul style="list-style-type: disc;"><li id="li-33">
+<p id="p-468">\(\frac{\text{zero}}{\text{zero}}\). Example: \(\lim\limits_{x\to-2}\frac{x^2-4}{x^2+3x+2}\) (the form is \(\frac{0}{0}\))</p>
+<p id="p-469">This is an <em class="terminology">indeterminate form limit</em>. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to-2}\frac{x^2-4}{x^2+3x+2}&amp;=\lim_{x\to-2}\frac{(x+2)(x-2)}{(x+2)(x+1)}\\
+&amp;=\lim_{x\to-2}\frac{x-2}{x+1}\text{.}
+\end{align*}The limit form is now \(\frac{-4}{-1}\); you may begin applying the limit laws.</p>
+</li></ul>
+<ul style="list-style-type: disc;"><li id="li-34">
+<p id="p-470">\(\frac{\text{real number}}{\text{infinity}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{1-4e^{x}}{\fe{\ln}{x}}\) (the form is \(\frac{-3}{-\infty}\))</p>
+<p id="p-471">The limit value is zero and this is justified by logic similar to that used to justify Limit Law R3.</p>
+</li></ul>
+<ul style="list-style-type: disc;"><li id="li-35">
+<p id="p-472">\(\frac{\text{infinity}}{\text{real number}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}\) (the form is \(\frac{-\infty}{-3}\))</p>
+<p id="p-473">The limit value doesn't exist.  The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, you can write \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}=\infty\).</p>
+</li></ul>
+<ul style="list-style-type: disc;"><li id="li-36">
+<p id="p-474">\(\frac{\text{infinity}}{\text{infinity}}\). Example: \(\lim\limits_{x\to\infty}\frac{3+e^x}{1+3e^x}\) (the form is \(\frac{\infty}{\infty}\))</p>
+<p id="p-475">This is an <em class="terminology">indeterminate form limit</em>. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to\infty}\frac{3+e^x}{1+3e^x}&amp;=\lim_{x\to\infty}\left(\frac{3+e^x}{1+3e^x}\cdot\frac{\sfrac{1}{e^x}}{\sfrac{1}{e^x}}\right)\\
+&amp;=\lim_{x\to\infty}\frac{\frac{3}{e^x}+1}{\frac{1}{e^x}+3}\text{.}
+\end{align*}The limit form is now \(\frac{1}{3}\); you may begin applying the limit laws.</p>
+</li></ul>
+<p id="p-476">There are other indeterminate limit forms, although the two mentioned here are the only two <em class="terminology">rational indeterminate forms</em>.  The other indeterminate forms are discussed in future calculus courses.</p></article></section></div></main>
+</div>
+        <!--Start: StatCounter code--><script type="text/javascript">
+var sc_project=10593885;
+var sc_invisible=1;
+var sc_security="f26513ac";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/10593885/0/f26513ac/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+    </body>
+</html>

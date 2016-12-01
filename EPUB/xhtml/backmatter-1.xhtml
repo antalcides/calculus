@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+  <head>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-28T02:29:45-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+</head>
+  <body>
+    <div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+    <section class="backmatter" id="backmatter-1">
+      <header>
+        <h1>Back Matter  Back Matter</h1>
+      </header>
+      <section class="appendix" id="appendix-limit-laws">
+        <header>
+          <h1>Appendix A Limit Laws</h1>
+        </header>
+        <article class="paragraphs" id="paragraphs-20">
+          <h5 class="heading">
+            <span class="title">Replacement Limit Laws</span>
+          </h5>
+          <p id="p-445">The following laws allow you to replace a limit expression with an actual value.  For example, the expression \(\lim\limits_{t\to5}t\) can be replaced with the number \(5\), the expression \(\lim\limits_{t\to7^{-}}6\) can be replaced with the number \(6\), and the expression \(\lim\limits_{z\to\infty}\frac{12}{e^z}\) can be replaced with the number \(0\).</p>
+          <p id="p-446">In all cases both \(a\) and \(C\) represent real numbers.</p>
+        </article>
+        <article class="theorem-like" id="llr1">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.3</span>
+            <span class="title">Limit Law R1</span>
+          </h5>
+          <p id="p-447">\begin{gather*}
+\lim_{x\to a}x=\lim_{x\to a^{-}}x=\lim_{x\to a^{+}}x=a
+\end{gather*}</p>
+        </article>
+        <article class="theorem-like" id="llr2">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.4</span>
+            <span class="title">Limit Law R2</span>
+          </h5>
+          <p id="p-448">\begin{gather*}
+\lim_{x\to a}C=\lim_{x\to a^{-}}C=\lim_{x\to a^{+}}C=\lim_{x\to \infty}C=\lim_{x\to -\infty}C=C
+\end{gather*}</p>
+        </article>
+        <article class="theorem-like" id="llr3">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.5</span>
+            <span class="title">Limit Law R3</span>
+          </h5>
+          <p id="p-449">\begin{align*}
+\lim_{x\to \infty}\fe{f}{x}=\infty&amp;\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to \infty}\fe{f}{x}=-\infty&amp;\implies\lim_{x\to \infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=\infty&amp;\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0\\
+\lim_{x\to -\infty}\fe{f}{x}=-\infty&amp;\implies\lim_{x\to -\infty}\frac{C}{\fe{f}{x}}=0
+\end{align*}</p>
+        </article>
+        <article class="paragraphs" id="paragraphs-21">
+          <h5 class="heading">
+            <span class="title">Infinite Limit Laws: Limits as the output increases or decreases without bound </span>
+          </h5>
+          <p id="p-450">Many limit values do not exist.  Sometimes the non-existence is caused by the function value either increasing without bound or decreasing without bound.  In these special cases we use the symbols \(\infty\) and \(-\infty\) to communicate the non-existence of the limits.</p>
+          <p id="p-451">Some examples of these type of non-existent limits follow.</p>
+          <ul style="list-style-type: disc;">
+            <li id="li-27">
+              <p id="p-452">\(\lim\limits_{x\to\infty}x^n=\infty\) (if \(n\) is a positive real number)</p>
+            </li>
+            <li id="li-28">
+              <p id="p-453">\(\lim\limits_{x\to-\infty}x^n=\infty\) (if \(n\) is an even positive integer)</p>
+            </li>
+            <li id="li-29">
+              <p id="p-454">\(\lim\limits_{x\to-\infty}x^n=-\infty\) (if \(n\) is an odd positive integer)</p>
+            </li>
+            <li id="li-30">
+              <p id="p-455">\(\lim\limits_{x\to\infty}e^x=\infty\), \(\lim\limits_{x\to-\infty}e^{-x}=\infty\), \(\lim\limits_{x\to\infty}\fe{\ln}{x}=\infty\), \(\lim\limits_{x\to0^{+}}\fe{\ln}{x}=-\infty\)</p>
+            </li>
+          </ul>
+        </article>
+        <article class="paragraphs" id="paragraphs-22">
+          <h5 class="heading">
+            <span class="title">Algebraic Limit Laws</span>
+          </h5>
+          <p id="p-456">The following laws allow you to replace a limit expression with equivalent limit expressions. For example, the expression \begin{equation*}\lim\limits_{x\to5}\left(2+x^2\right)\end{equation*} can be replaced with the expression \begin{equation*}\lim\limits_{x\to5}2+\lim\limits_{x\to5}x^2\text{.}\end{equation*}</p>
+          <p id="p-457">
+            <!--Style me with CSS-->
+            <em>Limit Laws A1–A6 are valid if and only if every limit in the equation exists.</em>
+          </p>
+          <p id="p-458">In all cases \(a\) can represent a real number, a real number from the left, a real number from the right, the symbol \(\infty\), or the symbol \(-\infty\).</p>
+        </article>
+        <article class="theorem-like" id="lla1">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.6</span>
+            <span class="title">Limit Law A1</span>
+          </h5>
+          <p id="p-459">\(\lim\limits_{x\to a}\left(\fe{f}{x}+\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}+\lim\limits_{x\to a}\fe{g}{x}\)</p>
+        </article>
+        <article class="theorem-like" id="lla2">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.7</span>
+            <span class="title">Limit Law A2</span>
+          </h5>
+          <p id="p-460">\(\lim\limits_{x\to a}\left(\fe{f}{x}-\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}-\lim\limits_{x\to a}\fe{g}{x}\)</p>
+        </article>
+        <article class="theorem-like" id="lla3">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.8</span>
+            <span class="title">Limit Law A3</span>
+          </h5>
+          <p id="p-461">\(\lim\limits_{x\to a}\left(C\fe{f}{x}\right)=C\lim\limits_{x\to a}\fe{f}{x}\)</p>
+        </article>
+        <article class="theorem-like" id="lla4">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.9</span>
+            <span class="title">Limit Law A4</span>
+          </h5>
+          <p id="p-462">\(\lim\limits_{x\to a}\left(\fe{f}{x}\cdot\fe{g}{x}\right)=\lim\limits_{x\to a}\fe{f}{x}\cdot\lim\limits_{x\to a}\fe{g}{x}\)</p>
+        </article>
+        <article class="theorem-like" id="lla5">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.10</span>
+            <span class="title">Limit Law A5</span>
+          </h5>
+          <p id="p-463">\(\lim\limits_{x\to a}\frac{\fe{f}{x}}{\fe{g}{x}}=\frac{\lim\limits_{x\to a}\fe{f}{x}}{\lim\limits_{x\to a}\fe{g}{x}}\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}\neq0\)</p>
+        </article>
+        <article class="theorem-like" id="lla6">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.11</span>
+            <span class="title">Limit Law A6</span>
+          </h5>
+          <p id="p-464">\(\lim\limits_{x\to a}\fe{f}{\fe{g}{x}}=\fe{f}{\lim\limits_{x\to a}\fe{g}{x}}\) when \(f\) is continuous at \(\lim\limits_{x\to a}\fe{g}{x}\)</p>
+        </article>
+        <article class="theorem-like" id="lla7">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">A.0.12</span>
+            <span class="title">Limit Law A7</span>
+          </h5>
+          <p id="p-465">If there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\lim\limits_{x\to a}\fe{g}{x}\) (provided that both limits exist).</p>
+          <p id="p-466">Additionally, if there exists an open interval centered at \(a\) over which \(\fe{f}{x}=\fe{g}{x}\) for \(x\neq a\), then \(\lim\limits_{x\to a}\fe{f}{x}=\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=\infty\), and, similarly, \(\lim\limits_{x\to a}\fe{f}{x}=-\infty\) if and only if \(\lim\limits_{x\to a}\fe{g}{x}=-\infty\).</p>
+        </article>
+        <article class="paragraphs" id="paragraphs-23">
+          <h5 class="heading">
+            <span class="title">Rational Limit Forms</span>
+          </h5>
+          <ul style="list-style-type: disc;">
+            <li id="li-31">
+              <p id="p-467">\(\frac{\text{real number}}{\text{non-zero real number}}\). Example: \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}\) (the form is \(\frac{22}{11}\))</p>
+              <p id="p-468">The value of the limit is the number to which the limit form simplifies; for example, \(\lim\limits_{x\to3}\frac{2x+16}{5x-4}=2\). You can immediately begin applying limit laws if you are “proving” the limit value. </p>
+            </li>
+          </ul>
+          <ul style="list-style-type: disc;">
+            <li id="li-32">
+              <p id="p-469">\(\frac{\text{non-zero real number}}{\text{zero}}\). Example: \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}\) (the form is \(\frac{14}{0}\))</p>
+              <p id="p-470">The limit value doesn't exist. The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, if the value of \(x\) is a little less than \(7\), the value of \(\frac{x+7}{7-x}\) is positive.  Hence you could write \(\lim\limits_{x\to7^{-}}\frac{x+7}{7-x}=\infty\).</p>
+            </li>
+          </ul>
+          <ul style="list-style-type: disc;">
+            <li id="li-33">
+              <p id="p-471">\(\frac{\text{zero}}{\text{zero}}\). Example: \(\lim\limits_{x\to-2}\frac{x^2-4}{x^2+3x+2}\) (the form is \(\frac{0}{0}\))</p>
+              <p id="p-472">This is an <em class="terminology">indeterminate form limit</em>. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to-2}\frac{x^2-4}{x^2+3x+2}&amp;=\lim_{x\to-2}\frac{(x+2)(x-2)}{(x+2)(x+1)}\\
+&amp;=\lim_{x\to-2}\frac{x-2}{x+1}\text{.}
+\end{align*}The limit form is now \(\frac{-4}{-1}\); you may begin applying the limit laws.</p>
+            </li>
+          </ul>
+          <ul style="list-style-type: disc;">
+            <li id="li-34">
+              <p id="p-473">\(\frac{\text{real number}}{\text{infinity}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{1-4e^{x}}{\fe{\ln}{x}}\) (the form is \(\frac{-3}{-\infty}\))</p>
+              <p id="p-474">The limit value is zero and this is justified by logic similar to that used to justify Limit Law R3.</p>
+            </li>
+          </ul>
+          <ul style="list-style-type: disc;">
+            <li id="li-35">
+              <p id="p-475">\(\frac{\text{infinity}}{\text{real number}}\). Example: \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}\) (the form is \(\frac{-\infty}{-3}\))</p>
+              <p id="p-476">The limit value doesn't exist.  The expression whose limit is being found is either increasing without bound or decreasing without bound (or possibly both if you have a two-sided limit).   You may be able to communicate the non-existence of the limit using \(\infty\) or \(-\infty\). For example, you can write \(\lim\limits_{x\to0^{+}}\frac{\fe{\ln}{x}}{1-4e^{x}}=\infty\).</p>
+            </li>
+          </ul>
+          <ul style="list-style-type: disc;">
+            <li id="li-36">
+              <p id="p-477">\(\frac{\text{infinity}}{\text{infinity}}\). Example: \(\lim\limits_{x\to\infty}\frac{3+e^x}{1+3e^x}\) (the form is \(\frac{\infty}{\infty}\))</p>
+              <p id="p-478">This is an <em class="terminology">indeterminate form limit</em>. You do not know the value of the limit (or even if it exists) nor can you begin to apply limit laws.  You need to manipulate the expression whose limit is being found until the resultant limit no longer has indeterminate form.  For example:\begin{align*}
+\lim_{x\to\infty}\frac{3+e^x}{1+3e^x}&amp;=\lim_{x\to\infty}\left(\frac{3+e^x}{1+3e^x}\cdot\frac{\sfrac{1}{e^x}}{\sfrac{1}{e^x}}\right)\\
+&amp;=\lim_{x\to\infty}\frac{\frac{3}{e^x}+1}{\frac{1}{e^x}+3}\text{.}
+\end{align*}The limit form is now \(\frac{1}{3}\); you may begin applying the limit laws.</p>
+            </li>
+          </ul>
+          <p id="p-479">There are other indeterminate limit forms, although the two mentioned here are the only two <em class="terminology">rational indeterminate forms</em>.  The other indeterminate forms are discussed in future calculus courses.</p>
+        </article>
+      </section>
+      <section class="appendix" id="appendix-derivative-formulas">
+        <header>
+          <h1>Appendix B Derivative Formulas</h1>
+        </header>
+        <p id="p-480">\(k\), \(a\), and \(n\) represent constants; \(u\) and \(y\) represent functions of \(x\).</p>
+        <figure class="figure-like" id="table-15">
+          <table>
+            <tr>
+              <td class="c m b2 r0 l0 t3 lines">Basic Formulas</td>
+              <td class="c m b2 r0 l0 t3 lines">Chain Rule Format</td>
+              <td class="c m b2 r0 l0 t3 lines">Implicit Derivative Format</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{k}=0\)</td>
+              <td class="c m b1 r0 l0 t0 lines"/>
+              <td class="c m b1 r0 l0 t0 lines"/>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{x^n}=nx^{n-1}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{u^n}=nu^{n-1}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{y^n}=ny^{n-1}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\sqrt{x}}=\frac{1}{2\sqrt{x}}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\sqrt{u}}=\frac{1}{2\sqrt{u}}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\sqrt{y}}=\frac{1}{2\sqrt{y}}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin}{x}}=\fe{\cos}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin}{u}}=\fe{\cos}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin}{y}}=\fe{\cos}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cos}{x}}=-\fe{\sin}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cos}{u}}=-\fe{\sin}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cos}{y}}=-\fe{\sin}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan}{x}}=\fe{\sec^2}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan}{u}}=\fe{\sec^2}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan}{y}}=\fe{\sec^2}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec}{x}}=\fe{\sec}{x}\fe{\tan}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec}{u}}=\fe{\sec}{u}\fe{\tan}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec}{y}}=\fe{\sec}{y}\fe{\tan}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cot}{x}}=-\fe{\csc^2}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cot}{u}}=-\fe{\csc^2}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\cot}{y}}=-\fe{\csc^2}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\csc}{x}}=-\fe{\csc}{x}\fe{\cot}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\csc}{u}}=-\fe{\csc}{u}\fe{\cot}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\csc}{y}}=-\fe{\csc}{y}\fe{\cot}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan^{-1}}{x}}=\frac{1}{1+x^2}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan^{-1}}{u}}=\frac{1}{1+u^2}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\tan^{-1}}{y}}=\frac{1}{1+y^2}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin^{-1}}{x}}=\frac{1}{\sqrt{1-x^2}}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin^{-1}}{u}}=\frac{1}{\sqrt{1-u^2}}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sin^{-1}}{y}}=\frac{1}{\sqrt{1-y^2}}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec^{-1}}{x}}=\frac{1}{\abs{x}\sqrt{x^2-1}}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec^{-1}}{u}}=\frac{1}{\abs{u}\sqrt{u^2-1}}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\sec^{-1}}{y}}=\frac{1}{\abs{y}\sqrt{y^2-1}}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{e^x}=e^x\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{e^u}=e^u\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{e^y}=e^y\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{a^x}=\fe{\ln}{a}a^x\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{a^u}=\fe{\ln}{a}a^u\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{a^y}=\fe{\ln}{a}a^y\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\ln}{x}}=\frac{1}{x}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\ln}{u}}=\frac{1}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b1 r0 l0 t0 lines">\(\lzoo{x}{\fe{\ln}{y}}=\frac{1}{y}\lz{y}{x}\)</td>
+            </tr>
+            <tr>
+              <td class="c m b3 r0 l0 t0 lines">\(\lzoo{x}{\abs{x}}=\frac{\abs{x}}{x}\)</td>
+              <td class="c m b3 r0 l0 t0 lines">\(\lzoo{x}{\abs{u}}=\frac{\abs{u}}{u}\lzoo{x}{u}\)</td>
+              <td class="c m b3 r0 l0 t0 lines">\(\lzoo{x}{\abs{y}}=\frac{\abs{y}}{y}\lz{y}{x}\)</td>
+            </tr>
+          </table>
+          <figcaption>
+            <span class="heading">Table</span>
+            <span class="codenumber">B.0.13</span>
+          </figcaption>
+        </figure>
+        <article class="theorem-like" id="theorem-11">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">B.0.14</span>
+            <span class="title">Constant Factor Rule of Differentiation</span>
+          </h5>
+          <p id="p-481">\begin{equation*}\lzoo{x}{k\fe{f}{x}}=k\lzoo{x}{\fe{f}{x}}\end{equation*}</p>
+          <p id="p-482">Alternatively, if \(y=\fe{f}{x}\), then \(\lzoo{x}{ky}=k\lz{y}{x}\).</p>
+        </article>
+        <article class="theorem-like" id="theorem-12">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">B.0.15</span>
+            <span class="title">Sum/Difference Rule of Differentiation</span>
+          </h5>
+          <p id="p-483">\begin{equation*}\lzoo{x}{\fe{f}{x}\pm\fe{g}{x}}=\lzoo{x}{\fe{f}{x}}\pm\lzoo{x}{\fe{g}{x}}\end{equation*}</p>
+        </article>
+        <article class="theorem-like" id="theorem-13">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">B.0.16</span>
+            <span class="title">Product Rule of Differentiation</span>
+          </h5>
+          <p id="p-484">\begin{equation*}\lzoo{x}{\fe{f}{x}\cdot\fe{g}{x}}=\lzoo{x}{\fe{f}{x}}\cdot\fe{g}{x}+\fe{f}{x}\cdot\lzoo{x}{\fe{g}{x}}\end{equation*}</p>
+        </article>
+        <article class="theorem-like" id="theorem-14">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">B.0.17</span>
+            <span class="title">Quotient Rule of Differentiation</span>
+          </h5>
+          <p id="p-485">\begin{equation*}\lzoo{x}{\frac{\fe{f}{x}}{\fe{g}{x}}}=\frac{\lzoo{x}{\fe{f}{x}}\cdot\fe{g}{x}-\fe{f}{x}\cdot\lzoo{x}{\fe{g}{x}}}{\left[\fe{g}{x}\right]^2}\end{equation*}</p>
+        </article>
+        <article class="theorem-like" id="theorem-15">
+          <h5 class="heading">
+            <span class="type">Theorem</span>
+            <span class="codenumber">B.0.18</span>
+            <span class="title">Chain Rule of Differentiation</span>
+          </h5>
+          <p id="p-486">\begin{equation*}\lzoo{x}{\fe{f}{\fe{g}{x}}}=\fe{\fd{f}}{\fe{g}{x}}\cdot\fe{\fd{g}}{x}\end{equation*}</p>
+          <p id="p-487">Alternatively, if \(u=\fe{g}{x}\), then \(\lzoo{x}{\fe{f}{u}}=\fe{\fd{f}}{u}\cdot\lzoo{x}{u}\).</p>
+          <p id="p-488">Alternatively, if \(y=\fe{f}{u}\), where \(u=\fe{g}{x}\), then \(\lz{y}{x}=\lz{y}{u}\cdot\lz{u}{x}\).</p>
+        </article>
+      </section>
+      <section class="appendix" id="appendix-useful-algebra">
+        <header>
+          <h1>Appendix C Some Useful Rules of Algebra</h1>
+        </header>
+        <ul style="list-style-type: disc;">
+          <li id="li-37">
+            <p id="p-489">For positive integers \(m\) and \(n\), \(\sqrt[n]{x^m}=x^{\sfrac{m}{n}}\). This is universally true when \(x\) is positive. When \(x\) is negative, things are more complicated. It boils down to a choice. Some computer algebra systems choose to define an expression like \((-8)^{\sfrac{1}{3}}\) as a certain negative real number (\(-2\)). Others choose to define an expression like \((-8)^{\sfrac{1}{3}}\) as a complex number in the upper half plane of the complex plane (\(1+i\sqrt{3}\)). Because of the ambiguity, some choose to simply declare expressions like \((-8)^{\sfrac{1}{3}}\), with a negative base, to be undefined. The point is, if your computer tells you that say, \((-8)^{\sfrac{1}{3}}\) is undefined, you should realize that you may be expected to interpret \((-8)^{\sfrac{1}{3}}\) as \(-2\).</p>
+          </li>
+          <li id="li-38">
+            <p id="p-490">For real numbers \(k\) and \(n\), and \(x\neq0\), \(\frac{k}{x^n}=kx^{-n}\).</p>
+          </li>
+          <li id="li-39">
+            <p id="p-491">For a real number \(k\neq0\), \(\frac{\fe{f}{x}}{k}=\frac{1}{k}\fe{f}{x}\).</p>
+          </li>
+          <li id="li-40">
+            <p id="p-492">For positive real numbers \(A\) and \(B\) and all real numbers \(n\),</p>
+            <ul style="list-style-type: circle;">
+              <li id="li-41">
+                <p id="p-493">\(\fe{\ln}{AB}=\fe{\ln}{A}+\fe{\ln}{B}\)</p>
+              </li>
+              <li id="li-42">
+                <p id="p-494">\(\fe{\ln}{\frac{A}{B}}=\fe{\ln}{A}-\fe{\ln}{B}\)</p>
+              </li>
+              <li id="li-43">
+                <p id="p-495">\(\fe{\ln}{A^n}=n\fe{\ln}{A}\)</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section class="appendix" id="appendix-units">
+        <header>
+          <h1>Appendix D Units of Measure</h1>
+        </header>
+        <figure class="figure-like" id="table-16">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">m</td>
+              <td class=" m b1 r0 l0 t0 lines">meter</td>
+              <td class=" m b1 r0 l0 t0 lines">the distance light travels in \(\sfrac{1}{299792458}\) of a second</td>
+              <td class=" m b1 r0 l0 t0 lines">half the height of a typical doorway</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">mm</td>
+              <td class=" m b1 r0 l0 t0 lines">millimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(\sfrac{1}{1000}\) of a meter</td>
+              <td class=" m b1 r0 l0 t0 lines">the thickness of a credit card</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">cm</td>
+              <td class=" m b1 r0 l0 t0 lines">centimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(\sfrac{1}{100}\) of a meter</td>
+              <td class=" m b1 r0 l0 t0 lines">the width of your pinky finger</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">km</td>
+              <td class=" m b1 r0 l0 t0 lines">kilometer</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(1000\) meters</td>
+              <td class=" m b1 r0 l0 t0 lines">in parts of Portland where the city blocks are square, about \(12.5\) blocks</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">in</td>
+              <td class=" m b1 r0 l0 t0 lines">inch</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(0.0254\) meters</td>
+              <td class=" m b1 r0 l0 t0 lines">the diameter of a bottle cap</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">ft</td>
+              <td class=" m b1 r0 l0 t0 lines">foot</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(12\) inches</td>
+              <td class=" m b1 r0 l0 t0 lines">the exterior length of an average adult male's shoe</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">mi</td>
+              <td class=" m b3 r0 l0 t0 lines">mile</td>
+              <td class=" m b3 r0 l0 t0 lines">exactly \(5280\) feet</td>
+              <td class=" m b3 r0 l0 t0 lines">in parts of Portland where the city blocks are square, about \(20\) blocks</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.19</span>Distance</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-17">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">cm<sup>2</sup></td>
+              <td class=" m b1 r0 l0 t0 lines">square centimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">the area of a square whose sides are each one centimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">a little less than the circular area of a new pencil eraser</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">in<sup>2</sup></td>
+              <td class=" m b3 r0 l0 t0 lines">square inch</td>
+              <td class=" m b3 r0 l0 t0 lines">the area of a square whose sides are each one inch</td>
+              <td class=" m b3 r0 l0 t0 lines">the area of a photograph on an ID card</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.20</span>Area</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-18">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">cm<sup>3</sup></td>
+              <td class=" m b1 r0 l0 t0 lines">cubic centimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">the volume of a cube whose sides are each one centimeter</td>
+              <td class=" m b1 r0 l0 t0 lines">the volume of a blueberry</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">L</td>
+              <td class=" m b1 r0 l0 t0 lines">liter</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(1000\) cubic centimeters</td>
+              <td class=" m b1 r0 l0 t0 lines">a bottle of wine is \(\sfrac{3}{4}\) of a liter</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">mL</td>
+              <td class=" m b1 r0 l0 t0 lines">milliliter</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(1\) cubic centimeter; \(\sfrac{1}{1000}\) of a liter</td>
+              <td class=" m b1 r0 l0 t0 lines">the volume of a blueberry</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">in<sup>3</sup></td>
+              <td class=" m b1 r0 l0 t0 lines">cubic inch</td>
+              <td class=" m b1 r0 l0 t0 lines">the volume of a cube whose sides are each one inch</td>
+              <td class=" m b1 r0 l0 t0 lines">the volume of an shelled whole walnut</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">gal</td>
+              <td class=" m b3 r0 l0 t0 lines">liter</td>
+              <td class=" m b3 r0 l0 t0 lines">exactly \(231\) cubic inches</td>
+              <td class=" m b3 r0 l0 t0 lines">the volume of the larger type of plastic milk containers sold in supermarkets</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.21</span>Volume</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-19">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">s</td>
+              <td class=" m b1 r0 l0 t0 lines">second</td>
+              <td class=" m b1 r0 l0 t0 lines">the duration of 9192631770 periods of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the cesium-133 atom</td>
+              <td class=" m b1 r0 l0 t0 lines">the time it takes you to say the phrase “differential calculus”</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">min</td>
+              <td class=" m b1 r0 l0 t0 lines">minute</td>
+              <td class=" m b1 r0 l0 t0 lines">exactly \(60\) seconds</td>
+              <td class=" m b1 r0 l0 t0 lines">how long it takes to microwave a full dinner plate from the refrigerator</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">h</td>
+              <td class=" m b3 r0 l0 t0 lines">hour</td>
+              <td class=" m b3 r0 l0 t0 lines">exactly \(3600\) seconds; exaclty \(60\) minutes</td>
+              <td class=" m b3 r0 l0 t0 lines">the length of one episode of a premium cable television show</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.22</span>Time</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-20">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">mph</td>
+              <td class=" m b3 r0 l0 t0 lines">mile per hour</td>
+              <td class=" m b3 r0 l0 t0 lines">exactly one mile per hour</td>
+              <td class=" m b3 r0 l0 t0 lines">a typical walking speed is about three miles per hour</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.23</span>Speed</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-21">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">kg</td>
+              <td class=" m b1 r0 l0 t0 lines">kilogram</td>
+              <td class=" m b1 r0 l0 t0 lines">the mass of a certain cylindrical object made of a platinum-iridium alloy called the International Protoype of the Kilogram, which is stored in Sèvres, France</td>
+              <td class=" m b1 r0 l0 t0 lines">the mass of a \(500\)-page paberback book</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">mg</td>
+              <td class=" m b3 r0 l0 t0 lines">milligram</td>
+              <td class=" m b3 r0 l0 t0 lines">exactly \(\sfrac{1}{1000000}\) of a kilogram</td>
+              <td class=" m b3 r0 l0 t0 lines">the mass of a small snowflake</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.24</span>Mass</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-22">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b1 r0 l0 t0 lines">rad</td>
+              <td class=" m b1 r0 l0 t0 lines">radian</td>
+              <td class=" m b1 r0 l0 t0 lines">the angle subtended at the center of a circle by an arc that is equal in length to the radius of the circle</td>
+              <td class=" m b1 r0 l0 t0 lines">a little less than the angles on an equilateral triangle</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">°</td>
+              <td class=" m b3 r0 l0 t0 lines">degree</td>
+              <td class=" m b3 r0 l0 t0 lines">the angle subtended at the center of a circly by an arc whose length is \(\sfrac{1}{360}\) the circumferece of the circle</td>
+              <td class=" m b3 r0 l0 t0 lines">a very small angle; if you could look directly at the bottom of the sun, and then moved your eyes to look at the top of the sun, you would have moved your eyes about half of one degree</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.25</span>Angle</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-23">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">N</td>
+              <td class=" m b3 r0 l0 t0 lines">newton</td>
+              <td class=" m b3 r0 l0 t0 lines">the force needed to accelerate one kilogram from rest up to a speed of one meter per second with one second of time</td>
+              <td class=" m b3 r0 l0 t0 lines">if you hold an apple in the palm of your hand, it applies about two newtons of force</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.26</span>Force</figcaption>
+        </figure>
+        <figure class="figure-like" id="table-24">
+          <table>
+            <tr>
+              <td class=" m b2 r0 l0 t3 lines">Unit</td>
+              <td class=" m b2 r0 l0 t3 lines">Stands For</td>
+              <td class=" m b2 r0 l0 t3 lines">Definition</td>
+              <td class=" m b2 r0 l0 t3 lines">Roughly</td>
+            </tr>
+            <tr>
+              <td class=" m b3 r0 l0 t0 lines">kW</td>
+              <td class=" m b3 r0 l0 t0 lines">kilowatt</td>
+              <td class=" m b3 r0 l0 t0 lines">the power to transfer one thousand joules of energy in one second (one joule is the amount of energy used when one newton of force pushes an object one meter)</td>
+              <td class=" m b3 r0 l0 t0 lines">the power used by a nicer microwave oven</td>
+            </tr>
+          </table>
+          <figcaption><span class="heading">Table</span><span class="codenumber">D.0.27</span>Power</figcaption>
+        </figure>
+      </section>
+      <section class="appendix" id="supplemental-solutions">
+        <header>
+          <h1>Appendix E Solutions to Supplemental Exercises</h1>
+        </header>
+      </section>
+    </section>
+  </body>
+</html>

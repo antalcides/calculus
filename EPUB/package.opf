@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:creator>Steve Simonds, Alex Jordan (Editor)</dc:creator>
+    <dc:title>Calculus Lab Manual</dc:title>
+    <dc:identifier id="pub-id">mock-123456789-0-987654321</dc:identifier>
+    <dc:language>en-US</dc:language>
+    <meta property="dcterms:modified">2016-11-28T02:29:44Z</meta>
+  </metadata>
+  <manifest>
+    <item id="cover" href="xhtml/cover.xhtml" media-type="application/xhtml+xml"/>
+    <item id="title-page" href="xhtml/title-page.xhtml" media-type="application/xhtml+xml"/>
+    <item id="table-contents" href="xhtml/table-contents.xhtml" properties="nav" media-type="application/xhtml+xml"/>
+    <item id="cover-image" href="xhtml/images/cover.png" properties="cover-image" media-type="image/png"/>
+    <!--Front Matter  Front Matter-->
+    <item id="index" properties="svg" href="xhtml/index.xhtml" media-type="application/xhtml+xml"/>
+    <!--Lab 1 Rates Of Change-->
+    <item id="chapter-rates-of-change" properties="svg" href="xhtml/chapter-rates-of-change.xhtml" media-type="application/xhtml+xml"/>
+    <item id="latex-image-code-1" href="xhtml/images/image-1.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-2" href="xhtml/images/image-secant-exercise.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-3" href="xhtml/images/image-3.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-4" href="xhtml/images/image-4.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-5" href="xhtml/images/image-5.svg" media-type="image/svg+xml"/>
+    <!--Lab 2 Limits and Continuity-->
+    <item id="chapter-limits" properties="svg" href="xhtml/chapter-limits.xhtml" media-type="application/xhtml+xml"/>
+    <item id="latex-image-code-6" href="xhtml/images/image-first-limit.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-7" href="xhtml/images/image-second-limit.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-8" href="xhtml/images/image-8.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-9" href="xhtml/images/image-9.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-10" href="xhtml/images/image-10.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-11" href="xhtml/images/image-11.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-12" href="xhtml/images/image-12.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-13" href="xhtml/images/image-13.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-14" href="xhtml/images/image-14.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-15" href="xhtml/images/image-15.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-16" href="xhtml/images/image-16.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-17" href="xhtml/images/image-17.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-18" href="xhtml/images/image-18.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-19" href="xhtml/images/image-19.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-20" href="xhtml/images/image-20.svg" media-type="image/svg+xml"/>
+    <item id="latex-image-code-21" href="xhtml/images/image-21.svg" media-type="image/svg+xml"/>
+    <!--Back Matter  Back Matter-->
+    <item id="backmatter-1" properties="svg" href="xhtml/backmatter-1.xhtml" media-type="application/xhtml+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="cover" linear="yes"/>
+    <itemref idref="title-page" linear="yes"/>
+    <itemref idref="table-contents" linear="yes"/>
+    <itemref idref="index" linear="yes"/>
+    <itemref idref="chapter-rates-of-change" linear="yes"/>
+    <itemref idref="chapter-limits" linear="yes"/>
+    <itemref idref="backmatter-1" linear="yes"/>
+  </spine>
+</package>

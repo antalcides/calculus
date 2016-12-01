@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+  <head>
+<!--**************************************-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2016-11-28T02:29:44-05:00    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<!--**************************************-->
+</head>
+  <body>
+    <div style="display:none;">\(\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\fe}[2]{#1\mathopen{}\left(#2\right)\mathclose{}}
+\newcommand{\cinterval}[2]{\left[#1,#2\right]}
+\newcommand{\ointerval}[2]{\left(#1,#2\right)}
+\newcommand{\cointerval}[2]{\left[\left.#1,#2\right)\right.}
+\newcommand{\ocinterval}[2]{\left(\left.#1,#2\right]\right.}
+\newcommand{\point}[2]{\left(#1,#2\right)}
+\newcommand{\fd}[1]{#1'}
+\newcommand{\sd}[1]{#1''}
+\newcommand{\td}[1]{#1'''}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\lt}{ &lt; }
+\newcommand{\gt}{ &gt; }
+\newcommand{\amp}{ &amp; }
+\)</div>
+    <section class="chapter" id="chapter-rates-of-change">
+      <header>
+        <h1>Lab 1 Rates Of Change</h1>
+      </header>
+      <section class="section" id="section-velocity">
+        <header>
+          <h1>Activity 1.1 Velocity</h1>
+        </header>
+        <p id="p-36">Motion is frequently modeled using calculus. A building block for this application is the concept of <em class="terminology">average velocity</em>. Average velocity is defined to be net displacement divided by elapsed time.  More precisely,</p>
+        <article class="definition-like" id="definition-average-velocity">
+          <h5 class="heading">
+            <span class="type">Definition</span>
+            <span class="codenumber">1.1.1</span>
+            <span class="title">Average Velocity</span>
+          </h5>
+          <p id="p-37">If \(p\) is a position function for something moving along a numbered line, then we define the <em class="terminology">average velocity</em> over the time interval \(\cinterval{t_0}{t_1}\) to be: \begin{equation*}\frac{\fe{p}{t_1}-\fe{p}{t_0}}{t_1-t_0}\text{.}\end{equation*}</p>
+        </article>
+        <section class="exercises" id="exercises-1">
+          <header>
+            <h1>Exercises 1.1.1 Exercises</h1>
+          </header>
+          <div class="exercisegroup" id="exercisegroup-velocity">
+            <article class="introduction" id="introduction-1">
+              <p id="p-38">According to simplified Newtonian physics, if an object is dropped from an elevation<span class="hidden-knowl-wrapper"><a knowl="" class="id-ref" refid="hk-fn-1" id="fn-1"><span class="footnote"><sup> 1 </sup></span></a></span><span id="hk-fn-1" style="display: none;" class="tex2jax_ignore"><span class="footnote">If you encounter an unfamiliar unit of measure while reading this lab manual, see <a href="backmatter-1.xhtml#appendix-units">D</a>.</span></span> of \(200\) meters (m) and allowed to free fall to the ground, then the elevation of the object is given by the position function \begin{equation*}\fe{p}{t}=200\,\text{m}-\left(4.9\,\sfrac{\text{m}}{\text{s}^2}\right)t^2\end{equation*} where \(t\) is the amount of time that has passed since the object was dropped. (The “200 m” in the formula represents the elevation from which the object was dropped, and the “4.9 <sup>m</sup>⁄<sub>s<sup>2</sup></sub>” represents one half of the acceleration due to gravity near the surface of Earth.)</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-calculate-position">
+                <h5 class="heading">
+                  <span class="codenumber">1</span>
+                </h5>
+                <p id="p-39">Calculate \(\fe{p}{3\,\text{s}}\) and \(\fe{p}{5\,\text{s}}\). Make sure that you include the units specified in the formula for \(\fe{p}{t}\), and that you replace \(t\) with, respectively, 3 s and 5 s. Make sure that you simplify the units, as well as the numerical part of the function value.</p>
+              </article>
+              <article class="exercise-like" id="exercise-average-velocity">
+                <h5 class="heading">
+                  <span class="codenumber">2</span>
+                </h5>
+                <p id="p-40">Calculate \(\frac{\fe{p}{5\,\text{s}}-\fe{p}{3\,\text{s}}}{{5\,\text{s}}-{3\,\text{s}}}\); <!--Style me with CSS--><em>include units while making the calculation</em>. Note that you already calculated \(\fe{p}{3\,\text{s}}\) and \(\fe{p}{5\,\text{s}}\) in <a href="chapter-rates-of-change.xhtml#exercise-calculate-position">1.1.1.1</a>. What does the result tell you in the context of this problem?</p>
+              </article>
+              <article class="exercise-like" id="exercise-average-velocity-formula">
+                <h5 class="heading">
+                  <span class="codenumber">3</span>
+                </h5>
+                <p id="p-44">Use <a href="chapter-rates-of-change.xhtml#definition-average-velocity">1.1.1</a> to find a formula for the average velocity of this object over the general time interval \(\cinterval{t_0}{t_1}\). The first couple of lines of this process are shown below. Copy these lines onto your paper and continue the simplification process.\begin{align*}
+\frac{\fe{p}{t_1}-\fe{p}{t_0}}{t_1-t_0}&amp;=\frac{\left[200-4.9t_1^2\right]-\left[200-4.9t_0^2\right]}{t_1-t_0}\\
+&amp;=\frac{200-4.9t_1^2-200+4.9t_0^2}{t_1-t_0}\\
+&amp;=\frac{-4.9t_1^2+4.9t_0^2}{t_1-t_0}\\
+&amp;=\cdots
+\end{align*}</p>
+              </article>
+              <article class="exercise-like" id="exercise-4">
+                <h5 class="heading">
+                  <span class="codenumber">4</span>
+                </h5>
+                <p id="p-46">Check the formula you derived in <a href="chapter-rates-of-change.xhtml#exercise-average-velocity-formula">1.1.1.3</a> using \(t_0=3\) and \(t_1=5\); that is, compare the value generated by the formula to that you found in <a href="chapter-rates-of-change.xhtml#exercise-average-velocity">1.1.1.2</a>.</p>
+              </article>
+              <article class="exercise-like" id="exercise-5">
+                <h5 class="heading">
+                  <span class="codenumber">5</span>
+                </h5>
+                <p id="p-47">Now explore some average velocities in tabular form.</p>
+                <div class="sidebyside" style="" id="sidebyside-1">
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+                      <p id="p-48">Using the formula found in <a href="chapter-rates-of-change.xhtml#exercise-average-velocity-formula">1.1.1.3</a>, replace \(t_0\) with \(3\) but leave \(t_1\) as a variable; simplify the result. Then copy <a href="chapter-rates-of-change.xhtml#table-velocity">1.1.3</a> onto your paper and fill in the missing entries.</p>
+                    </div>
+                    <div class="sbspanel fixed-width" style="width:50%;justify-content:flex-start;">
+                      <table>
+                        <tr>
+                          <td class="l m b2 r0 l0 t3 lines">\(t_1\) (s)</td>
+                          <td class="c m b2 r0 l0 t3 lines">\(\frac{\fe{p}{t_1}-\fe{p}{3}}{t_1-3}\) (<sup>m</sup>⁄<sub>s</sub>)</td>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">2.9</td>
+                          <td class="c m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">2.99</td>
+                          <td class="c m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">2.999</td>
+                          <td class="c m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">3.001</td>
+                          <td class="c m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">3.01</td>
+                          <td class="c m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b3 r0 l0 t0 lines">3.1</td>
+                          <td class="c m b3 r0 l0 t0 lines"/>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <figcaption class="sbscaption" style="width:50%;"/>
+                    <figcaption class="sbscaption" style="width:50%;"><span class="heading">Table</span><span class="codenumber">1.1.3</span>Values of \(\frac{\fe{p}{t_1}-\fe{p}{3}}{t_1-3}\)</figcaption>
+                  </div>
+                </div>
+              </article>
+              <article class="exercise-like" id="exercise-6">
+                <h5 class="heading">
+                  <span class="codenumber">6</span>
+                </h5>
+                <p id="p-49">As the value of \(t_1\) gets closer to \(3\), the values in the \(y\)-column of <a href="chapter-rates-of-change.xhtml#table-velocity">1.1.3</a> appear to be converging on a single quantity; what is this quantity? What does it mean in the context of this problem?</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="section" id="section-secant">
+        <header>
+          <h1>Activity 1.2 Secant Line to a Curve</h1>
+        </header>
+        <p id="p-50">One of the building blocks in differential calculus is the <!--Style me with CSS--><em>secant line to a curve</em>. The only requirement for a line to be considered a secant line to a curve is that the line must intersect the curve in at least two points.</p>
+        <p id="p-51">In <a href="chapter-rates-of-change.xhtml#figure-secant">1.2.1</a>, we see a secant line to the curve \(y=\fe{f}{x}\) through the points \(\point{0}{3}\) and \(\point{4}{-5}\). Verify that the slope of this line is \(-2\).</p>
+        <div class="sidebyside" style="" id="sidebyside-2">
+          <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+            <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+              <p id="p-52">The formula for \(f\) is \(\fe{f}{x}=3+2x-x^2\). We can use this formula to come up with a generalized formula for the slope of secant lines to this curve. Specifically, the slope of the line connecting the point \(\point{x_0}{\fe{f}{x_0}}\) to the point \(\point{x_1}{\fe{f}{x_1}}\) is derived in the following example.</p>
+            </div>
+            <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+              <object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-1.svg" alt="an upside down parabola with vertex at (1,4) and x-intercepts at -1 and 3; a downward slanting line intersects the parabola at (0,3) and (4,-5)">
+                <p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p>
+              </object>
+            </div>
+          </div>
+          <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+            <figcaption class="sbscaption" style="width:50%;"/>
+            <figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">1.2.1</span>A secant line to \(y=\fe{f}{x}=3+2x-x^2\)</figcaption>
+          </div>
+        </div>
+        <article class="example-like" id="example-secant">
+          <h5 class="heading">
+            <span class="type">Example</span>
+            <span class="codenumber">1.2.2</span>
+            <span class="title">Calculating Secant Slope</span>
+          </h5>
+          <p id="p-53">\begin{align*}
+m_{\text{sec}}&amp;=\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}\\
+&amp;=\frac{\left(3+2x_1-x_1^2\right)-\left(3+2x_0-x_0^2\right)}{x_1-x_0}\\
+&amp;=\frac{3+2x_1-x_1^2-3-2x_0+x_0^2}{x_1-x_0}\\
+&amp;=\frac{\left(2x_1-2x_0\right)-\left(x_1^2-x_0^2\right)}{x_1-x_0}\\
+&amp;=\frac{2\left(x_1-x_0\right)-\left(x_1+x_0\right)\left(x_1-x_0\right)}{x_1-x_0}\\
+&amp;=\frac{\left[2-\left(x_1+x_0\right)\right]\left(x_1-x_0\right)}{x_1-x_0}\\
+&amp;=2-x_1-x_0\text{ for }x_1\neq x_0
+\end{align*}</p>
+          <p id="p-54">We can check our formula using the line in <a href="chapter-rates-of-change.xhtml#figure-secant">1.2.1</a>. If we let \(x_0=0\) and \(x_1=4\) then our simplified slope formula gives us: \(2-x_1-x_0=2-4-0\), which simplifies to \(-2\) as we expected.</p>
+        </article>
+        <section class="exercises" id="exercises-2">
+          <header>
+            <h1>Exercises 1.2.1 Exercises</h1>
+          </header>
+          <div class="exercisegroup" id="exercisegroup-2">
+            <article class="introduction" id="introduction-2">
+              <p id="p-55">Let \(\fe{g}{x}=x^2-5\).</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-7">
+                <h5 class="heading">
+                  <span class="codenumber">1</span>
+                </h5>
+                <p id="p-56">Following <a href="chapter-rates-of-change.xhtml#example-secant">1.2.2</a>, find a formula for the slope of the secant line connecting the points \(\point{x_0}{\fe{g}{x_0}}\) and \(\point{x_1}{\fe{g}{x_1}}\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-8">
+                <h5 class="heading">
+                  <span class="codenumber">2</span>
+                </h5>
+                <p id="p-57">Check your slope formula using the two points indicated in <a href="chapter-rates-of-change.xhtml#figure-secant-exercise">1.2.3</a>.</p>
+                <div class="sidebyside" style="" id="sidebyside-3">
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+                      <p id="p-58">That is, use the graph to find the slope between the two points and then use your formula to find the slope; make sure that the two values agree!</p>
+                    </div>
+                    <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+                      <object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-secant-exercise.svg" alt="an upward opening parabola with vertex at (0,-5) and x-intercepts at a little less than -2 and a little greater than 2; an upward slanting line intersects the parabola at (-2,-1) and (3,4)">
+                        <p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p>
+                      </object>
+                    </div>
+                  </div>
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <figcaption class="sbscaption" style="width:50%;"/>
+                    <figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">1.2.3</span>\(y=\fe{g}{x}=x^2-5\) and a secant line</figcaption>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="section" id="section-difference-quotient">
+        <header>
+          <h1>Activity 1.3 The Difference Quotient</h1>
+        </header>
+        <p id="p-59">While it's easy to see that the formula \(\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}\) gives the slope of the line connecting two points on the function \(f\), the resultant expression can at times be awkward to work with. We actually already saw that in <a href="chapter-rates-of-change.xhtml#example-secant">1.2.2</a>.</p>
+        <p id="p-60">The algebra associated with secant lines (and average velocities) can sometimes be simplified if we designate the variable \(h\) to be the run between the two points (or the length of the time interval). With this designation we have \(x_1-x_0=h\) which gives us \(x_1=x_0+h\). Making these substitutions we get <a href="chapter-rates-of-change.xhtml#equation-difference-quotient">(1.3.1)</a>. The expression on the right side of <a href="chapter-rates-of-change.xhtml#equation-difference-quotient">(1.3.1)</a> is called the <em class="terminology">difference quotient</em> for \(f\).\begin{equation}\frac{\fe{f}{x_1}-\fe{f}{x_0}}{x_1-x_0}=\frac{\fe{f}{x_0+h}-\fe{f}{x_0}}{h}\label{equation-difference-quotient}\tag{1.3.1}\end{equation}</p>
+        <p id="p-61">Let's revisit the function \(\fe{f}{x}=3+2x-x^2\) from <a href="chapter-rates-of-change.xhtml#example-secant">1.2.2</a>. The difference quotient for this function is derived in <a href="chapter-rates-of-change.xhtml#example-difference-quotient">1.3.1</a>.</p>
+        <article class="example-like" id="example-difference-quotient"><h5 class="heading"><span class="type">Example</span><span class="codenumber">1.3.1</span><span class="title">Calculating a Difference Quotient</span></h5>\begin{align*}
+\frac{\fe{f}{x_0+h}-\fe{f}{x_0}}{h}&amp;=\frac{\left[3+2\left(x_0+h\right)-\left(x_0+h\right)^2\right]-\left[3+2x_0-x_0^2\right]}{h}\\
+&amp;=\frac{3+2x_0+2h-x_0^2-2x_0h-h^2-3-2x_0+x_0^2}{h}\\
+&amp;=\frac{2h-2x_0h-h^2}{h}\\
+&amp;=\frac{h\left(2-2x_0-h\right)}{h}\\
+&amp;=2-2x_0-h\text{ for }h\neq 0
+\end{align*}<p id="p-62">Please notice that all of the terms without a factor of \(h\) subtracted to zero. Please notice, too, that we avoided all of the tricky factoring that appeared in <a href="chapter-rates-of-change.xhtml#example-secant">1.2.2</a>!</p></article>
+        <p id="p-63">For simplicity's sake, we generally drop the variable subscript when applying the difference quotient. So for future reference we will define the difference quotient as follows:</p>
+        <article class="definition-like" id="definition-difference-quotient">
+          <h5 class="heading">
+            <span class="type">Definition</span>
+            <span class="codenumber">1.3.2</span>
+            <span class="title">The Difference Quotient</span>
+          </h5>
+          <p id="p-64">The <em class="terminology">difference quotient</em> for the function \(y=\fe{f}{x}\) is the expression \(\frac{\fe{f}{x+h}-\fe{f}{x}}{h}\).</p>
+        </article>
+        <section class="exercises" id="exercises-3">
+          <header>
+            <h1>Exercises 1.3.1 Exercises</h1>
+          </header>
+          <div class="exercisegroup" id="exercisegroup-3">
+            <article class="introduction" id="introduction-3">
+              <p id="p-65">Completely simplify the difference quotient for each of the following functions. Please note that the template for the difference quotient needs to be adapted to the function name and independent variable in each given equation. For example, the difference quotient for the function in <a href="chapter-rates-of-change.xhtml#exercise-first-difference-quotient">1.3.1.1</a> is \(\frac{\fe{v}{t+h}-\fe{v}{t}}{h}\).</p>
+              <p id="p-66">Please make sure that you lay out your work in a manner consistent with the way the work is shown in <a href="chapter-rates-of-change.xhtml#example-difference-quotient">1.3.1</a> (excluding the subscripts, of course).</p>
+            </article>
+            <div class="exercisegroup-exercises cols2">
+              <article class="exercise-like" id="exercise-first-difference-quotient">
+                <h5 class="heading">
+                  <span class="codenumber">1</span>
+                </h5>
+                <p id="p-67">\(\fe{v}{t}=2.5t^2-7.5t\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-10">
+                <h5 class="heading">
+                  <span class="codenumber">2</span>
+                </h5>
+                <p id="p-68">\(\fe{g}{x}=3-7x\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-11">
+                <h5 class="heading">
+                  <span class="codenumber">3</span>
+                </h5>
+                <p id="p-69">\(\fe{w}{x}=\dfrac{3}{x+2}\)</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-4">
+            <article class="introduction" id="introduction-4">
+              <p id="p-70">Suppose that an object is tossed directly upward in the air in such a way that the elevation of the object (measured in ft) is given by the function \(f\) defined by \(\fe{f}{t}=40+40t-16t^2\) where \(t\) is the amount of time that has passed since the object was tossed (measured in s).</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-12">
+                <h5 class="heading">
+                  <span class="codenumber">4</span>
+                </h5>
+                <p id="p-71">Simplify the difference quotient for \(f\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-difference-quotient-average-velocity">
+                <h5 class="heading">
+                  <span class="codenumber">5</span>
+                </h5>
+                <p id="p-72">Ignoring the unit, use the difference quotient to determine the average velocity over the interval \(\cinterval{1.6}{2.8}\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-difference-quotient-values">
+                <h5 class="heading">
+                  <span class="codenumber">6</span>
+                </h5>
+                <p id="p-74">Calculate \(\fe{f}{1.6}\) and \(\fe{f}{2.8}\). What unit is associated with the values of these expressions? What is the contextual significance of these values?</p>
+              </article>
+              <article class="exercise-like" id="exercise-difference-quotient-verify">
+                <h5 class="heading">
+                  <span class="codenumber">7</span>
+                </h5>
+                <p id="p-75">Use the expression \(\frac{\fe{f}{2.8}-\fe{f}{1.6}}{2.8-1.6}\) and the answers to <a href="chapter-rates-of-change.xhtml#exercise-difference-quotient-values">1.3.1.6</a> to verify the value you found in <a href="chapter-rates-of-change.xhtml#exercise-difference-quotient-average-velocity">1.3.1.5</a>. What unit is associated with the values of this expression? What is the contextual significance of this value?</p>
+              </article>
+              <article class="exercise-like" id="exercise-16">
+                <h5 class="heading">
+                  <span class="codenumber">8</span>
+                </h5>
+                <p id="p-76">Ignoring the unit, use the difference quotient to determine the average velocity over the interval \(\cinterval{0.4}{2.4}\).</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-5">
+            <article class="introduction" id="introduction-5">
+              <p id="p-77">Moose and squirrel were having casual conversation when suddenly, without any apparent provocation, Boris Badenov launched anti-moose missile in their direction. Fortunately, squirrel had ability to fly as well as great knowledge of missile technology, and he was able to disarm missile well before it hit ground.</p>
+              <p id="p-78">The elevation (ft) of the tip of the missile \(t\) seconds after it was launched is given by the function \(\fe{h}{t}=-16t^2+294.4t+15\).</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-17">
+                <h5 class="heading">
+                  <span class="codenumber">9</span>
+                </h5>
+                <p id="p-79">Calculate the value of \(\fe{h}{12}\). What unit is associated with this value? What does the value tell you about the flight of the missile?</p>
+              </article>
+              <article class="exercise-like" id="exercise-18">
+                <h5 class="heading">
+                  <span class="codenumber">10</span>
+                </h5>
+                <p id="p-80">Calculate the value of \(\frac{\fe{h}{10}-\fe{h}{0}}{10}\). What unit is associated with this value? What does this value tell you about the flight of the missile?</p>
+              </article>
+              <article class="exercise-like" id="exercise-19">
+                <h5 class="heading">
+                  <span class="codenumber">11</span>
+                </h5>
+                <p id="p-81">The velocity (<sup>ft</sup>⁄<sub>s</sub>) function for the missile is \(\fe{v}{t}=-32t+294.4\). Calculate the value of \(\frac{\fe{v}{10}-\fe{v}{0}}{10}\). What unit is associated with this value? What does this value tell you about the flight of the missile?</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-6">
+            <article class="introduction" id="introduction-6">
+              <p id="p-82">Timmy lived a long life in the 19th century. When Timmy was seven he found a rock that weighed exactly half a stone. (Timmy lived in jolly old England, don't you know.) That rock sat on Timmy's window sill for the next 80 years and wouldn't you know the weight of that rock did not change even one smidge the entire time. In fact, the weight function for this rock was \(\fe{w}{t}=0.5\) where \(\fe{w}{t}\) was the weight of the rock (stones) and \(t\) was the number of years that had passed since that day Timmy brought the rock home.</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-20">
+                <h5 class="heading">
+                  <span class="codenumber">12</span>
+                </h5>
+                <p id="p-83">What was the average rate of change in the weight of the rock over the 80 years it sat on Timmy's window sill?</p>
+              </article>
+              <article class="exercise-like" id="exercise-21">
+                <h5 class="heading">
+                  <span class="codenumber">13</span>
+                </h5>
+                <p id="p-84">Ignoring the unit, simplify the expression \(\frac{\fe{w}{t_1}-\fe{w}{t_0}}{t_1-t_0}\). Does the result make sense in the context of this problem?</p>
+              </article>
+              <article class="exercise-like" id="exercise-22">
+                <h5 class="heading">
+                  <span class="codenumber">14</span>
+                </h5>
+                <p id="p-85">Showing each step in the process and ignoring the unit, simplify the difference quotient for \(w\). Does the result make sense in the context of this problem?</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-7">
+            <article class="introduction" id="introduction-7">
+              <p id="p-86">Truth be told, there was one day in 1842 when Timmy's mischievous son Nigel took that rock outside and chucked it into the air. The velocity of the rock (<sup>ft</sup>⁄<sub>s</sub>) was given by \(\fe{v}{t}=60-32t\) where \(t\) was the number of seconds that had passed since Nigel chucked the rock.</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-23">
+                <h5 class="heading">
+                  <span class="codenumber">15</span>
+                </h5>
+                <p id="p-87">What, <!--Style me with CSS--><em>including unit</em>, are the values of \(\fe{v}{0}\), \(\fe{v}{1}\), and \(\fe{v}{2}\) and what do these values tell you in the context of this problem? Don't just write that the values tell you the velocity at certain times; explain what the velocity values tell you about the motion of the rock.</p>
+              </article>
+              <article class="exercise-like" id="exercise-24">
+                <h5 class="heading">
+                  <span class="codenumber">16</span>
+                </h5>
+                <p id="p-88">Ignoring the unit, simplify the difference quotient for \(v\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-25">
+                <h5 class="heading">
+                  <span class="codenumber">17</span>
+                </h5>
+                <p id="p-89">What is the unit for the difference quotient for \(v\)? What does the value of the difference quotient (including unit) tell you in the context of this problem?</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-vat">
+            <article class="introduction" id="introduction-8">
+              <p id="p-90">Suppose that a vat was undergoing a controlled drain and that the amount of fluid left in the vat (gal) was given by the formula \(\fe{V}{t}=100-2t^{3/2}\) where \(t\) is the number of minutes that had passed since the draining process began.</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-vat-first">
+                <h5 class="heading">
+                  <span class="codenumber">18</span>
+                </h5>
+                <p id="p-91">What, <!--Style me with CSS--><em>including unit</em>, is the value of \(\fe{V}{4}\) and what does that value tell you in the context of this problem?</p>
+              </article>
+              <article class="exercise-like" id="exercise-27">
+                <h5 class="heading">
+                  <span class="codenumber">19</span>
+                </h5>
+                <p id="p-92">Ignoring the unit, write down the formula you get for the difference quotient of \(V\) when \(t=4\).</p>
+                <div class="sidebyside" style="" id="sidebyside-4">
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+                      <p id="p-93">Copy <a href="chapter-rates-of-change.xhtml#table-vat">1.3.3</a> onto your paper and fill in the missing values. <!--Style me with CSS--><em>Look for a pattern in the output and write down enough digits for each entry so that the pattern is clearly illustrated;</em> the first two entries in the output column have been given to help you understand what is meant by this direction.</p>
+                    </div>
+                    <div class="sbspanel fixed-width" style="width:50%;justify-content:flex-start;">
+                      <table>
+                        <tr>
+                          <td class="c m b2 r0 l0 t3 lines">\(h\)</td>
+                          <td class="c m b2 r0 l0 t3 lines">\(y\)</td>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(-0.1\)</td>
+                          <td class="l m b0 r0 l0 t0 lines">\(-5.962\ldots\)</td>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(-0.01\)</td>
+                          <td class="l m b0 r0 l0 t0 lines">\(-5.9962\ldots\)</td>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(-0.001\)</td>
+                          <td class="l m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(\phantom{-}0.001\)</td>
+                          <td class="l m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(\phantom{-}0.01\)</td>
+                          <td class="l m b0 r0 l0 t0 lines"/>
+                        </tr>
+                        <tr>
+                          <td class="l m b0 r0 l0 t0 lines">\(\phantom{-}0.1\)</td>
+                          <td class="l m b0 r0 l0 t0 lines"/>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                    <figcaption class="sbscaption" style="width:50%;"/>
+                    <figcaption class="sbscaption" style="width:50%;"><span class="heading">Table</span><span class="codenumber">1.3.3</span>\(y=\frac{\fe{V}{4+h}-\fe{V}{4}}{h}\)</figcaption>
+                  </div>
+                </div>
+              </article>
+              <article class="exercise-like" id="exercise-28">
+                <h5 class="heading">
+                  <span class="codenumber">20</span>
+                </h5>
+                <p id="p-94">What is the unit for the \(y\) values in <a href="chapter-rates-of-change.xhtml#table-vat">1.3.3</a>? What do these values (with their unit) tell you in the context of this problem?</p>
+              </article>
+              <article class="exercise-like" id="exercise-vat-last">
+                <h5 class="heading">
+                  <span class="codenumber">21</span>
+                </h5>
+                <p id="p-95">As the value of \(h\) gets closer to \(0\), the values in the \(y\) column of <a href="chapter-rates-of-change.xhtml#table-vat">1.3.3</a> appear to be converging to a single number; what is this number and what do you think that value (with its unit) tells you in the context of this problem?</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="section" id="rates-of-change-supplementary-exercises">
+        <header>
+          <h1>Activity 1.4 Supplement</h1>
+        </header>
+        <section class="exercises" id="exercises-4">
+          <header>
+            <h1>Exercises 1.4.1 Exercises</h1>
+          </header>
+          <div class="exercisegroup" id="exercisegroup-9">
+            <article class="introduction" id="introduction-9">
+              <p id="p-96">The function \(z\) shown in <a href="chapter-rates-of-change.xhtml#figure-upside-down-parabola-supplement">1.4.1</a> was generated by the formula \(\fe{z}{x}=2+4x-x^2\).</p>
+              <div class="sidebyside" style="" id="sidebyside-5">
+                <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                  <div class="sbspanel" style="width:50%;justify-content:flex-start;">
+                    <object type="image/svg+xml" style="width:100%; margin:auto; display:block;" data="images/image-3.svg" alt="a downward opening parabola with vertex at (2,6) and x-intercepts at about -0.5 and 4.5">
+                      <p style="margin:auto">&lt;&lt;SVG image is unavailable, or your browser cannot render it&gt;&gt;</p>
+                    </object>
+                  </div>
+                  <div class="sbspanel fixed-width" style="width:50%;justify-content:flex-start;">
+                    <table>
+                      <tr>
+                        <td class="l m b2 r0 l0 t3 lines">\(h\)</td>
+                        <td class="c m b2 r0 l0 t3 lines">\(\frac{\fe{z}{4+h}-\fe{z}{4}}{h}\)</td>
+                      </tr>
+                      <tr>
+                        <td class="l m b0 r0 l0 t0 lines">\(-0.1\)</td>
+                        <td class="c m b0 r0 l0 t0 lines">\(-3.9\)</td>
+                      </tr>
+                      <tr>
+                        <td class="l m b0 r0 l0 t0 lines">\(-0.01\)</td>
+                        <td class="c m b0 r0 l0 t0 lines"/>
+                      </tr>
+                      <tr>
+                        <td class="l m b0 r0 l0 t0 lines">\(-0.001\)</td>
+                        <td class="c m b0 r0 l0 t0 lines"/>
+                      </tr>
+                      <tr>
+                        <td class="l m b0 r0 l0 t0 lines">\(\phantom{-}0.001\)</td>
+                        <td class="c m b0 r0 l0 t0 lines"/>
+                      </tr>
+                      <tr>
+                        <td class="l m b0 r0 l0 t0 lines">\(\phantom{-}0.01\)</td>
+                        <td class="c m b0 r0 l0 t0 lines"/>
+                      </tr>
+                      <tr>
+                        <td class="l m b3 r0 l0 t0 lines">\(\phantom{-}0.1\)</td>
+                        <td class="c m b3 r0 l0 t0 lines"/>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+                  <figcaption class="sbscaption" style="width:50%;"><span class="heading">Figure</span><span class="codenumber">1.4.1</span>\(y=\fe{z}{x}=2+4x-x^2\)</figcaption>
+                  <figcaption class="sbscaption" style="width:50%;"><span class="heading">Table</span><span class="codenumber">1.4.2</span>\(\frac{\fe{z}{4+h}-\fe{z}{4}}{h}\)</figcaption>
+                </div>
+              </div>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-30">
+                <h5 class="heading">
+                  <span class="codenumber">1</span>
+                </h5>
+                <p id="p-97">Simplify the difference quotient for \(z\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-31">
+                <h5 class="heading">
+                  <span class="codenumber">2</span>
+                </h5>
+                <p id="p-100">Use the graph to find the slope of the secant line to \(z\) between the points where \(x=-1\) and \(x=2\).  Check your simplified difference quotient for \(z\) by using it to find the slope of the same secant line.</p>
+              </article>
+              <article class="exercise-like" id="exercise-32">
+                <h5 class="heading">
+                  <span class="codenumber">3</span>
+                </h5>
+                <p id="p-104">Replace \(x\) with \(4\) in your difference quotient formula and simplify the result.  Then copy <a href="chapter-rates-of-change.xhtml#table-upside-down-parabola-supplement">1.4.2</a> onto your paper and fill in the missing values.</p>
+              </article>
+              <article class="exercise-like" id="exercise-upside-down-parabola-slope">
+                <h5 class="heading">
+                  <span class="codenumber">4</span>
+                </h5>
+                <p id="p-107">As the value of \(h\) gets closer to \(0\), the values in the \(y\) column of <a href="chapter-rates-of-change.xhtml#table-upside-down-parabola-supplement">1.4.2</a> appear to be converging on a single number; what is this number?</p>
+              </article>
+              <article class="exercise-like" id="exercise-34">
+                <h5 class="heading">
+                  <span class="codenumber">5</span>
+                </h5>
+                <p id="p-110">The value found in <a href="chapter-rates-of-change.xhtml#exercise-upside-down-parabola-slope">1.4.1.4</a> is called <!--Style me with CSS--><em>the slope of the tangent line to \(z\) at \(4\)</em>.  Draw onto <a href="chapter-rates-of-change.xhtml#figure-upside-down-parabola-supplement">1.4.1</a> the line that passes through the point \(\point{4}{2}\) with this slope.  The line you just drew is called <!--Style me with CSS--><em>the tangent line to \(z\) at \(4\)</em>.</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-10">
+            <article class="introduction" id="introduction-10">
+              <p id="p-111">Find the difference quotient for each function showing all relevant steps in an organized manner.</p>
+            </article>
+            <div class="exercisegroup-exercises cols2">
+              <article class="exercise-like" id="exercise-35">
+                <h5 class="heading">
+                  <span class="codenumber">6</span>
+                </h5>
+                <p id="p-112">\(\fe{f}{x}=3-7x\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-36">
+                <h5 class="heading">
+                  <span class="codenumber">7</span>
+                </h5>
+                <p id="p-115">\(\fe{g}{x}=\dfrac{7}{x+4}\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-37">
+                <h5 class="heading">
+                  <span class="codenumber">8</span>
+                </h5>
+                <p id="p-118">\(\fe{z}{x}=\pi\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-38">
+                <h5 class="heading">
+                  <span class="codenumber">9</span>
+                </h5>
+                <p id="p-121">\(\fe{s}{t}=t^3-t-9\)</p>
+              </article>
+              <article class="exercise-like" id="exercise-39">
+                <h5 class="heading">
+                  <span class="codenumber">10</span>
+                </h5>
+                <p id="p-124">\(\fe{k}{t}=\dfrac{(t-8)^2}{t}\)</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-11">
+            <article class="introduction" id="introduction-11">
+              <p id="p-127">Suppose that an object is tossed directly upward in the air in such a way that the elevation of the object (measured in ft) is given by the function \(\fe{s}{t}=150+60t-16t^2\) where \(t\) is the amount of time that has passed since the object was tossed (measure in seconds).</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-40">
+                <h5 class="heading">
+                  <span class="codenumber">11</span>
+                </h5>
+                <p id="p-128">Find the difference quotient for \(s\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-41">
+                <h5 class="heading">
+                  <span class="codenumber">12</span>
+                </h5>
+                <p id="p-131">Use the difference quotient to determine the average velocity of the object over the interval \(\cinterval{4}{4.2}\) and then verify the value by calculating \(\frac{\fe{s}{4.2}-\fe{s}{4}}{4.2-4}\).</p>
+              </article>
+            </div>
+          </div>
+          <div class="exercisegroup" id="exercisegroup-12">
+            <article class="introduction" id="introduction-12">
+              <p id="p-135">Several applied functions are given below.  In each case, find the indicated quantity (including unit) and interpret the value in the context of the application.</p>
+            </article>
+            <div class="exercisegroup-exercises">
+              <article class="exercise-like" id="exercise-42">
+                <h5 class="heading">
+                  <span class="codenumber">13</span>
+                </h5>
+                <p id="p-136">The velocity, \(v\), of a roller coaster (in <sup>ft</sup>⁄<sub>s</sub>) is given by \begin{equation*}\fe{v}{t}=-100\fe{\sin}{\frac{\pi t}{15}}\end{equation*} where \(t\) is the amount of time (s) that has passed since the coaster topped the first hill.  Find and interpret \(\frac{\fe{v}{7.5}-\fe{v}{0}}{7.5-0}\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-43">
+                <h5 class="heading">
+                  <span class="codenumber">14</span>
+                </h5>
+                <p id="p-139">The elevation of a ping pong ball relative to the table top (in m) is given by the function \(\fe{h}{t}=1.1\abs{\fe{\cos}{\frac{2\pi t}{3}}}\) where \(t\) is the amount of time (s) that has passed since the ball went into play.  Find and interpret \(\frac{\fe{h}{3}-\fe{h}{1.5}}{3-1.5}\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-44">
+                <h5 class="heading">
+                  <span class="codenumber">15</span>
+                </h5>
+                <p id="p-142">The period of a pendulum (s) is given by \(\fe{P}{x}=\frac{6}{x+1}\) where \(x\) is the number of swings the pendulum has made.  Find and interpret \(\frac{\fe{P}{29}-\fe{P}{1}}{29-1}\).</p>
+              </article>
+              <article class="exercise-like" id="exercise-45">
+                <h5 class="heading">
+                  <span class="codenumber">16</span>
+                </h5>
+                <p id="p-145">The acceleration of a rocket (<sup>mph</sup>⁄<sub>s</sub>) is given by \(\fe{a}{t}=0.02+0.13t\) where \(t\) is the amount of time (s) that has passed since lift-off.  Find and interpret \(\frac{\fe{a}{120}-\fe{a}{60}}{120-60}\).</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </body>
+</html>
